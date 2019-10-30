@@ -1,0 +1,102 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+
+			<f:loadBundle basename="i18n.msj_cuestionarioTipo" var="msg" />
+			<f:loadBundle basename="i18n.msj_general" var="msgGen" />
+
+			<f:view>
+				<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog" header="Cargando" draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form id="form">
+					<br />
+					<p:panel id="msgProjectCueCuestionarioTipoTitle" header="#{msg.lbl_cuestionarioTipo_titulo}">
+						<p:messages id="msg" showDetail="true" />
+						<p:growl id="men" />
+						
+						<h:panelGrid columns="4" id="panel">
+							<h:outputText id="msgNombre" value="#{msg.lbl_cuestionarioTipo_nombre}" />
+							<p:inputText id="txtNombre" value="#{cuestionarioTipoUI.cuestionarioTipo.nombre}" />
+
+							<h:outputText id="msgDescripcion" value="#{msg.lbl_cuestionarioTipo_descripcion}" />
+							<p:inputTextarea id="txtDescripcion" value="#{cuestionarioTipoUI.cuestionarioTipo.descripcion}" style="width: 200px; height: 80px;"/>
+							<h:outputText id="msgEstado" value="#{msg.lbl_cuestionarioTipo_estado}" />
+							<p:selectOneRadio id="optionsRetCuestionario" value="#{cuestionarioTipoUI.cuestionarioTipo.estado}">
+								<f:selectItem itemLabel="#{msg.lbl_activo}"
+									itemValue="1" />
+								<f:selectItem itemLabel="#{msg.lbl_inactivo}"
+									itemValue="0" />
+							</p:selectOneRadio>
+
+						</h:panelGrid>
+						<br />
+						<h:panelGrid id="panelBotones" columns="4">
+
+							<p:commandButton id="btnSave" disabled="#{cuestionarioTipoUI.disableButtonSave}" value="#{msgGen.btn_general_save}"
+								ajax="true" action="#{cuestionarioTipoUI.actionSave}" update="msg,panel,panelBotones,:form:tableCuestionarioTipo"/>
+							<p:commandButton id="btnModify" disabled="#{cuestionarioTipoUI.disableButtonModify}" value="#{msgGen.btn_general_modify}"
+								ajax="true" action="#{cuestionarioTipoUI.actionModify}" update="msg,panel,panelBotones,:form:tableCuestionarioTipo"/>
+							<p:commandButton id="btnDelete" disabled="#{cuestionarioTipoUI.disableButtonDelete}" value="#{msgGen.btn_general_delete}"
+								ajax="true" action="#{cuestionarioTipoUI.actionDelete}" update="msg,panel,panelBotones,:form:tableCuestionarioTipo"
+								onclick="return confirm('#{msgGen.lbl_general_confirm}')" />
+							<p:commandButton id="btnClear" value="#{msgGen.btn_general_clear}" ajax="true" action="#{cuestionarioTipoUI.actionClear}"
+								update="msg,panel,panelBotones"/>
+
+						</h:panelGrid>
+
+					</p:panel>
+
+					<br />
+
+					<p:dataTable value="#{cuestionarioTipoUI.data}" id="tableCuestionarioTipo" var="cueCuestionarioTipo" paginator="true" rows="5">
+
+						<p:column filterBy="#{cueCuestionarioTipo.nombre}"
+							sortBy="#{cueCuestionarioTipo.nombre}">
+							<f:facet name="header">
+								<h:outputText value="#{msg.lbl_cuestionarioTipo_nombre}" />
+							</f:facet>
+							<h:outputText value="#{cueCuestionarioTipo.nombre}" />
+						</p:column>
+
+						<p:column filterBy="#{cueCuestionarioTipo.descripcion}"
+							sortBy="#{cueCuestionarioTipo.descripcion}">
+							<f:facet name="header">
+								<h:outputText value="#{msg.lbl_cuestionarioTipo_descripcion}" />
+							</f:facet>
+							<h:outputText value="#{cueCuestionarioTipo.descripcion}" />
+						</p:column>
+
+						<p:column filterBy="#{cueCuestionarioTipo.estado}"
+							sortBy="#{cueCuestionarioTipo.estado}">
+							<f:facet name="header">
+								<h:outputText value="#{msg.lbl_cuestionarioTipo_estado}" />
+							</f:facet>
+							<h:outputText value="#{cueCuestionarioTipo.estado eq 1 ? 'Activo' : 'Inactivo'}" />
+						</p:column>
+
+						<p:column style="width:4%">
+							<p:commandButton id="selectButton"
+								update=":form:panel,:form:panelBotones"
+								action="#{cuestionarioTipoUI.actionLoadEntity}"
+								icon="ui-icon-search">
+								<f:setPropertyActionListener value="#{cueCuestionarioTipo}"
+									target="#{cuestionarioTipoUI.selectedCuestionarioTipo}" />
+							</p:commandButton>
+						</p:column>
+
+					</p:dataTable>
+
+				</h:form>
+					</f:view>
+		</ui:define>
+
+</ui:composition>

@@ -1,0 +1,170 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+		<f:view>
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
+			<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+				draggable="false" closable="false">
+				<p:graphicImage
+					value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+			</p:dialog>
+
+			<!-- Expired session -->
+			<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();"
+				timeout="#{session.maxInactiveInterval * 1000}" />
+			<p:dialog modal="true" widgetVar="sessionTimeOutDialog"
+				header="Sesion Expirada" draggable="false" closable="false">
+				<h:outputText value="La sesion ha finalizado" />
+				<input id="confirmBackToLogin" type="button" value="Iniciar Sesion"
+					onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />
+			</p:dialog>
+
+			<h:form id="frm">
+
+				<p:panel id="panelDataTablePsyPlanEstrategicoAmbiental"
+					header="Gestionar Plan Estrategico Ambiental">
+					<p:growl id="men" autoUpdate="true" showDetail="false" />
+					<p:dataTable id="tablaPEA" value="#{psyPlanEstrategicoAmbientalView.data}" emptyMessage="No hay planes estrategicos ambientales relacionados con su empresa"
+						var="psyPlanEstrategicoAmbiental" paginator="true" rows="5">
+						<p:column filterBy="#{psyPlanEstrategicoAmbiental.nombre}"
+							sortBy="#{psyPlanEstrategicoAmbiental.nombre}">
+							<f:facet name="header">
+								<h:outputText value="Nombre" />
+							</f:facet>
+							<h:outputText value="#{psyPlanEstrategicoAmbiental.nombre}" />
+						</p:column>
+						<p:column
+							filterBy="#{psyPlanEstrategicoAmbiental.nombrePest}"
+							sortBy="#{psyPlanEstrategicoAmbiental.nombrePest}">
+							<f:facet name="header">
+								<h:outputText value="Plan Estrategico" />
+							</f:facet>
+							<h:outputText
+								value="#{psyPlanEstrategicoAmbiental.nombrePest}" />
+						</p:column>
+						<p:column filterBy="#{psyPlanEstrategicoAmbiental.fechaInico}"
+							sortBy="#{psyPlanEstrategicoAmbiental.fechaInico}">
+							<f:facet name="header">
+								<h:outputText value="Fecha Inicio" />
+							</f:facet>
+							<h:outputText value="#{psyPlanEstrategicoAmbiental.fechaInico}">
+								<f:convertDateTime pattern="yyyy/MM/dd" />
+							</h:outputText>
+						</p:column>
+						
+						<p:column filterBy="#{psyPlanEstrategicoAmbiental.fechaFin}"
+							sortBy="#{psyPlanEstrategicoAmbiental.fechaFin}">
+							<f:facet name="header">
+								<h:outputText value="Fecha Fin" />
+							</f:facet>
+							<h:outputText value="#{psyPlanEstrategicoAmbiental.fechaFin}">
+								<f:convertDateTime pattern="yyyy/MM/dd" />
+							</h:outputText>
+						</p:column>						
+						<p:column filterBy="#{psyPlanEstrategicoAmbiental.estadoPlan}"
+							sortBy="#{psyPlanEstrategicoAmbiental.estadoPlan}">
+							<f:facet name="header">
+								<h:outputText value="Estado del Plan" />
+							</f:facet>
+							<h:outputText value="#{psyPlanEstrategicoAmbiental.estadoPlan}" />
+						</p:column>
+						<p:column headerText="Opciones">
+							<p:commandButton id="btnEdit" icon="ui-icon-pencil" title="Editar"
+								update=":dialogPsyPlanEstrategicoAmbiental, @([id$=tablaPEA])"
+								actionListener="#{psyPlanEstrategicoAmbientalView.action_edit}">
+								<f:attribute name="selectedPsyPlanEstrategicoAmbiental"
+									value="#{psyPlanEstrategicoAmbiental}" />
+							</p:commandButton>
+							<p:commandButton id="btnDelete" title="Cerrar" disabled="#{psyPlanEstrategicoAmbiental.disabled}"
+								actionListener="#{psyPlanEstrategicoAmbientalView.action_close_plan}"
+								onclick="if(!confirm('Realmente desea cerrar este plan?')){return false;}"
+								icon="ui-icon-power" update="@form,@([id$=tablaPEA])">
+								<f:attribute name="selectedPsyPlanEstrategicoAmbiental"
+									value="#{psyPlanEstrategicoAmbiental}" />
+							</p:commandButton>
+							<p:commandButton id="btnGenerarPeaDefinitivo" title="Generar Plan Definitivo" disabled="#{psyPlanEstrategicoAmbiental.disabled}"
+								actionListener="#{psyPlanEstrategicoAmbientalView.definirPlanEstrategicoAmbiental}"
+								onclick="if(!confirm('Realmente este es el plan estrategico ambiental definitivo?')){return false;}"
+								icon="ui-icon-check" update="@form,@([id$=tablaPEA])">
+								<f:attribute name="selectedPsyPlanEstrategicoAmbiental"
+									value="#{psyPlanEstrategicoAmbiental}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+				<p:panel id="panelBoton">
+					<div align="center">
+						<p:commandButton id="btnNew" value="Abrir Plan"
+							action="#{psyPlanEstrategicoAmbientalView.action_new()}"
+							update=":dialogPsyPlanEstrategicoAmbiental" />
+					</div>
+				</p:panel>
+			</h:form>
+			<p:dialog id="dialogPsyPlanEstrategicoAmbiental" appendTo="@(body)"
+				draggable="true" closable="false"
+				visible="#{psyPlanEstrategicoAmbientalView.showDialog}"
+				resizable="false" modal="true" width="500">
+				<h:form id="formDialog">
+					<p:growl id="msg" autoUpdate="true" showDetail="false" />
+					<p:panel id="panelPsyPlanEstrategicoAmbiental"
+						header="Abrir Plan">
+						<h:panelGrid columns="2" id="panelGrid">
+							<h:outputText id="msgNombre" value=" Nombre *" />
+							<p:inputText id="txtNombre" style="width: 200px" placeholder="Nombre del Plan Est. Ambiental"
+								binding="#{psyPlanEstrategicoAmbientalView.txtNombre}" />
+								
+							<h:outputText id="msgPestCodigo_PsyPlanEstrategico"
+								value=" Plan Estrategico *" />
+							<p:inputText id="txtPestCodigo_PsyPlanEstrategico" style="width: 200px"
+								disabled="true"
+								binding="#{psyPlanEstrategicoAmbientalView.txtPestCodigo_PsyPlanEstrategico}" />
+								
+								
+								<h:outputText id="msgFechaInico" value=" Fecha Inicio *" />
+							<p:calendar showOn="button" navigator="true" locale="en" size="30" placeholder="Fecha Inicial del plan"
+							pattern="dd-MM-yyyy" mask="true" converterMessage="Fecha incorrecta"
+								binding="#{psyPlanEstrategicoAmbientalView.txtFechaInico}">
+								<p:ajax event="dateSelect"
+									listener="#{psyPlanEstrategicoAmbientalView.listener_txtFechaInico}" />
+							</p:calendar>
+
+							<h:outputText id="msgFechaFin" value=" Fecha Fin" />
+							<p:calendar showOn="button" navigator="true" locale="en" size="30" placeholder="Fecha Final del plan"
+							pattern="dd-MM-yyyy" mask="true" converterMessage="Fecha incorrecta"
+								binding="#{psyPlanEstrategicoAmbientalView.txtFechaFin}">
+								<p:ajax event="dateSelect"
+									listener="#{psyPlanEstrategicoAmbientalView.listener_txtFechaFin}" />
+							</p:calendar>
+							
+							<h:outputText id="msgEstadoPlan" value=" Estado del Plan *" />
+							<p:inputText id="txtEstadoPlan" disabled="true" style="width: 200px"
+								binding="#{psyPlanEstrategicoAmbientalView.txtEstadoPlan}" />
+							
+						</h:panelGrid>
+					</p:panel>
+					<p:panel id="panelBotones">
+						<div align="center">
+							<p:commandButton id="btnSave"
+								binding="#{psyPlanEstrategicoAmbientalView.btnSave}"
+								value="Guardar"
+								action="#{psyPlanEstrategicoAmbientalView.action_save()}"
+								update=":dialogPsyPlanEstrategicoAmbiental :frm:panelDataTablePsyPlanEstrategicoAmbiental, @([id$=tablaPEA])" />
+							<p:commandButton id="btnClear" value="Limpiar"
+								action="#{psyPlanEstrategicoAmbientalView.action_clear()}"
+								update=":dialogPsyPlanEstrategicoAmbiental, @([id$=tablaPEA])" />
+							<p:commandButton id="btnExit" value="Salir"
+								action="#{psyPlanEstrategicoAmbientalView.action_closeDialog()}"
+								update=":dialogPsyPlanEstrategicoAmbiental, @([id$=tablaPEA])" />
+						</div>
+					</p:panel>
+				</h:form>
+			</p:dialog>
+		</f:view>
+	</ui:define>
+
+</ui:composition>

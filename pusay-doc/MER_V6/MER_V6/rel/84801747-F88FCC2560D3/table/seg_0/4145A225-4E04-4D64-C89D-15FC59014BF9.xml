@@ -1,0 +1,112 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4145A225-4E04-4D64-C89D-15FC59014BF9" name="PSY_MATRIZ_ERIDA">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 15:48:06 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>MAER</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MAER_CODIGO" id="4AD45CB9-B987-A562-0C1C-E39CD0BE4381">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:02:59 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PEST_CODIGO" id="45F78558-3B3E-6047-C4A7-92974D50CFC6">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:03:15 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8644F525-00D2-5543-B0FF-6A387C1CC78B" referredColumn="19997DFD-83AF-9363-CD39-14023390B25C"/>
+</associations>
+</Column>
+<Column name="FECHA_INICIO" id="EBE3F547-FBBA-43C1-4406-94F93BAAF1C2">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 19:42:22 UTC</createdTime>
+<comment>FECHA DE INICIO DEL LA MATRIZ ERIDA</comment>
+<commentInRDBMS>FECHA DE INICIO DEL LA MATRIZ ERIDA</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FECHA_FIN" id="D3487DE7-0EC0-C309-BF80-8A3CF470A8D3">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 19:42:22 UTC</createdTime>
+<comment>FECHA EN QUE SE GENERA EL INFORME DE DIAGNOSTICO DEFINITIVO</comment>
+<commentInRDBMS>FECHA EN QUE SE GENERA EL INFORME DE DIAGNOSTICO DEFINITIVO</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_ERIDA" id="6BA6A539-0DCB-49AF-C2B1-E156096B2E06">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 19:34:13 UTC</createdTime>
+<comment>ESTADO POR EL QUE PUEDE PASAR LA ERIDA</comment>
+<commentInRDBMS>ESTADO POR EL QUE PUEDE PASAR LA ERIDA</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="906CD87D-8412-7EF4-87F3-037CD4E0C125">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 19:34:13 UTC</createdTime>
+<comment>A-ACTIVO, I-INACTIVO</comment>
+<commentInRDBMS>A-ACTIVO, I-INACTIVO</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E5100021-936B-06B9-C3E2-D1CB1CBC40C4" name="MATRIZ_ERIDA_PK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:02:59 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4AD45CB9-B987-A562-0C1C-E39CD0BE4381"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="44ACA6D1-6620-E48C-4B27-4E4D965E6599" name="MAER_PEST_FK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:03:15 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="45F78558-3B3E-6047-C4A7-92974D50CFC6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

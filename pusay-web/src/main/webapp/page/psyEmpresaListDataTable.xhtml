@@ -1,0 +1,157 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	</h:head>
+
+	<h:body>
+		  <ui:composition template="/WEB-INF/facelets/template.xhtml">	
+		 
+		 	<ui:define name="body">	
+				<f:view>
+					<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>               
+					<p:dialog modal="true" widgetVar="statusDialog" header="Loading"  draggable="false" closable="false">  
+   						<p:graphicImage value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />   
+					</p:dialog>
+					
+					<!-- Expired session -->
+					<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();" timeout="#{session.maxInactiveInterval * 1000}" />
+					<p:dialog modal="true" widgetVar="sessionTimeOutDialog" header="Expired session"  draggable="false" closable="false">  
+	   					<h:outputText value="The session is finished" />
+	                 	<input id="confirmBackToLogin" 
+	                 		type="button" 
+	                 		value="Sign in"
+	                    	onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />   
+					</p:dialog>
+					
+		  			<h:form id="frm">								  		
+						
+						<p:panel id="panelDataTablePsyEmpresa" header="PsyEmpresaData">
+							<p:growl id="men"/>				
+							<p:dataTable value="#{psyEmpresaView.data}" var="psyEmpresa"
+								paginator="true" rows="5">
+																										<p:column filterBy="#{psyEmpresa.emprCodigo}" sortBy="#{psyEmpresa.emprCodigo}" >
+										 <f:facet name="header">
+										<h:outputText value="emprCodigo"/>
+										</f:facet>
+										 <h:outputText value="#{psyEmpresa.emprCodigo}"/>
+										 </p:column>
+			                    																									
+										<p:column filterBy="#{psyEmpresa.direccionPrincipal}" sortBy="#{psyEmpresa.direccionPrincipal}" >
+										 <f:facet name="header">
+										<h:outputText value="DireccionPrincipal"/>
+										</f:facet>
+										 <h:outputText value="#{psyEmpresa.direccionPrincipal}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{psyEmpresa.estadoRegistro}" sortBy="#{psyEmpresa.estadoRegistro}" >
+										 <f:facet name="header">
+										<h:outputText value="EstadoRegistro"/>
+										</f:facet>
+										 <h:outputText value="#{psyEmpresa.estadoRegistro}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{psyEmpresa.nit}" sortBy="#{psyEmpresa.nit}" >
+										 <f:facet name="header">
+										<h:outputText value="Nit"/>
+										</f:facet>
+										 <h:outputText value="#{psyEmpresa.nit}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{psyEmpresa.nombre}" sortBy="#{psyEmpresa.nombre}" >
+										 <f:facet name="header">
+										<h:outputText value="Nombre"/>
+										</f:facet>
+										 <h:outputText value="#{psyEmpresa.nombre}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{psyEmpresa.telefonoPrincipal}" sortBy="#{psyEmpresa.telefonoPrincipal}" >
+										 <f:facet name="header">
+										<h:outputText value="TelefonoPrincipal"/>
+										</f:facet>
+										 <h:outputText value="#{psyEmpresa.telefonoPrincipal}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{psyEmpresa.ciudCodigo_PsyCiudad}" sortBy="#{psyEmpresa.ciudCodigo_PsyCiudad}" >
+										 <f:facet name="header">
+										<h:outputText value="CiudCodigo_PsyCiudad"/>
+										</f:facet>
+										 <h:outputText value="#{psyEmpresa.ciudCodigo_PsyCiudad}"/>
+										</p:column>   
+			                    									
+										<p:column filterBy="#{psyEmpresa.persCodigo_PsyPersona}" sortBy="#{psyEmpresa.persCodigo_PsyPersona}" >
+										 <f:facet name="header">
+										<h:outputText value="PersCodigo_PsyPersona"/>
+										</f:facet>
+										 <h:outputText value="#{psyEmpresa.persCodigo_PsyPersona}"/>
+										</p:column>   
+			                    			                    
+								<p:column headerText="Options">
+									<p:commandButton id="btnEdit" icon="ui-icon-pencil"
+										update=":dialogPsyEmpresa"
+										actionListener="#{psyEmpresaView.action_edit}">
+										<f:attribute name="selectedPsyEmpresa" value="#{psyEmpresa}" />
+									</p:commandButton>
+									<p:commandButton id="btnDelete"									
+										title="Delete" actionListener="#{psyEmpresaView.action_delete_datatable}"
+										onclick="if(!confirm('Do you really want to delete this Entry?')){return false;}"
+										icon="ui-icon-trash" update="@form">
+										<f:attribute name="selectedPsyEmpresa" value="#{psyEmpresa}" />
+									</p:commandButton>
+								</p:column>									                    
+							</p:dataTable>	
+						</p:panel>
+						<p:panel id="panelBoton">
+							<div align="center">
+								<p:commandButton id="btnNew" value="New"
+									action="#{psyEmpresaView.action_new()}" update=":dialogPsyEmpresa" />
+							</div>
+						</p:panel>						
+		   			</h:form>
+					<p:dialog id="dialogPsyEmpresa" appendTo="@(body)" draggable="true"
+						closable="false" visible="#{psyEmpresaView.showDialog}" resizable="false"
+						modal="true" width="500">
+						<h:form id="formDialog">
+							<p:messages id="msg" />
+							<p:panel id="panelPsyEmpresa" header="PsyEmpresa">							
+							    <h:panelGrid columns="2" id="panelGrid" >
+																		 <h:outputText id="msgEmprCodigo" value="EmprCodigo"/>
+									 <p:inputText id="txtEmprCodigo" binding="#{psyEmpresaView.txtEmprCodigo}">
+									 <p:ajax update=":dialogPsyEmpresa" listener="#{psyEmpresaView.listener_txtId}"/>
+									 </p:inputText>	
+																											
+																		<h:outputText id="msgDireccionPrincipal" value=" DireccionPrincipal"/>
+									<p:inputText id="txtDireccionPrincipal" disabled="true" binding="#{psyEmpresaView.txtDireccionPrincipal}"/>
+																		<h:outputText id="msgEstadoRegistro" value=" EstadoRegistro"/>
+									<p:inputText id="txtEstadoRegistro" disabled="true" binding="#{psyEmpresaView.txtEstadoRegistro}"/>
+																		<h:outputText id="msgNit" value=" Nit"/>
+									<p:inputText id="txtNit" disabled="true" binding="#{psyEmpresaView.txtNit}"/>
+																		<h:outputText id="msgNombre" value=" Nombre"/>
+									<p:inputText id="txtNombre" disabled="true" binding="#{psyEmpresaView.txtNombre}"/>
+																		<h:outputText id="msgTelefonoPrincipal" value=" TelefonoPrincipal"/>
+									<p:inputText id="txtTelefonoPrincipal" disabled="true" binding="#{psyEmpresaView.txtTelefonoPrincipal}"/>
+																		<h:outputText id="msgCiudCodigo_PsyCiudad" value=" CiudCodigo_PsyCiudad"/>
+									<p:inputText id="txtCiudCodigo_PsyCiudad" disabled="true" binding="#{psyEmpresaView.txtCiudCodigo_PsyCiudad}"/>
+																		<h:outputText id="msgPersCodigo_PsyPersona" value=" PersCodigo_PsyPersona"/>
+									<p:inputText id="txtPersCodigo_PsyPersona" disabled="true" binding="#{psyEmpresaView.txtPersCodigo_PsyPersona}"/>
+																		
+																    </h:panelGrid>
+							</p:panel>						   
+							<p:panel id="panelBotones">
+								<div align="center">					
+									<p:commandButton id="btnSave" binding="#{psyEmpresaView.btnSave}" value="Save" action="#{psyEmpresaView.action_save()}" update=":dialogPsyEmpresa :frm:panelDataTablePsyEmpresa" />
+									<p:commandButton id="btnClear" value="Clear" action="#{psyEmpresaView.action_clear()}" update=":dialogPsyEmpresa" />
+									<p:commandButton id="btnExit" value="Exit" action="#{psyEmpresaView.action_closeDialog()}" update=":dialogPsyEmpresa" />
+								</div>
+							</p:panel>					
+						</h:form>
+					</p:dialog>
+				</f:view>
+			</ui:define>		
+		</ui:composition>	
+	</h:body>	
+</html>	

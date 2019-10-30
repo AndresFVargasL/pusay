@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-jun-2013 19:14:26 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.cuestionarios.model.CueNavegacion" table="CUE_NAVEGACION">
+        <id name="consecutivo" type="java.lang.Long">
+            <column name="CONSECUTIVO" precision="10" scale="0" />
+            <generator class="native">
+		    	<param name="sequence">SEQ_CUE_NAVEGACION</param>
+		   </generator>
+        </id>
+        <many-to-one name="cuePreguntaByPreguntaOrigen" class="com.vortexbird.pusay.cuestionarios.model.CuePregunta" fetch="select">
+            <column name="PREGUNTA_ORIGEN" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cueOpcion" class="com.vortexbird.pusay.cuestionarios.model.CueOpcion" fetch="select">
+            <column name="OPCION_RESPUESTA" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cuePreguntaByPreguntaDestino" class="com.vortexbird.pusay.cuestionarios.model.CuePregunta" fetch="select">
+            <column name="PREGUNTA_DESTINO" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cueCuestionario" class="com.vortexbird.pusay.cuestionarios.model.CueCuestionario" fetch="select">
+            <column name="CUESTIONARIO" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 20, 2015 10:23:26 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyTarea" table="psy_tarea" schema="public">
+        <id name="tareCodigo" type="java.lang.Long">
+            <column name="tare_codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="psyResponsable" class="com.vortexbird.pusay.modelo.PsyResponsable" fetch="select">
+            <column name="resp_codigo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="psyPlanAccion" class="com.vortexbird.pusay.modelo.PsyPlanAccion" fetch="select">
+            <column name="plac_codigo" not-null="true" />
+        </many-to-one>
+        <property name="descripcion" type="java.lang.String">
+            <column name="descripcion" length="2000">
+                <comment>DESCRIPCION DE LA TAREA</comment>
+            </column>
+        </property>
+        <property name="fechaInicio" type="java.util.Date">
+            <column name="fecha_inicio" length="13" not-null="true">
+                <comment>FECHA INICIO DE LA TAREA</comment>
+            </column>
+        </property>
+        <property name="fechaFinPlaneada" type="java.util.Date">
+            <column name="fecha_fin_planeada" length="13" not-null="true">
+                <comment>FECHA EN QUE SE PLANEA TERMINAR LA TAREA</comment>
+            </column>
+        </property>
+        <property name="fechaFinReal" type="java.util.Date">
+            <column name="fecha_fin_real" length="13">
+                <comment>FECHA REAL EN QUE SE TERMINA LA TAREA</comment>
+            </column>
+        </property>
+        <property name="semanaFinPlaneada" type="java.lang.Long">
+            <column name="semana_fin_planeada" precision="3" scale="0" not-null="true">
+                <comment>NUMERO DE LA SEMANA EN QUE SE PLANEA TERMINAR LA TAREA</comment>
+            </column>
+        </property>
+        <property name="semanaFinReal" type="java.lang.Long">
+            <column name="semana_fin_real" precision="3" scale="0">
+                <comment>SEMANA REAL DE FINALIZACION DE LA TAREA</comment>
+            </column>
+        </property>
+        <property name="estadoTarea" type="java.lang.String">
+            <column name="estado_tarea" length="1" not-null="true">
+                <comment>ESTADOS POR LOS CUALES PUEDE PASAR LA TAREA</comment>
+            </column>
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true" />
+        </property>
+        <set name="psySeguimientoTareas" table="psy_seguimiento_tarea" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tare_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsySeguimientoTarea" />
+        </set>
+    </class>
+</hibernate-mapping>

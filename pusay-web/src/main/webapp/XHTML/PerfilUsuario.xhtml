@@ -1,0 +1,79 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+		<f:view>
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+					draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<!-- Expired session -->
+				<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();"
+					timeout="#{session.maxInactiveInterval * 1000}" />
+				<p:dialog modal="true" widgetVar="sessionTimeOutDialog"
+					header="Sesion Expirada" draggable="false" closable="false">
+					<h:outputText value="La sesión ha finalizado" />
+					<input id="confirmBackToLogin" type="button" value="Iniciar Sesión"
+						onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />
+				</p:dialog>
+
+				<h:form id="frm">
+				
+				<p:growl id="msg" autoUpdate="true" showDetail="false"/>
+				<div align="center">
+						<p:panel id="panelPsyPersona" header="Perfil del Usuario">
+							<h:panelGrid columns="2" id="panelGrid">
+							
+								<h:outputText id="msgPUEmail" value=" E-mail" />
+								<p:inputText id="txtPUEmail" disabled="true"
+									binding="#{registrarView.txtPUEmail}" style="width: 200px" />
+								<h:outputText id="msgPUNombre" value=" Nombre" />
+								<p:inputText id="txtPUNombre" disabled="false"
+									binding="#{registrarView.txtPUNombre}" style="width: 200px" />
+								<h:outputText id="msgPUApellido" value=" Apellido" />
+								<p:inputText id="txtPUApellido" disabled="false"
+									binding="#{registrarView.txtPUApellido}" style="width: 200px" />
+								<h:outputText id="msgPUTelefono" value=" Telefono" />
+								<p:inputText id="txtPUTelefono" disabled="false"
+									binding="#{registrarView.txtPUTelefono}" style="width: 200px" />
+								<h:outputText id="msgPUEmprCodigo_PsyEmpresa"
+									value=" Empresa" />
+								<p:inputText id="txtPUEmprCodigo_PsyEmpresa" disabled="true"
+									binding="#{registrarView.txtPUEmprCodigo_PsyEmpresa}" style="width: 200px" />
+								<h:outputText id="msgPUPersClaveActual"
+									value=" Clave Actual" />
+								<p:inputText id="txtPUPersClaveActual" disabled="false"
+									binding="#{registrarView.txtPUPersClaveActual}" type="password" style="width: 200px" />	
+								<h:outputText id="msgPUContrasena"
+									value=" Clave Nueva" />
+								<p:inputText id="txtPUContrasena" disabled="false"
+									binding="#{registrarView.txtPUContrasenaUsuarioConsulta}" type="password" style="width: 200px" />
+								<h:outputText id="msgPUCompruebaContrasena"
+									value=" Confirmar Clave" />
+								<p:inputText id="txtPUCompruebaContrasena" disabled="false"
+									binding="#{registrarView.txtPUCompruebaContrasenaUsuarioConsulta}" type="password" style="width: 200px" />		
+							</h:panelGrid>
+						</p:panel>
+						<p:panel id="panelBotones">
+							<div align="center">
+								<p:commandButton id="btnSave"
+									binding="#{registrarView.btnPUSave}" value="Guardar"
+									action="#{registrarView.action_modificarPerfil()}"
+									update="@([id$=panelPsyPersona])" />
+							</div>
+						</p:panel>
+				</div>
+	
+				</h:form>
+				
+			</f:view>
+	</ui:define>
+
+</ui:composition>

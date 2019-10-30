@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 20, 2015 10:23:26 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyPlanEstrategico" table="psy_plan_estrategico" schema="public">
+        <id name="pestCodigo" type="java.lang.Long">
+            <column name="pest_codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="psyEmpresa" class="com.vortexbird.pusay.modelo.PsyEmpresa" fetch="select">
+            <column name="empr_codigo" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="java.lang.String">
+            <column name="nombre" not-null="true">
+                <comment>NOMBRE DEL PLAN ESTRATEGICO</comment>
+            </column>
+        </property>
+        <property name="fechaInicio" type="java.util.Date">
+            <column name="fecha_inicio" length="13" not-null="true">
+                <comment>FECHA DE APERTURA DEL PLAN ESTRATEGICO</comment>
+            </column>
+        </property>
+        <property name="fechaFin" type="java.util.Date">
+            <column name="fecha_fin" length="13">
+                <comment>FECHA DE CIERRE DEL PLAN</comment>
+            </column>
+        </property>
+        <property name="descripcion" type="java.lang.String">
+            <column name="descripcion" length="2000" />
+        </property>
+        <property name="estadoPlan" type="java.lang.String">
+            <column name="estado_plan" length="1" not-null="true">
+                <comment>ESTADO POR EL CUAL PUEDE PASAR EL PLAN</comment>
+            </column>
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true">
+                <comment>A- ACTIVO, I- INACTIVO</comment>
+            </column>
+        </property>
+        <set name="psyObjetivoPlans" table="psy_objetivo_plan" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pest_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyObjetivoPlan" />
+        </set>
+        <set name="psyMatrizEncuestas" table="psy_matriz_encuesta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pest_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyMatrizEncuesta" />
+        </set>
+        <set name="psyMatrizEridas" table="psy_matriz_erida" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pest_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyMatrizErida" />
+        </set>
+        <set name="psyMapaEstrategicos" table="psy_mapa_estrategico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pest_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyMapaEstrategico" />
+        </set>
+    </class>
+</hibernate-mapping>

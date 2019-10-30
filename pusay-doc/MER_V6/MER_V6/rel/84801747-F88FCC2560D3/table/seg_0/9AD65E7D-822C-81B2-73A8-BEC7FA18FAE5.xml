@@ -1,0 +1,161 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9AD65E7D-822C-81B2-73A8-BEC7FA18FAE5" name="PSY_EMPRESA">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 15:15:50 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>EMPR</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="EMPR_CODIGO" id="0D0A7C25-2199-55BE-9FFB-1E673D5FC29A">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 15:18:32 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CIUD_CODIGO" id="1AED4105-6C9A-8D23-0039-C9A7585F1123">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:39:56 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="88E6C8D6-B0BB-70BD-68E5-67C982ECA42F" referredColumn="751E5C80-30A8-9A1E-A401-117785E96352"/>
+</associations>
+</Column>
+<Column name="PERS_CODIGO" id="499DD4BC-36B7-62D7-818B-DCC46CC438AF">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:47:13 UTC</createdTime>
+<comment>PERSONA DE CONTACTO EN LA EMPRESA</comment>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="FFE38349-BED6-0F08-B83D-F2139E89C8E2" referredColumn="0C598E9B-9A15-8C4E-9E57-82B77CEF15ED"/>
+</associations>
+</Column>
+<Column name="NIT" id="D808F6F5-FBC1-EABE-ADAC-214345C0E4F1">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 23:13:57 UTC</createdTime>
+<comment>NIT DE LA EMPRESA REGISTRADA</comment>
+<commentInRDBMS>NIT DE LA EMPRESA REGISTRADA</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOMBRE" id="E9A3B120-D66C-4947-7F7C-3E9003DDE747">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 23:13:57 UTC</createdTime>
+<comment>NOMBRE DE LA EMPRESA REGISTRADA</comment>
+<commentInRDBMS>NOMBRE DE LA EMPRESA REGISTRADA</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DIRECCION_PRINCIPAL" id="6C35F7A7-C6E2-2FB7-2F44-827F02ADDCBC">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 23:13:57 UTC</createdTime>
+<comment>DIRECCION DE LA EMPRESA</comment>
+<commentInRDBMS>DIRECCION DE LA EMPRESA</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TELEFONO_PRINCIPAL" id="71663372-9F97-501D-EDDC-FAD36CF0006B">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 23:13:57 UTC</createdTime>
+<comment>TELEFONO DE LA EMPRESA</comment>
+<commentInRDBMS>TELEFONO DE LA EMPRESA</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>15</dataTypePrecision>
+<ownDataTypeParameters>,15,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="DA6FD33A-3F50-E2EA-350A-96CEE0DE80CB">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 23:13:57 UTC</createdTime>
+<comment>A-ACTIVO, I-INACTIVO</comment>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BB9FC50E-93F1-7718-5C6A-DFA4527F8E8E" name="PSY_EMPRESA_PK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 15:19:09 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0D0A7C25-2199-55BE-9FFB-1E673D5FC29A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0E6D1916-6B53-EBDB-31B2-4A50683B6272" name="EMPRESA_CIUDAD_FK">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:39:56 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1AED4105-6C9A-8D23-0039-C9A7585F1123"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8F4FE124-80EE-EDDA-0D69-2E4B4CB47165" name="EMPRESA_PERSONA_FK">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:47:13 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="499DD4BC-36B7-62D7-818B-DCC46CC438AF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

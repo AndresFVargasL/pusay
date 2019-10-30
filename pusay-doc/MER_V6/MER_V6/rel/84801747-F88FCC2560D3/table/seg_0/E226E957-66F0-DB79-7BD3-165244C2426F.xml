@@ -1,0 +1,106 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E226E957-66F0-DB79-7BD3-165244C2426F" name="PSY_OBJETIVO_IMPACTO">
+<createdBy>andresfelipevargaslopez</createdBy>
+<createdTime>2015-07-13 14:30:08 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<ordsAlias>table_36</ordsAlias>
+<abbreviation>OBIM</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="OBIM_CODIGO" id="B3DE14ED-826C-ABC4-A669-DACEB1EA79EC">
+<createdBy>andresfelipevargaslopez</createdBy>
+<createdTime>2015-07-13 14:31:15 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="OBES_CODIGO" id="B929CF32-4019-F0E9-F6C6-EA4F08F1BA28">
+<createdBy>andresfelipevargaslopez</createdBy>
+<createdTime>2015-07-13 14:33:05 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F5F81A24-7D16-710E-1B22-42A40E2C8F12" referredColumn="3A52B3A5-1CAA-691F-563B-B1AB272A0C10"/>
+</associations>
+</Column>
+<Column name="IMAM_CODIGO" id="6436B3C8-959D-29F5-1F8A-0AD5B5E6977B">
+<createdBy>andresfelipevargaslopez</createdBy>
+<createdTime>2015-07-13 14:35:05 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="773DD298-B139-23D1-BEC2-448BB2E43713" referredColumn="DC9E1638-C728-28D6-7CE6-C74BEAE62851"/>
+</associations>
+</Column>
+<Column name="ESTADO_REGISTRO" id="841F547C-EEFF-DE01-BC13-CED83D46FCC3">
+<createdBy>andresfelipevargaslopez</createdBy>
+<createdTime>2015-07-13 14:32:20 UTC</createdTime>
+<comment>-- A : ACTIVO - I:INACTIVO</comment>
+<commentInRDBMS>-- A : ACTIVO - I:INACTIVO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2B99579B-B095-38D7-7E20-8F106259E28F" name="PSY_OBJETIVO_IMPACTO_PK">
+<createdBy>andresfelipevargaslopez</createdBy>
+<createdTime>2015-07-13 14:31:15 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B3DE14ED-826C-ABC4-A669-DACEB1EA79EC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C0DDC5F1-3DE2-C1F3-02EC-58574D0D7443" name="OBIM_OBES_FK">
+<createdBy>andresfelipevargaslopez</createdBy>
+<createdTime>2015-07-13 14:33:04 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B929CF32-4019-F0E9-F6C6-EA4F08F1BA28"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CC0A350C-AA49-BD99-CCB3-AF54EE3C5DB4" name="OBIM_IMAM_FK">
+<createdBy>andresfelipevargaslopez</createdBy>
+<createdTime>2015-07-13 14:35:05 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6436B3C8-959D-29F5-1F8A-0AD5B5E6977B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-abr-2015 0:40:08 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyIndicador" table="psy_indicador" schema="public">
+        <id name="codigo" type="java.lang.Long">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="psySubtema" class="com.vortexbird.pusay.modelo.PsySubtema" fetch="select">
+            <column name="subte_codigo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="psyObjetivoAmbiental" class="com.vortexbird.pusay.modelo.PsyObjetivoAmbiental" fetch="select">
+            <column name="obam_codigo" not-null="true" />
+        </many-to-one>
+        <property name="descripcion" type="java.lang.String">
+            <column name="descripcion" length="100" not-null="true" />
+        </property>
+        <property name="unidadMedida" type="java.lang.String">
+            <column name="unidad_medida" length="200" not-null="true" />
+        </property>
+        <property name="tipoIndicador" type="java.lang.String">
+            <column name="tipo_indicador" length="1" not-null="true" />
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true" />
+        </property>
+        <set name="psyEvaluacionPeaIndicadors" table="psy_evaluacion_pea_indicador" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="indi_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyEvaluacionPeaIndicador" />
+        </set>
+    </class>
+</hibernate-mapping>

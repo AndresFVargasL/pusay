@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+			<script type="text/javascript" src="#{request.contextPath}/js/encuesta-reportes.js" />
+			
+			<f:loadBundle basename="i18n.msj_consultar_reporte" var="msg" />
+			<f:loadBundle basename="i18n.msj_general" var="msgGen" />
+
+			<f:view>
+				<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog" header="Cargando" draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form id="form">
+					<br />
+					<p:panel id="msgProjectCueEstadoTitle" header="#{msg.lbl_generar_reporte}">
+						<p:messages id="msg" showDetail="true" />
+						<p:growl id="men" />
+						
+						<div align="center">
+							<h:panelGrid columns="2" id="panel" border="0">
+								<h:panelGrid border="0" style="text-align: center;">
+									<h:commandLink
+										onclick="javascript:abrirReporte('#{request.contextPath}', 'pdf', 'consolidadoPregunta'); return false;">
+										<p:graphicImage style="border:0;"
+											url="/images/extension_pdf.png" title="#{msg.titleConsolidadoPregunta}" />
+									</h:commandLink>
+									<h:outputText value="#{msg.titleConsolidadoPregunta}" />
+								</h:panelGrid>
+								
+								<h:panelGrid border="0" style="text-align: center;">
+									<h:commandLink
+										onclick="javascript:abrirReporte('#{request.contextPath}', 'pdf', 'consolidadoCuestionario'); return false;">
+										<p:graphicImage style="border:0;"
+											url="/images/extension_pdf.png" title="#{msg.titleConsolidadoCuestionario}" />
+									</h:commandLink>
+									<h:outputText value="#{msg.titleConsolidadoCuestionario}" />
+								</h:panelGrid>
+							</h:panelGrid>
+						</div>
+					</p:panel>
+				</h:form>
+		</f:view>
+		</ui:define>
+
+</ui:composition>

@@ -1,0 +1,63 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+			<f:view>
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+					draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+				<h:form>
+
+					<br />
+
+
+					<p:dataTable value="#{cuestionarioUI.data}" var="cueCuestionario"
+						paginator="true" rows="5">
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Titulo" />
+							</f:facet>
+							<h:commandLink value="#{cueCuestionario.titulo}">
+								<f:param name="consecutivoCuestionario"
+									value="#{cueCuestionario.titulo}" />
+							</h:commandLink>
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="FechaCreacion" />
+							</f:facet>
+							<h:outputText value="#{cueCuestionario.fechaCreacion}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Consecutivo_CueCuestionarioTipo" />
+							</f:facet>
+							<h:outputText
+								value="#{cueCuestionario.cueCuestionarioTipo.nombre}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Consecutivo_CueEstado" />
+							</f:facet>
+							<h:outputText value="#{cueCuestionario.cueEstado.nombre}" />
+						</p:column>
+
+					</p:dataTable>
+
+				</h:form>
+		</f:view>
+		</ui:define>
+
+</ui:composition>

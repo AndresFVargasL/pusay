@@ -1,0 +1,86 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.relational.RelationalDesign>
+   <object objectType="Table" objectID="0672D874-9BD7-E715-7B23-A149710C3397" name="PSY_DETALLE_MAPA_ESTRATEGICO" seqName="seg_0"/>
+   <object objectType="Table" objectID="082B1D33-15A1-0BCE-786C-097E82C5A286" name="PSY_MONEDA" seqName="seg_0"/>
+   <object objectType="Table" objectID="0EB2E4E9-0668-396B-B518-4F7115E0D12F" name="PSY_EVALUACION_PEA_OBJETIVO" seqName="seg_0"/>
+   <object objectType="Table" objectID="1ED22DF2-CF2E-9B83-B8C0-DA3390138EED" name="PSY_IMPACTO_OBJETIVO" seqName="seg_0"/>
+   <object objectType="Table" objectID="21B67BB2-869F-9FF1-CB7B-AA0F74F2E126" name="PSY_OBJETIVO_ESTRATEGICO" seqName="seg_0"/>
+   <object objectType="Table" objectID="3C412E25-B336-E914-94BC-C2C930B8E4FE" name="PSY_ITEM_PRESUPUESTO" seqName="seg_0"/>
+   <object objectType="Table" objectID="3EC5AB73-BD1E-6714-1004-515EF5B5D49F" name="PSY_PRESUPUESTO" seqName="seg_0"/>
+   <object objectType="Table" objectID="4145A225-4E04-4D64-C89D-15FC59014BF9" name="PSY_MATRIZ_ERIDA" seqName="seg_0"/>
+   <object objectType="Table" objectID="49AD1A2A-45E7-B7C7-0D8E-354D5B1C923D" name="PSY_MATRIZ_CORRELACION" seqName="seg_0"/>
+   <object objectType="Table" objectID="4BECC8EA-541A-3C52-E020-122A24FD1996" name="PSY_ASUNTO_AMBIENTAL" seqName="seg_0"/>
+   <object objectType="Table" objectID="4D554050-40F8-E4DC-6316-A72C71F5D8E8" name="PSY_IMPACTO_AMBIENTAL" seqName="seg_0"/>
+   <object objectType="Table" objectID="536612C9-D040-5CD0-5781-9FAB3BD68E30" name="PSY_OBJETIVO_PLAN" seqName="seg_0"/>
+   <object objectType="Table" objectID="5668811E-C42C-4A0F-9BFE-1DC35507AEC2" name="PSY_SEGUIMIENTO_TAREA" seqName="seg_0"/>
+   <object objectType="Table" objectID="5D3A6B33-CBDB-46E2-151F-0D03EC8F460E" name="PSY_TIPO_ITEM_PRESUPUESTO" seqName="seg_0"/>
+   <object objectType="Table" objectID="6FF18FB1-D46C-36B4-F24C-9B50039C1275" name="PSY_INDICADOR" seqName="seg_0"/>
+   <object objectType="Table" objectID="7D5CE3B2-DD17-00C8-6504-F65F7190A20A" name="PSY_MAPA_ESTRATEGICO" seqName="seg_0"/>
+   <object objectType="Table" objectID="838A93A3-3E03-DAA0-4C1A-A66D1179D87F" name="PSY_ESTRATEGIA_AMBIENTAL" seqName="seg_0"/>
+   <object objectType="Table" objectID="8DE438E4-6575-C99B-6CEC-35AFFA4742AA" name="PSY_PERSONA" seqName="seg_0"/>
+   <object objectType="Table" objectID="9519FB95-2C55-11A6-A3FB-CAD06F94D0FA" name="PSY_DETALLE_OBJETIVO_PLAN" seqName="seg_0"/>
+   <object objectType="Table" objectID="98BEE507-B932-3B32-8DA2-2CC6CBF729AE" name="PSY_PAIS" seqName="seg_0"/>
+   <object objectType="Table" objectID="9AD65E7D-822C-81B2-73A8-BEC7FA18FAE5" name="PSY_EMPRESA" seqName="seg_0"/>
+   <object objectType="Table" objectID="9D48FD2C-B32D-C0F4-5252-4E24F9A975E9" name="PSY_SUBTEMA" seqName="seg_0"/>
+   <object objectType="Table" objectID="AB5DAD16-4ED8-C0BF-70AA-8E35FF9E6316" name="PSY_IPU" seqName="seg_0"/>
+   <object objectType="Table" objectID="B483718C-F7F8-C816-AAC7-956C30C71225" name="PSY_OBJETIVO_AMBIENTAL" seqName="seg_0"/>
+   <object objectType="Table" objectID="BDEC449C-7663-688A-725C-00AAFCF1EE8C" name="PSY_MATRIZ_ENCUESTA" seqName="seg_0"/>
+   <object objectType="Table" objectID="BF0F6FB5-E9F7-04CE-D03D-88D8037F62FA" name="PSY_PROGRAMA" seqName="seg_0"/>
+   <object objectType="Table" objectID="CD870753-DE3E-E5D0-97E1-14802721B701" name="PSY_CIUDAD" seqName="seg_0"/>
+   <object objectType="Table" objectID="D81FB942-4873-C6CF-B97F-64756476E82C" name="PSY_TEMA" seqName="seg_0"/>
+   <object objectType="Table" objectID="DC8622C1-EE3B-86A4-58ED-D7FABC3AB819" name="PSY_EVALUACION_PEA_INDICADOR" seqName="seg_0"/>
+   <object objectType="Table" objectID="DEA66F76-CA60-7F3D-88C8-AE7396040B93" name="PSY_RESPONSABLE" seqName="seg_0"/>
+   <object objectType="Table" objectID="E226E957-66F0-DB79-7BD3-165244C2426F" name="PSY_OBJETIVO_IMPACTO" seqName="seg_0"/>
+   <object objectType="Table" objectID="E4B8C8F9-AC35-6142-5BCB-86A0E9F806E8" name="PSY_PLAN_ESTRATEGICO_AMBIENTAL" seqName="seg_0"/>
+   <object objectType="Table" objectID="E6050711-31F1-4D89-D8AF-E8E0BB1CA869" name="PSY_DETALLE_ERIDA" seqName="seg_0"/>
+   <object objectType="Table" objectID="E71F7F9C-7CA8-77F2-EFF0-E094F1822145" name="PSY_PROVINCIA" seqName="seg_0"/>
+   <object objectType="Table" objectID="F39D27CB-723F-594D-6D89-5C339EDA05A6" name="PSY_PLAN_ACCION" seqName="seg_0"/>
+   <object objectType="Table" objectID="F3A2470F-1283-0488-F540-270502466BB1" name="PSY_PLAN_ESTRATEGICO" seqName="seg_0"/>
+   <object objectType="Table" objectID="FA6A1C51-31F1-4E6F-947D-3D904A395DBF" name="PSY_PLAN_ESTRATEGIA" seqName="seg_0"/>
+   <object objectType="Table" objectID="FEE12AE7-B9E7-E635-6A67-9AE505185F7F" name="PSY_TAREA" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="05B29E5C-A67E-0E40-6E10-F9ADD5F25B0C" name="TARE_PLAC_FK" containerID="FEE12AE7-B9E7-E635-6A67-9AE505185F7F" refContainerID="F39D27CB-723F-594D-6D89-5C339EDA05A6" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="1838613D-ED82-6DFA-49DB-46EF6CE450BA" name="PEST_OBPL_FK" containerID="536612C9-D040-5CD0-5781-9FAB3BD68E30" refContainerID="F3A2470F-1283-0488-F540-270502466BB1" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="18D084C5-E80E-5986-663A-B715491C614D" name="MONE_PRES_FK" containerID="3EC5AB73-BD1E-6714-1004-515EF5B5D49F" refContainerID="082B1D33-15A1-0BCE-786C-097E82C5A286" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="21B64B8D-5FE3-1CD0-B7CC-2671034EC2A8" name="IMOB_IMAM_FK" containerID="1ED22DF2-CF2E-9B83-B8C0-DA3390138EED" refContainerID="4D554050-40F8-E4DC-6316-A72C71F5D8E8" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="23682667-0CC1-BD3D-4403-5D906C33468C" name="DEER_ASAM_FK" containerID="E6050711-31F1-4D89-D8AF-E8E0BB1CA869" refContainerID="4BECC8EA-541A-3C52-E020-122A24FD1996" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="24EE4944-0C4C-0EE9-ECFA-4223328D7CE0" name="MAES_MACO_FK" containerID="0672D874-9BD7-E715-7B23-A149710C3397" refContainerID="49AD1A2A-45E7-B7C7-0D8E-354D5B1C923D" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="26760D75-1707-0A52-10FD-4D99416324D4" name="PSY_PLES_PROG_FK" containerID="FA6A1C51-31F1-4E6F-947D-3D904A395DBF" refContainerID="BF0F6FB5-E9F7-04CE-D03D-88D8037F62FA" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="2A0B86F6-8D62-CA90-31DE-524824549CC0" name="OBPL_DOBP_FK" containerID="9519FB95-2C55-11A6-A3FB-CAD06F94D0FA" refContainerID="536612C9-D040-5CD0-5781-9FAB3BD68E30" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="361D5DA8-7387-71D0-4649-99E1103A88E3" name="PERSONA_EMPRESA_FK" containerID="8DE438E4-6575-C99B-6CEC-35AFFA4742AA" refContainerID="9AD65E7D-822C-81B2-73A8-BEC7FA18FAE5" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="398F90F7-C6AC-A2B1-C66D-4E9E64B3F955" name="SUBTEMA_TEMA_FK" containerID="9D48FD2C-B32D-C0F4-5252-4E24F9A975E9" refContainerID="D81FB942-4873-C6CF-B97F-64756476E82C" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="40347F68-752D-BA8D-2CA9-B3184F2207DE" name="INDI_SUBTE_FK" containerID="6FF18FB1-D46C-36B4-F24C-9B50039C1275" refContainerID="9D48FD2C-B32D-C0F4-5252-4E24F9A975E9" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="4166A626-15EE-0884-1BA6-D3EA934CD194" name="EVAOB_PEA_FK" containerID="0EB2E4E9-0668-396B-B518-4F7115E0D12F" refContainerID="E4B8C8F9-AC35-6142-5BCB-86A0E9F806E8" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="41DC3582-B3BB-AF9F-F76B-0DCBCF0E2BF0" name="PEA_PLES_FK" containerID="E4B8C8F9-AC35-6142-5BCB-86A0E9F806E8" refContainerID="F3A2470F-1283-0488-F540-270502466BB1" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="4340FB79-4216-BCF6-4F12-0A83CC0C770E" name="SETA_TARE_FK" containerID="5668811E-C42C-4A0F-9BFE-1DC35507AEC2" refContainerID="FEE12AE7-B9E7-E635-6A67-9AE505185F7F" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="44E9B348-5A18-A0FB-4553-1C357F2DD6E2" name="CIUDAD_PROVINCIA_FK" containerID="CD870753-DE3E-E5D0-97E1-14802721B701" refContainerID="E71F7F9C-7CA8-77F2-EFF0-E094F1822145" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="51289D56-67D3-1F37-D248-A9F8762B47B8" name="TEMA_IMPACTO_AMBIENTAL_FK" containerID="D81FB942-4873-C6CF-B97F-64756476E82C" refContainerID="4D554050-40F8-E4DC-6316-A72C71F5D8E8" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="574D63F3-63E3-21EA-9F9D-171CEBCD11EA" name="IPRE_TIIP_FK" containerID="3C412E25-B336-E914-94BC-C2C930B8E4FE" refContainerID="5D3A6B33-CBDB-46E2-151F-0D03EC8F460E" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="773DD298-B139-23D1-BEC2-448BB2E43713" name="OBIM_IMAM_FK" containerID="E226E957-66F0-DB79-7BD3-165244C2426F" refContainerID="4D554050-40F8-E4DC-6316-A72C71F5D8E8" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="7E1BC716-86D3-2029-E344-472EA49246BF" name="IPU_PLAC_FK" containerID="AB5DAD16-4ED8-C0BF-70AA-8E35FF9E6316" refContainerID="F39D27CB-723F-594D-6D89-5C339EDA05A6" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="812BD8FB-99AC-1040-E0BD-516234CCD871" name="IPRE_PRES_FK" containerID="3C412E25-B336-E914-94BC-C2C930B8E4FE" refContainerID="3EC5AB73-BD1E-6714-1004-515EF5B5D49F" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="8644F525-00D2-5543-B0FF-6A387C1CC78B" name="MAER_PEST_FK" containerID="4145A225-4E04-4D64-C89D-15FC59014BF9" refContainerID="F3A2470F-1283-0488-F540-270502466BB1" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="8756CA60-9A3C-917A-47A2-8D6F2EA1A7B7" name="TARE_RESP_FK" containerID="FEE12AE7-B9E7-E635-6A67-9AE505185F7F" refContainerID="DEA66F76-CA60-7F3D-88C8-AE7396040B93" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="88E6C8D6-B0BB-70BD-68E5-67C982ECA42F" name="EMPRESA_CIUDAD_FK" containerID="9AD65E7D-822C-81B2-73A8-BEC7FA18FAE5" refContainerID="CD870753-DE3E-E5D0-97E1-14802721B701" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="9077B1FF-DC33-0DA4-EF4B-DFB845C1B1A0" name="MACO_IMAM_FK" containerID="49AD1A2A-45E7-B7C7-0D8E-354D5B1C923D" refContainerID="4D554050-40F8-E4DC-6316-A72C71F5D8E8" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="91974B5A-3834-0C3D-BBB2-4D0EAF4C2E53" name="EVAOB_OBAM_FK" containerID="0EB2E4E9-0668-396B-B518-4F7115E0D12F" refContainerID="B483718C-F7F8-C816-AAC7-956C30C71225" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="91D0FB8D-0BF6-1CEA-AE53-D3924B372A0D" name="MAES_DMAE_FK" containerID="0672D874-9BD7-E715-7B23-A149710C3397" refContainerID="7D5CE3B2-DD17-00C8-6504-F65F7190A20A" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="922F2389-2FB2-EF1D-E8A1-ADBDADBAEA8D" name="PSY_PLAC_PROG_FK" containerID="F39D27CB-723F-594D-6D89-5C339EDA05A6" refContainerID="BF0F6FB5-E9F7-04CE-D03D-88D8037F62FA" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="925EE4F6-BB84-0CBC-6D16-F4262F5808BB" name="IMOB_OBAM_FK" containerID="1ED22DF2-CF2E-9B83-B8C0-DA3390138EED" refContainerID="B483718C-F7F8-C816-AAC7-956C30C71225" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="92C2B593-E772-F0F9-3864-0588143201C2" name="EVAPEA_INDI_FK" containerID="DC8622C1-EE3B-86A4-58ED-D7FABC3AB819" refContainerID="6FF18FB1-D46C-36B4-F24C-9B50039C1275" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="A6D3EEFF-2CE2-8DB7-1FDC-FF5143FB851D" name="PEST_MAES_FK" containerID="7D5CE3B2-DD17-00C8-6504-F65F7190A20A" refContainerID="F3A2470F-1283-0488-F540-270502466BB1" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="AFE942FA-EDAC-F334-03A0-9D3380C4EB79" name="MACO_ESAM_FK" containerID="49AD1A2A-45E7-B7C7-0D8E-354D5B1C923D" refContainerID="838A93A3-3E03-DAA0-4C1A-A66D1179D87F" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="B8C520C8-C991-12F1-45DE-090212035AD1" name="INDI_OBAM_FK" containerID="6FF18FB1-D46C-36B4-F24C-9B50039C1275" refContainerID="B483718C-F7F8-C816-AAC7-956C30C71225" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="B91CD062-94A7-D429-70BD-CB9C6AE92374" name="DEER_IMAM_FK" containerID="E6050711-31F1-4D89-D8AF-E8E0BB1CA869" refContainerID="4D554050-40F8-E4DC-6316-A72C71F5D8E8" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="CE896949-A339-6CC1-910C-172FD54DF75E" name="PRES_PLAC_FK" containerID="3EC5AB73-BD1E-6714-1004-515EF5B5D49F" refContainerID="F39D27CB-723F-594D-6D89-5C339EDA05A6" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="D9249569-8069-8643-898C-9424B1C6240A" name="EVAIND_PEA_FK" containerID="DC8622C1-EE3B-86A4-58ED-D7FABC3AB819" refContainerID="E4B8C8F9-AC35-6142-5BCB-86A0E9F806E8" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="DAB48AE8-3435-979C-445F-6F441663EFB1" name="DEER_MAER_FK" containerID="E6050711-31F1-4D89-D8AF-E8E0BB1CA869" refContainerID="4145A225-4E04-4D64-C89D-15FC59014BF9" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="E0A35308-889D-31E8-C2E7-4D9F3DECF301" name="MAEN_PEST_FK" containerID="BDEC449C-7663-688A-725C-00AAFCF1EE8C" refContainerID="F3A2470F-1283-0488-F540-270502466BB1" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="E24D3D33-4D3F-3CEA-25A9-E7DEDE90F565" name="PEST_EMPR_FK" containerID="F3A2470F-1283-0488-F540-270502466BB1" refContainerID="9AD65E7D-822C-81B2-73A8-BEC7FA18FAE5" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="E4011000-4E8B-B642-D695-26E4E2EE9F95" name="PROVINCIA_PAIS_FK" containerID="E71F7F9C-7CA8-77F2-EFF0-E094F1822145" refContainerID="98BEE507-B932-3B32-8DA2-2CC6CBF729AE" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="EC8B4F0E-7C11-FE08-6A91-3CDD39396E5F" name="DMAE_PLES_FK" containerID="FA6A1C51-31F1-4E6F-947D-3D904A395DBF" refContainerID="0672D874-9BD7-E715-7B23-A149710C3397" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="EFDCC709-F21B-9947-C84A-3D83E8BA600E" name="MACO_OBES_FK" containerID="49AD1A2A-45E7-B7C7-0D8E-354D5B1C923D" refContainerID="21B67BB2-869F-9FF1-CB7B-AA0F74F2E126" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="F5F81A24-7D16-710E-1B22-42A40E2C8F12" name="OBIM_OBES_FK" containerID="E226E957-66F0-DB79-7BD3-165244C2426F" refContainerID="21B67BB2-869F-9FF1-CB7B-AA0F74F2E126" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="F663F56E-2030-AFAD-92F2-52BC721A628D" name="OBPL_OBES_FK" containerID="9519FB95-2C55-11A6-A3FB-CAD06F94D0FA" refContainerID="21B67BB2-869F-9FF1-CB7B-AA0F74F2E126" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="FC18256B-44BD-E2EA-20EC-22BBE66CDF9A" name="RESP_EMPR_FK" containerID="DEA66F76-CA60-7F3D-88C8-AE7396040B93" refContainerID="9AD65E7D-822C-81B2-73A8-BEC7FA18FAE5" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="FFE38349-BED6-0F08-B83D-F2139E89C8E2" name="EMPRESA_PERSONA_FK" containerID="9AD65E7D-822C-81B2-73A8-BEC7FA18FAE5" refContainerID="8DE438E4-6575-C99B-6CEC-35AFFA4742AA" seqName="seg_0"/>
+</oracle.dbtools.crest.model.design.relational.RelationalDesign>

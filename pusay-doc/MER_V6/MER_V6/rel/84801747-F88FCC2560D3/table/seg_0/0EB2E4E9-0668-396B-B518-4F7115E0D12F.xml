@@ -1,0 +1,144 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0EB2E4E9-0668-396B-B518-4F7115E0D12F" name="PSY_EVALUACION_PEA_OBJETIVO">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 23:14:00 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>EVAOB</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="CODIGO" id="57066919-752B-32A2-078A-867357630AA3">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 23:14:38 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PEA_CODIGO" id="31E5972A-8010-8401-3675-56D39EE7C9ED">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 23:18:43 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4166A626-15EE-0884-1BA6-D3EA934CD194" referredColumn="91EB868B-D41E-5EB6-3D5A-47B6B404822C"/>
+</associations>
+</Column>
+<Column name="OBAM_CODIGO" id="D1F0FD0D-C2D2-74D8-AEA5-9C4EEFDBF275">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 23:20:13 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="91974B5A-3834-0C3D-BBB2-4D0EAF4C2E53" referredColumn="4E0D52A2-4A10-A081-E297-35899162FE3C"/>
+</associations>
+</Column>
+<Column name="PERIODO" id="016CCB75-6D85-96CA-C221-28760A1331B6">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 23:15:46 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RESULTADO" id="3FF41BBA-511F-29E6-B18D-F14EEACE229C">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 23:16:32 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,5,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="HISTORIAL" id="2E2C85D2-16D8-55AC-20C7-7E8709DDE63E">
+<createdBy>andresfelipevargaslopez</createdBy>
+<createdTime>2015-07-13 15:52:21 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,12,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="78B480B8-88EE-F644-73C1-E900EEE1D6F1">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 23:17:04 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="57EBA490-B1E6-3C1D-44E3-1076D6B50217" name="PSY_EVALUACION_PEA_OBJETIVO_PK">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 23:14:38 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="57066919-752B-32A2-078A-867357630AA3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="381914E1-63C4-0C6E-02AF-EA397653EBB2" name="EVAOB_PEA_FK">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 23:18:43 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="31E5972A-8010-8401-3675-56D39EE7C9ED"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B4EF24A9-FC38-924C-6944-63CE9BBDE850" name="EVAOB_OBAM_FK">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 23:20:13 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D1F0FD0D-C2D2-74D8-AEA5-9C4EEFDBF275"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 20, 2015 10:23:26 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyPersona" table="psy_persona" schema="public">
+        <id name="persCodigo" type="java.lang.Long">
+            <column name="pers_codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="psyEmpresa" class="com.vortexbird.pusay.modelo.PsyEmpresa" fetch="select">
+            <column name="empr_codigo" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="java.lang.String">
+            <column name="nombre" not-null="true">
+                <comment>NOMBRE COMPLETO DE LA PERSONA</comment>
+            </column>
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="email" length="100" not-null="true">
+                <comment>EMAIL DE LA PERSONA</comment>
+            </column>
+        </property>
+        <property name="telefono" type="java.lang.Long">
+            <column name="telefono" precision="15" scale="0">
+                <comment>TELEFONO DE CONTACTO PERSONA</comment>
+            </column>
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true" />
+        </property>
+        <set name="psyEmpresas" table="psy_empresa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pers_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyEmpresa" />
+        </set>
+    </class>
+</hibernate-mapping>

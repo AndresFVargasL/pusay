@@ -1,0 +1,143 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3EC5AB73-BD1E-6714-1004-515EF5B5D49F" name="PSY_PRESUPUESTO">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:21:56 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>PRES</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PRES_CODIGO" id="99182177-D5B6-AF61-826A-E1C962FDD41F">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:22:15 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PLAC_CODIGO" id="8B869F6E-D342-D5E1-C49D-0A2F4955EA73">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:22:24 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CE896949-A339-6CC1-910C-172FD54DF75E" referredColumn="316951A5-8146-69EE-7FA1-6D4E5040446F"/>
+</associations>
+</Column>
+<Column name="MONE_CODIGO" id="1E2EACA6-A6F9-6491-6226-0D4D290BD5D3">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:15:49 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="18D084C5-E80E-5986-663A-B715491C614D" referredColumn="FD212BC1-A61B-6E85-B5CC-A56BE73F9BF1"/>
+</associations>
+</Column>
+<Column name="FECHA_INICIO" id="FA575217-4954-46E2-0615-75650FFF4069">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 23:49:43 UTC</createdTime>
+<comment>FECHA DE APERTURA DEL PRESUPUESTO</comment>
+<commentInRDBMS>FECHA DE APERTURA DEL PRESUPUESTO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FECHA_FIN" id="EDFB4863-7828-7B5E-E2BC-16FD2A057369">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 23:49:43 UTC</createdTime>
+<comment>FECHA EN LA QUE SE CIERRA EL PRESUPUESTO</comment>
+<commentInRDBMS>FECHA EN LA QUE SE CIERRA EL PRESUPUESTO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_PRESUPUESTO" id="C36A0660-6D2D-A0DD-2199-1F30DC91A08C">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 23:49:43 UTC</createdTime>
+<comment>LOS ESTADOS POR LOS CUALES DEBE PASAR EL PRESUPUESTO</comment>
+<commentInRDBMS>LOS ESTADOS POR LOS CUALES DEBE PASAR EL PRESUPUESTO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="5F78792F-92A0-9649-54CF-6DC41C92BA3F">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 23:49:43 UTC</createdTime>
+<comment>A-ACTIVO, I-INACTIVO</comment>
+<commentInRDBMS>A-ACTIVO, I-INACTIVO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FB2D516A-1599-65CA-F6FC-DDC488F83DB1" name="PSY_PRESUPUESTO_PK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 18:19:31 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="99182177-D5B6-AF61-826A-E1C962FDD41F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A5FFC8E3-FFD2-B777-89EC-C6AEDBEA8D41" name="PRES_PLAC_FK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:22:24 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8B869F6E-D342-D5E1-C49D-0A2F4955EA73"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A9A262CC-0090-2E82-50AE-7F518659AC63" name="MONE_PRES_FK">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:15:49 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1E2EACA6-A6F9-6491-6226-0D4D290BD5D3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

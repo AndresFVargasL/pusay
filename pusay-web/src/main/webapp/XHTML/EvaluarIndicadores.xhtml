@@ -1,0 +1,233 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+		<f:view>
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
+			<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+				draggable="false" closable="false">
+				<p:graphicImage
+					value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+			</p:dialog>
+
+			<!-- Expired session -->
+			<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();"
+				timeout="#{session.maxInactiveInterval * 1000}" />
+			<p:dialog modal="true" widgetVar="sessionTimeOutDialog"
+				header="Sesion Expirada" draggable="false" closable="false">
+				<h:outputText value="La sesion ha finalizado" />
+				<input id="confirmBackToLogin" type="button" value="Iniciar Sesion"
+					onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />
+			</p:dialog>
+
+			<h:form id="frm">
+
+				<div align="center">
+					<h:panelGrid columns="1">
+						<p:outputLabel rendered="#{psyIndicadorView.pintarMensajeError}"
+							value="NO EXISTE UN PLAN ESTRATEGICO EN ESTADO INICIADO"
+							style="color: darkgreen; font-weight:bold; font-size:large"></p:outputLabel>
+						<p:outputLabel rendered="#{psyIndicadorView.pintarMensajeError}"
+							value="PORFAVOR GENERE EL PLAN ESTRATEGICO DEFINITIVO PARA PODER CONTINUAR"></p:outputLabel>
+					</h:panelGrid>
+				</div>
+
+				<p:panel id="panelIndicadoresItem" header=" Seleccionar un impacto "
+					rendered="#{psyIndicadorView.pintar}">
+					<div align="center">
+						<h:panelGrid columns="2" id="panelGrid" title=" Plan">
+
+							<h:outputText id="txtIndicadorItem" value=" Impacto Ambiental" />
+							<p:selectOneMenu id="somImpactoAmbiental" style="width: 159px;"
+								value="#{psyIndicadorView.somImpactoAmbiental}">
+								<f:selectItem itemLabel="Seleccione un impacto" />
+								<f:selectItems value="#{psyIndicadorView.losImpactosItems}"
+									var="p" itemLabel="#{p.descripcion}">
+								</f:selectItems>
+								<p:ajax
+									listener="#{psyIndicadorView.listener_txtIndicadorItem()}"
+									update="@([id$=panelDataTablePsyIndicador]), @([id$=dataIndicadores]), @form, @([id$=fieldsetEvaluacionInicial]), @([id$=fieldsetIndicadoresEvaluados])" />
+							</p:selectOneMenu>
+						</h:panelGrid>
+					</div>
+				</p:panel>
+				<p:panel id="panelDataTablePsyIndicador" header="Indicadores de Impacto"
+					rendered="#{psyIndicadorView.pintar}">
+
+
+						<p:growl id="men" showDetail="false" autoUpdate="true" />
+						<p:dataTable id="dataIndicadores" value="#{psyIndicadorView.data}"
+							var="psyIndicador"
+							emptyMessage="No se encontraron indicadores para evaluar"
+							paginator="true"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10,15" rows="5"
+							style="border-collapse: separate">
+							
+							<p:columnGroup type="header" >
+								<p:row>
+									<p:column colspan="5" />
+									<p:column colspan="4" headerText="Parametro de Comparación" />
+									<p:column colspan="1" />
+								</p:row>
+								<p:row>
+									<p:column headerText="Tema" />
+									<p:column headerText="SubTema" />
+									<p:column headerText="Indicador" />
+									<p:column headerText="Unidad de Medida" />
+									<p:column headerText="Resultado" />
+									<p:column headerText="Meta" />
+									<p:column headerText="Historico" />
+									<p:column headerText="Norma" />
+									<p:column headerText="Sectorial" />
+									<p:column headerText="Opciones" />
+								</p:row>
+							</p:columnGroup>
+
+							<p:column 
+								sortBy="#{psyIndicador.temaDescripcion}" style="background-color: #{psyIndicador.colorEvaluacion}; color: #{psyIndicador.colorLetra}" >
+								<f:facet name="header">
+									<h:outputText value="Tema"/>
+								</f:facet>
+								<h:outputText value="#{psyIndicador.temaDescripcion}"  />
+							</p:column>
+
+							<p:column 
+								sortBy="#{psyIndicador.subTemaDescripcion}" style="background-color: #{psyIndicador.colorEvaluacion}; color: #{psyIndicador.colorLetra}" >
+								<f:facet name="header">
+									<h:outputText value="SubTema" />
+								</f:facet>
+								<h:outputText value="#{psyIndicador.subTemaDescripcion}" />
+							</p:column>
+
+							<p:column 
+								sortBy="#{psyIndicador.indiDescripcion}" style="background-color: #{psyIndicador.colorEvaluacion}; color: #{psyIndicador.colorLetra}" >
+								<f:facet name="header">
+									<h:outputText value="Indicador" />
+								</f:facet>
+								<h:outputText value="#{psyIndicador.indiDescripcion}" />
+							</p:column>
+
+							<p:column 
+								sortBy="#{psyIndicador.indiUnidadMedida}" style="background-color: #{psyIndicador.colorEvaluacion}; color: #{psyIndicador.colorLetra}" >
+								<f:facet name="header">
+									<h:outputText value="Unidad de Medida" />
+								</f:facet>
+								<h:outputText value="#{psyIndicador.indiUnidadMedida}" />
+							</p:column>
+							
+							<p:column 
+								sortBy="#{psyIndicador.resultado}" style="background-color: #{psyIndicador.colorEvaluacion}; color: #{psyIndicador.colorLetra}">
+								<f:facet name="header">
+									<h:outputText value="Resultado" />
+								</f:facet>
+								<h:outputText value="#{psyIndicador.resultado}"  />
+							</p:column>
+							
+							<p:column sortBy="#{psyIndicador.meta}" style="background-color: #{psyIndicador.colorEvaluacion}; color: #{psyIndicador.colorLetra}">
+								<f:facet name="header">
+									<h:outputText value="Meta" />
+								</f:facet>
+								<h:outputText value="#{psyIndicador.meta}"  />
+							</p:column>
+
+							<p:column sortBy="#{psyIndicador.historial}" style="background-color: #{psyIndicador.colorEvaluacion}; color: #{psyIndicador.colorLetra}" >
+								<f:facet name="header">
+									<h:outputText value="Historico" />
+								</f:facet>
+								<h:outputText value="#{psyIndicador.historial}" />
+							</p:column>
+
+							<p:column sortBy="#{psyIndicador.norma}" style="background-color: #{psyIndicador.colorEvaluacion}; color: #{psyIndicador.colorLetra}" >
+								<f:facet name="header">
+									<h:outputText value="Norma" />
+								</f:facet>
+								<h:outputText value="#{psyIndicador.norma}" />
+							</p:column>
+
+							<p:column sortBy="#{psyIndicador.sectorial}" style="background-color: #{psyIndicador.colorEvaluacion}; color: #{psyIndicador.colorLetra}" >
+								<f:facet name="header">
+									<h:outputText value="Sectorial" />
+								</f:facet>
+								<h:outputText value="#{psyIndicador.sectorial}" />
+							</p:column>
+								
+							<p:column headerText="Opciones" style="background-color: #{psyIndicador.colorEvaluacion}" >
+								<p:commandButton id="btnEdit" icon="ui-icon-pencil"
+									title="Evaluar" actionListener="#{psyIndicadorView.action_evaluacionNueva}"
+									update="@([id$=dialogPsyIndicador]),@([id$=dataTableIndicadoresEvaluados])">
+									<f:attribute name="selectedPsyIndicadorAEvaluar"
+										value="#{psyIndicador}" />
+								</p:commandButton>
+
+							</p:column>
+						</p:dataTable>
+				</p:panel>
+				
+			</h:form>
+			<p:dialog id="dialogPsyIndicador" appendTo="@(body)" draggable="true"
+				closable="false" visible="#{psyIndicadorView.showDialogEvaluar}"
+				resizable="false" modal="true" width="500">
+
+				<h:form id="formDialog">
+
+					<p:panel id="panelPsyEvaluacionPeaIndicador"
+						header="Evaluar Indicador">
+						<h:panelGrid columns="2" id="panelGrid">
+							<h:outputText id="msgPlanEstrategicoAmbiental"
+								value=" Plan Estrategico Ambiental" />
+							<p:selectOneMenu id="somPEA" value="#{psyIndicadorView.somPEA}"
+							style="width: 256px;">
+								<f:selectItem
+									itemLabel="Seleccione un plan estrategico ambiental"
+									itemValue="0" />
+								<f:selectItems value="#{psyIndicadorView.losPlanesPEA}" />
+							</p:selectOneMenu>
+
+							<h:outputText id="msgPeriodo" value=" Periodo" />
+							<p:inputText id="txtPeriodo" disabled="false"
+								binding="#{psyIndicadorView.txtPeriodo}" />
+
+							<h:outputText id="msgResultado" value=" Resultado" />
+							<p:inputText id="txtResultado" disabled="false"
+								binding="#{psyIndicadorView.txtResultado}" />
+
+							<h:outputText id="msgMeta" value=" Meta" />
+							<p:inputText id="txtMeta" disabled="false"
+								binding="#{psyIndicadorView.txtMeta}" />
+
+							<h:outputText id="msgNorma" value=" Norma" />
+							<p:inputText id="txtNorma" disabled="false"
+								binding="#{psyIndicadorView.txtNorma}" />
+
+							<h:outputText id="msgSectorial" value=" Sectorial" />
+							<p:inputText id="txtSectorial" disabled="false"
+								binding="#{psyIndicadorView.txtSectorial}" />
+
+
+						</h:panelGrid>
+					</p:panel>
+					<p:panel id="panelBotones">
+						<div align="center">
+							<p:commandButton id="btnSave"
+								binding="#{psyIndicadorView.btnSave}" value="Evaluar"
+								action="#{psyIndicadorView.evaluarIndicador()}"
+								update=":dialogPsyIndicador, @([id$=fieldsetEvaluacionInicial]), @([id$=fieldsetIndicadoresEvaluados]), @([id$=dataTableIndicadoresEvaluados]), @([id$=dataIndicadores])" />
+							<p:commandButton id="btnClear" value="Limpiar"
+								action="#{psyIndicadorView.cleanEvaluacion()}"
+								update=":dialogPsyIndicador" />
+							<p:commandButton id="btnExit" value="Salir"
+								action="#{psyIndicadorView.closeDialogEvaluar()}"
+								update=":dialogPsyIndicador" />
+						</div>
+					</p:panel>
+				</h:form>
+
+			</p:dialog>
+		</f:view>
+	</ui:define>
+</ui:composition>

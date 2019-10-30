@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 20, 2015 10:23:26 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyMatrizEncuesta" table="psy_matriz_encuesta" schema="public">
+        <id name="maenCodigo" type="java.lang.Long">
+            <column name="maen_codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="psyPlanEstrategico" class="com.vortexbird.pusay.modelo.PsyPlanEstrategico" fetch="select">
+            <column name="pest_codigo" not-null="true" />
+        </many-to-one>
+        <property name="codigoEncuesta" type="java.lang.String">
+            <column name="codigo_encuesta" length="50" not-null="true">
+                <comment>CODIGO DE LA ENCUESTA QUE RELACIONA LA MATRIZ CON EL SISTEMA DE ENCUESTA</comment>
+            </column>
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true">
+                <comment>A-ACTIVO, I-INACTIVO</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

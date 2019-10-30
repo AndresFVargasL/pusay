@@ -1,0 +1,93 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CD870753-DE3E-E5D0-97E1-14802721B701" name="PSY_CIUDAD">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:20:45 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>CIUD</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="CIUD_CODIGO" id="751E5C80-30A8-9A1E-A401-117785E96352">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:26:55 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PROV_CODIGO" id="0C9F5255-4407-7D73-76A9-2C4B4DB6FE95">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:39:29 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="44E9B348-5A18-A0FB-4553-1C357F2DD6E2" referredColumn="CF65277F-4BA7-D2A8-2016-E76A70FA0603"/>
+</associations>
+</Column>
+<Column name="NOMBRE" id="D33849F5-4AC6-117D-BE43-94AEDB9CB91B">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:26:55 UTC</createdTime>
+<comment>NOMBRE DE LA CIUDAD</comment>
+<commentInRDBMS>NOMBRE DE LA CIUDAD</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="7E01FF66-95BF-BC89-3B79-FB6B31CFFB5B">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:26:55 UTC</createdTime>
+<comment>A-ACTIVO, I-INACTIVO</comment>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7E3CE58C-BC49-30EF-4834-C0553947F8E3" name="PSY_CIUDAD_PK">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:26:55 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="751E5C80-30A8-9A1E-A401-117785E96352"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="09504618-1C5A-2DB1-03E0-674189540CAA" name="CIUDAD_PROVINCIA_FK">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:39:29 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0C9F5255-4407-7D73-76A9-2C4B4DB6FE95"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

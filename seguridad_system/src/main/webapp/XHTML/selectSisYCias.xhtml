@@ -1,0 +1,86 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/WEB-INF/facelets/mainTemplateLogin.xhtml">
+		<ui:define name="header">
+			<ui:include src="/WEB-INF/facelets/header.jspx" />
+		</ui:define>
+		<br />
+		<br />
+
+		<ui:define name="body">
+			<f:view>
+
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog"
+					header="Cargando informacion" draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form>
+					<p:menubar model="#{login.model}" id="menuBarTemplate"
+						autoDisplay="true"/>
+				</h:form>
+				<h:form id="form">
+					<div align="center">
+						<p:panel id="panelSistemasYCompanias"
+							header="Administración de Sistemas">
+
+							<p:messages id="msg" />
+
+							<div align="center">
+								<br />
+								<h:panelGrid id="panelDatos" columns="2" border="0">
+									<h:outputText id="msgSisCodigo_SegSistema"
+										value=" Sistema a Administrar" />
+									<p:selectOneMenu id="somCodigoSistema"
+										binding="#{login.somSistemas}">
+										
+										<f:selectItem itemValue="-1" itemLabel="Seleccione un sistema" />
+										<f:selectItems value="#{login.listSistemas}" />
+									
+										<p:ajax event="change" listener="#{login.listener_Sistema}" update="somCodigoCompania"/>
+									
+									</p:selectOneMenu>
+									
+									<h:outputText id="comp" value=" Compañia a Administrar" />
+									<p:selectOneMenu id="somCodigoCompania"
+										binding="#{login.somCompanias}">
+										<f:selectItem itemValue="-1"
+											itemLabel="Seleccione una Compania" />
+										<f:selectItems value="#{login.listCompanias}" />
+									</p:selectOneMenu>
+
+								</h:panelGrid>
+
+								<br />
+							</div>
+
+							<div>
+								<h:panelGrid id="panelBotones">
+									<p:commandButton id="btnContinuar" action="#{login.irMenu}"
+										value="Continuar" update="panelSistemasYCompanias" />
+								</h:panelGrid>
+							</div>
+						</p:panel>
+					</div>
+				</h:form>
+			</f:view>
+		</ui:define>
+
+		<ui:define name="footer">
+			<ui:include src="/WEB-INF/facelets/footer.jspx" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        
+        <property name="hibernate.show_sql">true</property>
+        <mapping resource="com/vortexbird/pusay/modelo/PsyPais.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyDetalleErida.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsySeguimientoTarea.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyPlanEstrategicoAmbiental.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyDetalleMapaEstrategico.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyIndicador.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyObjetivoEstrategico.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyEmpresa.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyDetalleObjetivoPlan.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyPlanEstrategia.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyObjetivoAmbiental.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyMapaEstrategico.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyObjetivoImpacto.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyPlanAccion.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyPersona.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyImpactoAmbiental.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyMatrizEncuesta.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyMatrizErida.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyMatrizCorrelacion.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsySubtema.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyMoneda.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyTarea.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyProvincia.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyIpu.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyObjetivoPlan.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyAsuntoAmbiental.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyItemPresupuesto.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyImpactoObjetivo.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyEvaluacionPeaIndicador.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyEvaluacionPeaObjetivo.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyCiudad.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyEstrategiaAmbiental.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyPresupuesto.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyTipoItemPresupuesto.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyPrograma.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyTema.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyPlanEstrategico.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyResponsable.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/Consultas.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/modelo/PsyParametro.hbm.xml" />
+        
+        <!-- Encuestas -->
+        
+        <mapping resource="com/vortexbird/pusay/cuestionarios/model/CueRespuesta.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/cuestionarios/model/CueContacto.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/cuestionarios/model/CueCuestionarioTipo.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/cuestionarios/model/CueCuestionario.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/cuestionarios/model/CueLista.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/cuestionarios/model/CueListaCuestionario.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/cuestionarios/model/CueConfiguracion.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/cuestionarios/model/CuePregunta.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/cuestionarios/model/CueListaContacto.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/cuestionarios/model/CueOpcion.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/cuestionarios/model/CueResponsable.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/cuestionarios/model/CueEstado.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/cuestionarios/model/CueNavegacion.hbm.xml" />
+        <mapping resource="com/vortexbird/pusay/cuestionarios/model/CueCategoria.hbm.xml" />
+        
+         <!-- Encuestas -->
+       
+    </session-factory>
+</hibernate-configuration>

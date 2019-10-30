@@ -1,0 +1,147 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<p:panel toggleable="true" collapsed="true" id="msgProjectPregunta"
+		visible="#{!categoriaUI.disableButtonModify}"
+		header="#{msgPreg.lbl_pregunta_titulo}">
+
+		<h:panelGrid columns="4" id="panelPreguntas">
+
+			<h:outputText id="msgCategoria"
+				value="#{msgPreg.lbl_pregunta_cueCategoria}" />
+			<p:inputText id="txtConsecutivo" disabled="false"
+				value="#{preguntaUI.cuePregunta.cueCategoria.consecutivo}" />
+			<h:outputText id="msgEnunciado"
+				value="#{msgPreg.lbl_pregunta_enunciado}" />
+			<p:inputText id="txtEnunciado" disabled="false"
+				value="#{preguntaUI.cuePregunta.enunciado}" />
+
+			<h:outputText id="msgCondicion"
+				value="#{msgPreg.lbl_pregunta_condicion}" />
+			<p:inputText id="txtCondicion" disabled="false"
+				value="#{preguntaUI.cuePregunta.condicion}" />
+			<h:outputText id="msgLabelAmpliacion"
+				value="#{msgPreg.lbl_pregunta_labelAmpliacion}" />
+			<p:inputText id="txtLabelAmpliacion" disabled="false"
+				value="#{preguntaUI.cuePregunta.labelAmpliacion}" />
+			<h:outputText id="msgNroRespuestas"
+				value="#{msgPreg.lbl_pregunta_nroRespuestas}" />
+			<p:inputText id="txtNroRespuestas" disabled="false"
+				value="#{preguntaUI.cuePregunta.nroRespuestas}" />
+			<h:outputText id="msgOrden" value="#{msgPreg.lbl_pregunta_orden}" />
+			<p:inputText id="txtOrden" disabled="false"
+				value="#{preguntaUI.cuePregunta.orden}" />
+			<h:outputText id="msgPuntaje" value="#{msgPreg.lbl_pregunta_puntaje}" />
+			<p:inputText id="txtPuntaje" disabled="false"
+				value="#{preguntaUI.cuePregunta.puntaje}" />
+
+			<h:outputText id="msgEstado" value="#{msgPreg.lbl_pregunta_estado}" />
+
+			<p:selectOneRadio id="txtEstadoPregunta" disabled="false"
+				value="#{preguntaUI.cuePregunta.estado}">
+				<f:selectItem itemLabel="#{msgGen.lbl_general_activo}" itemValue="1" />
+				<f:selectItem itemLabel="#{msgGen.lbl_general_inactivo}"
+					itemValue="0" />
+			</p:selectOneRadio>
+
+		</h:panelGrid>
+		<br />
+		<h:panelGrid id="panelBotonesPreguntas" columns="4">
+
+			<p:commandButton id="btnSavePregunta"
+				disabled="#{preguntaUI.disableSave}"
+				value="#{msgGen.btn_general_save}"
+				action="#{preguntaUI.action_save}"
+				update="msg,panelPreguntas,panelBotonesPreguntas,:form:tablePreguntas" />
+			<p:commandButton id="btnModifyPregunta"
+				disabled="#{preguntaUI.disableModify}"
+				value="#{msgGen.btn_general_modify}"
+				action="#{preguntaUI.action_modify}"
+				update="msg,panelPreguntas,panelBotonesPreguntas,:form:tablePreguntas" />
+			<p:commandButton id="btnDeletePregunta"
+				disabled="#{preguntaUI.disableDelete}"
+				value="#{msgGen.btn_general_delete}"
+				action="#{preguntaUI.action_delete}"
+				update="msg,panelPreguntas,panelBotonesPreguntas,:form:tablePreguntas"
+				onclick="return confirm('#{msgGen.lbl_general_confirm}')" />
+			<p:commandButton id="btnClearPregunta"
+				disabled="#{preguntaUI.disableClear}"
+				value="#{msgGen.btn_general_clear}"
+				action="#{preguntaUI.action_clear}"
+				update="msg,panelPreguntas,panelBotonesPreguntas" />
+
+		</h:panelGrid>
+		<br />
+
+		<p:dataTable value="#{preguntaUI.data}" var="cuePregunta"
+			id="tablePreguntas" paginator="true" rows="5">
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgPreg.lbl_pregunta_consecutivo}" />
+				</f:facet>
+				<h:outputText value="#{cuePregunta.consecutivo}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgPreg.lbl_pregunta_enunciado}" />
+				</f:facet>
+				<h:outputText value="#{cuePregunta.cueCategoria.nombre}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgPreg.lbl_pregunta_enunciado}" />
+				</f:facet>
+				<h:outputText value="#{cuePregunta.enunciado}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgPreg.lbl_pregunta_orden}" />
+				</f:facet>
+				<h:outputText value="#{cuePregunta.orden}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgPreg.lbl_pregunta_estado}" />
+				</f:facet>
+				<h:outputText value="#{cuePregunta.estado}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="" />
+				</f:facet>
+
+				<p:commandButton id="selectButton"
+					update=":form:msg,:form:panel,:form:panelBotones"
+					icon="ui-icon-search">
+					<f:setPropertyActionListener target="#{preguntaUI.cuePregunta}"
+						value="#{cuePregunta}" />
+				</p:commandButton>
+
+				<p:commandButton id="viewOpciones" value="Ver Opciones" update=""
+					action="#{opcionUI.action_load_opciones}" icon="ui-icon-search"
+					oncomplete="PF('dlgOpciones').show()">
+					<f:setPropertyActionListener target="#{opcionUI.cuePregunta}"
+						value="#{cuePregunta}" />
+				</p:commandButton>
+			</p:column>
+
+		</p:dataTable>
+	</p:panel>
+
+</h:body>
+
+</html>

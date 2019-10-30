@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 20, 2015 10:23:26 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsySeguimientoTarea" table="psy_seguimiento_tarea" schema="public">
+        <id name="setaCodigo" type="java.lang.Long">
+            <column name="seta_codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="psyTarea" class="com.vortexbird.pusay.modelo.PsyTarea" fetch="select">
+            <column name="tare_codigo" not-null="true" />
+        </many-to-one>
+        <property name="descripcion" type="java.lang.String">
+            <column name="descripcion" length="2000" not-null="true" />
+        </property>
+        <property name="fecha" type="java.util.Date">
+            <column name="fecha" length="13">
+                <comment>FECHA EN LA QUE REGISTRO EL SEGUMIENTO</comment>
+            </column>
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true">
+                <comment>A-ACTIVO, I-INACTIVO</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 20, 2015 10:23:26 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyIpu" table="psy_ipu" schema="public">
+        <id name="ipuCodigo" type="java.lang.Long">
+            <column name="ipu_codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="psyPlanAccion" class="com.vortexbird.pusay.modelo.PsyPlanAccion" fetch="select">
+            <column name="plac_codigo" not-null="true" />
+        </many-to-one>
+        <property name="fechaInforme" type="java.util.Date">
+            <column name="fecha_informe" length="13" not-null="true">
+                <comment>FECHA DEL IPU</comment>
+            </column>
+        </property>
+        <property name="periodo" type="java.lang.String">
+            <column name="periodo" length="20" not-null="true">
+                <comment>PERIODO DEL IPU</comment>
+            </column>
+        </property>
+        <property name="periodoFechaInicio" type="java.util.Date">
+            <column name="periodo_fecha_inicio" length="13" >
+                <comment>FECHA EN LA QUE INICIA EL PERIODO QUE ESTOY EVALUANDO</comment>
+            </column>
+        </property>
+        <property name="periodoFechaFin" type="java.util.Date">
+            <column name="periodo_fecha_fin" length="13" >
+                <comment>FECHA EN LA QUE TERMINA EL PERIODO QUE ESTOY EVALUANDO</comment>
+            </column>
+        </property>
+        <property name="estadoIpu" type="java.lang.String">
+            <column name="estado_ipu" length="1" not-null="true">
+                <comment>ESTADOS POR LOS CUALES PUEDE PASAR EL IPU</comment>
+            </column>
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true">
+                <comment>A-ACTIVO, I-INACTIVO</comment>
+            </column>
+        </property>       
+        <property name="avancePresupuestado" type="java.lang.Double">
+            <column name="avance_presupuestado" precision="14" not-null="true">
+                <comment>PORCENTAJE O VALOR DE AVANCE PRESUPUESTADO PARA EL PERIODO</comment>
+            </column>
+        </property>
+        <property name="avanceReal" type="java.lang.Double">
+            <column name="avance_real" precision="14">
+                <comment>PORCENTAJE O VALOR DE AVANCE REAL</comment>
+            </column>
+        </property>
+        <property name="causasDesviacion" type="java.lang.String">
+            <column name="causas_desviacion" length="2000">
+                <comment>DESCRIBE LAS CAUSAS POR LAS CUALES EL PLAN O PRESUPUESTO TUVO DESVIACION EN ESE PERIODO</comment>
+            </column>
+        </property>
+        <property name="accionesPropuestas" type="java.lang.String">
+            <column name="acciones_propuestas" length="2000" >
+                <comment>DESCRIBE LAS ACCIONES PROPUESTAS PARA CORREGIR LA DESVIACION PRESENTADA EN EL PERIODO</comment>
+            </column>
+        </property>
+        <property name="logrosAlcanzados" type="java.lang.String">
+            <column name="logros_alcanzados" length="2000">
+                <comment>DESCRIBE LOS LOGROS ALCANZADOS EN EL PERIODO</comment>
+            </column>
+        </property>
+        <property name="logrosNoAlcanzados" type="java.lang.String">
+            <column name="logros_no_alcanzados" length="2000">
+                <comment>DESCRIBE LOS LOGROS NO ALCANZADOS EN EL PERIODO</comment>
+            </column>
+        </property>
+        <property name="tipoIpu" type="java.lang.String">
+            <column name="tipo_ipu" length="1" not-null="true">
+                <comment>C-COSTO, T-TIEMPO</comment>
+            </column>
+        </property>
+       
+    </class>
+</hibernate-mapping>

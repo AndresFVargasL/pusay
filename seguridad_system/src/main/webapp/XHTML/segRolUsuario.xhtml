@@ -1,0 +1,134 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/WEB-INF/facelets/templateMenu.xhtml">
+		<ui:define name="header">
+			<ui:include src="/WEB-INF/facelets/header.jspx" />
+		</ui:define>
+		<br />
+		<br />
+
+		<ui:define name="body">
+			<f:view>
+
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog"
+					header="Cargando informacion" draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form>
+					<br />
+					<p:panel id="msgProjectSegRolUsuarioTitle" header="Rol X Usuario">
+
+						<p:messages id="msg" showDetail="false" />
+
+						<div align="center">
+							<h:panelGrid columns="2" id="panel">
+
+								<h:outputText id="msgRolCodigo_SegRol" value=" Rol" />
+								<p:selectOneMenu
+									binding="#{segRolUsuarioView.txtRolCodigo_SegRol}"
+									styleClass="inputstyle">
+									<f:selectItem itemValue="-2" itemLabel="Seleccione el Rol" />
+									<f:selectItems value="#{segRolUsuarioView.selectRoles}" />
+								</p:selectOneMenu>
+
+								<h:outputText id="msgUsuCodigo_SegUsuario" value=" Usuario" />
+								<p:selectOneMenu
+									binding="#{segRolUsuarioView.txtUsuCodigo_SegUsuario}"
+									styleClass="inputstyle">
+									<f:selectItem itemValue="-2" itemLabel="Seleccione el Usuario" />
+									<f:selectItems value="#{segRolUsuarioView.selectUsuarios}" />
+								</p:selectOneMenu>
+
+								<h:outputText id="msgRluEstadoRegistro"
+									value=" Estado de Registro" />
+								<p:selectOneMenu
+									binding="#{segRolUsuarioView.txtRluEstadoRegistro}"
+									styleClass="inputstyle">
+									<f:selectItem itemValue="-1" itemLabel="Seleccione el Estado" />
+									<f:selectItem itemValue="1" itemLabel="Activo" />
+									<f:selectItem itemValue="0" itemLabel="Inactivo" />
+								</p:selectOneMenu>
+
+								<p:inputText id="txtRolUsuCodigo" type="hidden" readonly="true"
+									binding="#{segRolUsuarioView.txtRluCodigo}" />
+
+							</h:panelGrid>
+						</div>
+						<div align="center">
+							<h:panelGrid id="panelBotones" columns="3">
+
+								<p:commandButton id="btnSave" disabled="false" value="Guardar"
+									action="#{segRolUsuarioView.action_save}"
+									update="msg,panel,panelBotones,panelRolPorUsuario"
+									binding="#{segRolUsuarioView.btnSave}" />
+
+								<p:commandButton id="btnModify" disabled="true"
+									value="Modificar" action="#{segRolUsuarioView.action_modify}"
+									update="msg,panel,panelBotones,panelRolPorUsuario"
+									binding="#{segRolUsuarioView.btnModify}" />
+
+								<p:commandButton id="btnClear" disabled="false" value="Limpiar"
+									action="#{segRolUsuarioView.action_clear}"
+									update="msg,panel,panelBotones"
+									binding="#{segRolUsuarioView.btnClear}" />
+							</h:panelGrid>
+						</div>
+
+						<br />
+
+						<div align="center">
+							<h:panelGrid id="panelRolPorUsuario">
+								<p:dataTable value="#{segRolUsuarioView.data}"
+									var="segRolUsuario" paginator="true" rows="10">
+
+									<p:column headerText="Editar">
+										<h:commandLink action="#{segRolUsuarioView.action_selected}" style="color:blue;">
+											<h:outputText value="Editar" />
+											<f:param name="rluCodigo" value="#{segRolUsuario.rluCodigo}" />
+										</h:commandLink>
+									</p:column>
+
+									<p:column filterBy="#{segRolUsuario.rluEstadoRegistroNombre}"
+										sortBy="#{segRolUsuario.rluEstadoRegistro}" headerText="Estado Registro">
+										<h:outputText value="#{segRolUsuario.rluEstadoRegistroNombre}" />
+									</p:column>
+
+									<p:column filterBy="#{segRolUsuario.rolCodigo_SegRol}"
+										sortBy="#{segRolUsuario.rolCodigo_SegRol}" headerText="Rol">
+										<h:outputText value="#{segRolUsuario.rolCodigo_SegRol}" />
+									</p:column>
+
+									<p:column filterBy="#{segRolUsuario.usuCodigo_SegUsuario}"
+										sortBy="#{segRolUsuario.usuCodigo_SegUsuario}" headerText="Usuario">
+										<h:outputText value="#{segRolUsuario.usuCodigo_SegUsuario}" />
+									</p:column>
+								</p:dataTable>
+							</h:panelGrid>
+						</div>
+
+					</p:panel>
+
+				</h:form>
+			</f:view>
+		</ui:define>
+
+		<ui:define name="footer">
+			<ui:include src="/WEB-INF/facelets/footer.jspx" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

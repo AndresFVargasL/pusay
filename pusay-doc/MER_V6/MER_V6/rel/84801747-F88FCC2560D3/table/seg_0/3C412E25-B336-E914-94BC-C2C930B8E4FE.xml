@@ -1,0 +1,172 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3C412E25-B336-E914-94BC-C2C930B8E4FE" name="PSY_ITEM_PRESUPUESTO">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 18:17:47 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>IPRE</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IPRE_CODIGO" id="1567DA49-B9F1-949D-6C3F-5E636E679002">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 18:18:52 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRES_CODIGO" id="8A8D87CF-3F6B-3B9E-DD2F-051DDB0B492B">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 18:19:47 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="812BD8FB-99AC-1040-E0BD-516234CCD871" referredColumn="99182177-D5B6-AF61-826A-E1C962FDD41F"/>
+</associations>
+</Column>
+<Column name="TIIP_CODIGO" id="F1DB5E88-8DC0-386E-DA3F-2F197FD38C36">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 18:21:34 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="574D63F3-63E3-21EA-9F9D-171CEBCD11EA" referredColumn="9AE80BBE-6AEF-8CC3-28DB-AEDB98BD24F1"/>
+</associations>
+</Column>
+<Column name="FECHA_INICIO" id="C5B70C3F-5534-FA98-00AA-BF648E2902FE">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:08:23 UTC</createdTime>
+<comment>FECHA INCIAL DEL PERIODO PARA EL ITEM DEL PRESUPUESTO</comment>
+<commentInRDBMS>FECHA INCIAL DEL PERIODO PARA EL ITEM DEL PRESUPUESTO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FECHA_FIN" id="5E2E8225-CF79-3D89-2D65-0D51B50F6EBC">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:08:23 UTC</createdTime>
+<commentInRDBMS>FECHA FINAL DEL PERIODO PARA EL PRESUPUESTO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="VALOR_PRESUPUESTADO" id="094CF4D1-74BE-9D23-EB2B-F1BC2E65ED85">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:08:23 UTC</createdTime>
+<comment>VALOR PRESUPUESTADO PARA EL ITEM EN EL PERIODO</comment>
+<commentInRDBMS>VALOR PRESUPUESTADO PARA EL ITEM EN EL PERIODO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,12,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="VALOR_EJECUTADO" id="2DA77DB7-4EB3-562F-2BA1-96F5C597A08C">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:08:23 UTC</createdTime>
+<comment>VALOR EJECUTADO PARA EL ITEM EN EL PERIODO</comment>
+<commentInRDBMS>VALOR EJECUTADO PARA EL ITEM EN EL PERIODO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,12,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SEMANA" id="7E315A2D-BE43-48ED-E445-03D1CAC79FBD">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-26 22:05:50 UTC</createdTime>
+<comment>SEMANA DEL ITEM</comment>
+<commentInRDBMS>SEMANA DEL ITEM</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="4431058B-329B-FECB-9198-3CDA80EBA78C">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:08:23 UTC</createdTime>
+<comment>A-ACTIVO, I-INACTIVO</comment>
+<commentInRDBMS>A-ACTIVO, I-INACTIVO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2ED092B8-877E-2FA0-54EF-79ADCC78EEBA" name="PSY_ITEM_PRESUPUESTO_PK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 18:18:52 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1567DA49-B9F1-949D-6C3F-5E636E679002"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E5ABDA12-C895-21DB-1412-DC35095BF89C" name="IPRE_PRES_FK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 18:19:47 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8A8D87CF-3F6B-3B9E-DD2F-051DDB0B492B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CF1924C9-9244-DBC1-87EC-2EB49EFCF9AC" name="IPRE_TIIP_FK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 18:21:34 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F1DB5E88-8DC0-386E-DA3F-2F197FD38C36"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

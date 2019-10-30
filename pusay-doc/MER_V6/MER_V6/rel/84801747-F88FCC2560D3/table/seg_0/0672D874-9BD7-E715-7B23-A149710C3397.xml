@@ -1,0 +1,117 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0672D874-9BD7-E715-7B23-A149710C3397" name="PSY_DETALLE_MAPA_ESTRATEGICO">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:30:38 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>MAES</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="DMAE_CODIGO" id="8E0108D8-F077-E2E5-6C73-07748D1319B3">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:31:36 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MACO_CODIGO" id="CBFCCB70-8CE5-729A-A215-5F5BB12F4E8D">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:36:06 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="24EE4944-0C4C-0EE9-ECFA-4223328D7CE0" referredColumn="E5B6726D-385E-3FC8-2F24-44BF8715394F"/>
+</associations>
+</Column>
+<Column name="MAES_CODIGO" id="3D35CEFA-59FB-DB63-129C-F565B1837E91">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:12:29 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="91D0FB8D-0BF6-1CEA-AE53-D3924B372A0D" referredColumn="2522B3AC-9AB0-49A3-5F56-B0E6EE1E970F"/>
+</associations>
+</Column>
+<Column name="TIPO" id="240366AE-75C6-190D-C967-F4F747BD3F6E">
+<createdBy>andresfelipevargaslopez</createdBy>
+<createdTime>2015-08-03 19:51:11 UTC</createdTime>
+<comment>S:SELECCIONADA - T:TRABAJAR</comment>
+<generatorID>Generado por el Usuario</generatorID>
+<notes>S:SELECCIONADA - T:TRABAJAR</notes>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="49B18B4E-D609-A582-6900-C1E0BEAE1377">
+<createdBy>lidis</createdBy>
+<createdTime>2015-03-11 20:33:08 UTC</createdTime>
+<comment>A-ACTIVO, I-INACTIVO</comment>
+<commentInRDBMS>A-ACTIVO, I-INACTIVO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BCAE01BF-4B9B-7272-D05C-2DDCC602FA7D" name="DETALLE_MAPA_ESTRATEGICO_PK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:31:36 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8E0108D8-F077-E2E5-6C73-07748D1319B3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E6C071A1-C1E4-C885-5CCB-B627682EFDEB" name="MAES_MACO_FK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:36:06 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CBFCCB70-8CE5-729A-A215-5F5BB12F4E8D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CAF971F1-79BB-5D5C-32DC-76CF5BC69E11" name="MAES_DMAE_FK">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:12:29 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3D35CEFA-59FB-DB63-129C-F565B1837E91"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

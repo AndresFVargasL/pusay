@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+		<f:view>
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
+			<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+				draggable="false" closable="false">
+				<p:graphicImage
+					value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+			</p:dialog>
+
+			<!-- Expired session -->
+			<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();"
+				timeout="#{session.maxInactiveInterval * 1000}" />
+			<p:dialog modal="true" widgetVar="sessionTimeOutDialog"
+				header="Sesion Expirada" draggable="false" closable="false">
+				<h:outputText value="La sesion ha finalizado" />
+				<input id="confirmBackToLogin" type="button" value="Iniciar Sesion"
+					onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />
+			</p:dialog>
+
+			<h:form id="frm">
+				
+				<p:panel id="panelRespuestasCuestionarios" header="Resultado De los Cuestionarios" style="font-size:20px">
+					<p:growl id="men" autoUpdate="true" showDetail="false"/>
+					<div style="text-align:center">
+					<p:dataTable id="dataRespuestas" value="#{psyMatrizEncuestaView.resultadoEncuestas}" var="resul"
+						paginator="true" rows="5" style="text-align:center; font-size:20px"
+						emptyMessage="En este momento no hay registros de encuestas evaluadas.">
+					
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Nombre" style="font-size:20px"/>
+							</f:facet>
+							<h:outputText value="#{resul.nombreCuestionario}" style="text-align:center; font-size:20px"/>
+						</p:column>	
+						
+						<p:column >
+							<f:facet name="header">
+								<h:outputText value="Resultado" style="font-size:20px"/>
+							</f:facet>
+							<h:outputText value="#{resul.resultado}"  style="font-size:20px"/>
+						</p:column>
+						
+											
+
+						
+					</p:dataTable>
+				</div>
+				</p:panel>
+				
+			</h:form>
+		</f:view>
+	</ui:define>
+
+</ui:composition>

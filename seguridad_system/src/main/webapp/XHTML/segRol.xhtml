@@ -1,0 +1,143 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/WEB-INF/facelets/templateMenu.xhtml">
+		<ui:define name="header">
+			<ui:include src="/WEB-INF/facelets/header.jspx" />
+		</ui:define>
+		<br />
+		<br />
+
+		<ui:define name="body">
+			<f:view>
+
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog"
+					header="Cargando informacion" draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form>
+					<br />
+					<p:panel id="msgProjectSegRolTitle" header="Roles">
+
+						<p:messages id="msg" showDetail="false" />
+						<div align="center">
+							<h:panelGrid id="panel" columns="2">
+								<h:outputText id="msgRolNombre" value=" Nombre" />
+								<p:inputText id="txtRolNombre" disabled="false"
+									binding="#{segRolView.txtRolNombre}" />
+
+								<h:outputText id="msgRolEstadoRegistro" value=" Estado Registro" />
+								<p:selectOneMenu binding="#{segRolView.txtRolEstadoRegistro}"
+									styleClass="inputstyle">
+									<f:selectItem itemValue="-1" itemLabel="Seleccione el Estado" />
+									<f:selectItem itemValue="1" itemLabel="Activo" />
+									<f:selectItem itemValue="0" itemLabel="Inactivo" />
+								</p:selectOneMenu>
+
+								<h:outputText id="msgRolDiasCaducidadPwd"
+									value=" Dias de caducidad del Password" />
+								<p:inputText id="txtRolDiasCaducidadPwd" disabled="false"
+									binding="#{segRolView.txtRolDiasCaducidadPwd}" />
+
+								<h:outputText id="msgRolDescripcion" value=" Descripción" />
+								<p:inputText id="txtRolDescripcion" disabled="false"
+									binding="#{segRolView.txtRolDescripcion}" />
+
+								<h:outputText id="msgSisCodigo_SegSistema" value=" Sistema" />
+								<p:selectOneMenu binding="#{segRolView.txtSisCodigo_SegSistema}"
+									styleClass="inputstyle">
+									<f:selectItem itemValue="-1" itemLabel="Seleccione el Sistema" />
+									<f:selectItems value="#{segRolView.selectSistemas}" />
+								</p:selectOneMenu>
+
+								<p:inputText id="txtRolCodigo" type="hidden" readonly="true"
+									binding="#{segRolView.txtRolCodigo}" />
+							</h:panelGrid>
+						</div>
+
+						<div align="center">
+							<h:panelGrid id="panelBotones" columns="3">
+								<p:commandButton id="btnSave" disabled="false" value="Guardar"
+									action="#{segRolView.action_save}"
+									update="msg,panel,panelBotones, panelRoles"
+									binding="#{segRolView.btnSave}" />
+
+								<p:commandButton id="btnModify" disabled="true"
+									value="Modificar" action="#{segRolView.action_modify}"
+									update="msg,panel,panelBotones,panelRoles"
+									binding="#{segRolView.btnModify}" />
+
+								<p:commandButton id="btnClear" disabled="false" value="Limpiar"
+									action="#{segRolView.action_clear}"
+									update="msg,panel,panelBotones"
+									binding="#{segRolView.btnClear}" />
+							</h:panelGrid>
+						</div>
+						
+						<br />
+
+						<div align="center">
+							<h:panelGrid id="panelRoles">
+								<p:dataTable value="#{segRolView.data}" var="segRol"
+									paginator="true" rows="10">
+
+									<p:column headerText="Editar">
+										<h:commandLink action="#{segRolView.action_selected}"
+											style="color:blue;">
+											<h:outputText value="Editar" />
+											<f:param name="rolCodigo" value="#{segRol.rolCodigo}" />
+										</h:commandLink>
+									</p:column>
+
+									<p:column filterBy="#{segRol.rolNombre}"
+										sortBy="#{segRol.rolNombre}" headerText="Nombre">
+										<h:outputText value="#{segRol.rolNombre}" />
+									</p:column>
+
+									<p:column filterBy="#{segRol.rolEstadoRegistro}"
+										sortBy="#{segRol.rolEstadoRegistro}"
+										headerText="Estado Registro">
+										<h:outputText value="#{segRol.rolEstadoRegistro}" />
+									</p:column>
+
+									<p:column filterBy="#{segRol.rolDiasCaducidadPwd}"
+										sortBy="#{segRol.rolDiasCaducidadPwd}"
+										headerText="Dias caducidad Pass">
+										<h:outputText value="#{segRol.rolDiasCaducidadPwd}" />
+									</p:column>
+
+									<p:column filterBy="#{segRol.rolDescripcion}"
+										sortBy="#{segRol.rolDescripcion}" headerText="Descripcion">
+										<h:outputText value="#{segRol.rolDescripcion}" />
+									</p:column>
+
+									<p:column filterBy="#{segRol.sisCodigo_SegSistema}"
+										sortBy="#{segRol.sisCodigo_SegSistema}" headerText="Sistema">
+										<h:outputText value="#{segRol.sisCodigo_SegSistema}" />
+									</p:column>
+								</p:dataTable>
+							</h:panelGrid>
+						</div>
+					</p:panel>
+				</h:form>
+			</f:view>
+		</ui:define>
+
+		<ui:define name="footer">
+			<ui:include src="/WEB-INF/facelets/footer.jspx" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

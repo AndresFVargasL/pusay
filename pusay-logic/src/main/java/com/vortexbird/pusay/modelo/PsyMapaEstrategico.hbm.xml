@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 20, 2015 10:23:26 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyMapaEstrategico" table="psy_mapa_estrategico" schema="public">
+        <id name="maesCodigo" type="java.lang.Long">
+            <column name="maes_codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="psyPlanEstrategico" class="com.vortexbird.pusay.modelo.PsyPlanEstrategico" fetch="select">
+            <column name="pest_codigo" not-null="true" />
+        </many-to-one>
+        <property name="fechaInicio" type="java.util.Date">
+            <column name="fecha_inicio" length="13" not-null="true">
+                <comment>FECHA DE INICIO DEL MAPA ESTRATEGICO</comment>
+            </column>
+        </property>
+        <property name="fechaFin" type="java.util.Date">
+            <column name="fecha_fin" length="13">
+                <comment>FECHA EN QUE SE GENERA EL MAPA ESTRATEGICO DEFINITIVO</comment>
+            </column>
+        </property>
+        <property name="estadoMapaEstrategico" type="java.lang.String">
+            <column name="estado_mapa_estrategico" length="1" not-null="true">
+                <comment>ESTADOS POR LOS CUALES PUEDE PASAR EL MAPA ESTRATEGICO</comment>
+            </column>
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true" />
+        </property>
+        <set name="psyDetalleMapaEstrategicos" table="psy_detalle_mapa_estrategico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="maes_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyDetalleMapaEstrategico" />
+        </set>
+    </class>
+</hibernate-mapping>

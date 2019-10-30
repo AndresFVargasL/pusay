@@ -1,0 +1,168 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/WEB-INF/facelets/templateMenu.xhtml">
+		<ui:define name="header">
+			<ui:include src="/WEB-INF/facelets/header.jspx" />
+		</ui:define>
+		<br />
+		<br />
+
+		<ui:define name="body">
+			<f:view>
+
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog"
+					header="Cargando informacion" draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form>
+					<br />
+					<p:panel id="msgProjectSegGrupoOpcionTitle" header="Grupo Opción">
+
+						<p:messages id="msg" showDetail="false" />
+
+						<div align="center">
+							<h:panelGrid columns="2" id="panel">
+
+								<h:outputText id="msgGruNombre" value=" Nombre" />
+								<p:inputText id="txtGruNombre" disabled="false"
+									binding="#{segGrupoOpcionView.txtGruNombre}" />
+
+								<h:outputText id="msgGruEstadoRegistro" value=" Estado Registro" />
+								<p:selectOneMenu
+									binding="#{segGrupoOpcionView.somEstadosRegistro}"
+									styleClass="inputstyle">
+									<f:selectItem itemValue="-1" itemLabel="Seleccione el Estado" />
+									<f:selectItem itemValue="1" itemLabel="Activo" />
+									<f:selectItem itemValue="0" itemLabel="Inactivo" />
+								</p:selectOneMenu>
+
+								<h:outputText id="msgGruLlaveAcceso" value=" LLave de Acceso" />
+								<p:inputText id="txtGruLlaveAcceso" disabled="false"
+									binding="#{segGrupoOpcionView.txtGruLlaveAcceso}" />
+
+								<h:outputText id="msgGruCodigo_SegGrupoOpcion"
+									value=" Grupo Opción Padre" />
+								<p:selectOneMenu id="somOpcionPadre"
+									binding="#{segGrupoOpcionView.somGrupoOpcionPadre}">
+									<f:selectItem itemValue="-1"
+										itemLabel="Seleccione un Grupo padre" />
+									<f:selectItems
+										value="#{segGrupoOpcionView.losGrupoOpcionPadre}" />
+								</p:selectOneMenu>
+
+								<h:outputText id="msgGruDescripcion" value=" Descripción" />
+								<p:inputText id="txtGruDescripcion" disabled="false"
+									binding="#{segGrupoOpcionView.txtGruDescripcion}" />
+
+								<h:outputText id="msgSisCodigo_SegSistema" value=" Sistema" />
+								<p:selectOneMenu id="somCodigoSistema"
+									binding="#{segGrupoOpcionView.somSistemas}">
+									<f:selectItem itemValue="-1" itemLabel="Seleccione un sistema" />
+									<f:selectItems value="#{segGrupoOpcionView.losSistemas}" />
+								</p:selectOneMenu>
+
+								<p:inputText id="txtGruCodigo" type="hidden" readonly="true"
+									binding="#{segGrupoOpcionView.txtGruCodigo}" />
+
+
+							</h:panelGrid>
+						</div>
+
+						<div align="center">
+							<h:panelGrid id="panelBotones" columns="3">
+
+								<p:commandButton id="btnSave" disabled="false" value="Guardar"
+									action="#{segGrupoOpcionView.action_save}"
+									update="msg,panel,panelBotones,panelGrupoOpcion"
+									binding="#{segGrupoOpcionView.btnSave}" />
+
+								<p:commandButton id="btnModify" disabled="true"
+									value="Modificar" action="#{segGrupoOpcionView.action_modify}"
+									update="msg,panel,panelBotones,panelGrupoOpcion"
+									binding="#{segGrupoOpcionView.btnModify}" />
+
+								<p:commandButton id="btnClear" disabled="false" value="Limpiar"
+									action="#{segGrupoOpcionView.action_clear}"
+									update="msg,panel,panelBotones"
+									binding="#{segGrupoOpcionView.btnClear}" />
+
+							</h:panelGrid>
+						</div>
+
+						<br />
+
+						<div align="center">
+							<h:panelGrid id="panelGrupoOpcion">
+								<p:dataTable value="#{segGrupoOpcionView.data}"
+									var="segGrupoOpcion" paginator="true" rows="10">
+
+									<p:column headerText="Editar">
+										<h:commandLink action="#{segGrupoOpcionView.action_selected}" style="color:blue;">
+											<h:outputText value="Editar" />
+											<f:param name="gruCodigo" value="#{segGrupoOpcion.gruCodigo}" />
+										</h:commandLink>
+									</p:column>
+
+									<p:column filterBy="#{segGrupoOpcion.gruNombre}"
+										sortBy="#{segGrupoOpcion.gruNombre}" headerText="Nombre">
+										<h:outputText value="#{segGrupoOpcion.gruNombre}" />
+									</p:column>
+
+									<p:column filterBy="#{segGrupoOpcion.gruEstadoRegistro}"
+										sortBy="#{segGrupoOpcion.gruEstadoRegistro}"
+										headerText="Estado Registro">
+										<h:outputText value="#{segGrupoOpcion.gruEstadoRegistro}" />
+									</p:column>
+
+									<p:column filterBy="#{segGrupoOpcion.gruLlaveAcceso}"
+										sortBy="#{segGrupoOpcion.gruLlaveAcceso}"
+										headerText="LLave de Acceso">
+										<h:outputText value="#{segGrupoOpcion.gruLlaveAcceso}" />
+									</p:column>
+
+									<p:column filterBy="#{segGrupoOpcion.gruDescripcion}"
+										sortBy="#{segGrupoOpcion.gruDescripcion}"
+										headerText="Descripción">
+										<h:outputText value="#{segGrupoOpcion.gruDescripcion}" />
+									</p:column>
+
+									<p:column filterBy="#{segGrupoOpcion.segNombre_SegGrupoPadre}"
+										sortBy="#{segGrupoOpcion.gruCodigo_SegGrupoOpcion}"
+										headerText="Grupo Opción Padre">
+										<h:outputText
+											value="#{segGrupoOpcion.segNombre_SegGrupoPadre}" />
+									</p:column>
+
+									<p:column filterBy="#{segGrupoOpcion.sisNombre_SegSistema}"
+										sortBy="#{segGrupoOpcion.sisCodigo_SegSistema}"
+										headerText="Sistema">
+										<h:outputText value="#{segGrupoOpcion.sisNombre_SegSistema}" />
+									</p:column>
+								</p:dataTable>
+							</h:panelGrid>
+						</div>
+					</p:panel>
+
+				</h:form>
+			</f:view>
+		</ui:define>
+
+		<ui:define name="footer">
+			<ui:include src="/WEB-INF/facelets/footer.jspx" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

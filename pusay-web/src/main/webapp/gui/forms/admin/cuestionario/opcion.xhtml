@@ -1,0 +1,187 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+
+
+	<f:view>
+		<p:ajaxStatus onstart="PF('statusDialog').show()"
+			onsuccess="PF('statusDialog').hide()" />
+		<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+			draggable="false" closable="false">
+			<p:graphicImage
+				value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+		</p:dialog>
+
+		<h:form id="formOpc">
+
+			<p:panel id="msgProjectCueOpcionTitleOpc"
+				header="#{msgOpc.lbl_opcion_titulo}">
+				<p:messages id="msgOpc" showDetail="true" />
+				<p:growl id="menOpc" />
+
+				<br />
+				<h:panelGrid columns="4" id="panelOpc">
+
+					<h:outputText id="msgEnunciadoOpc"
+						value="#{msgOpc.lbl_opcion_enunciado}" />
+					<p:inputTextarea id="txtEnunciadoOpc" disabled="false"
+						value="#{opcionUI.cueOpcion.enunciado}" />
+					<h:outputText id="msgCondicionOpc"
+						value="#{msgOpc.lbl_opcion_condicion}" />
+					<p:inputTextarea id="txtCondicionOpc" disabled="true"
+						value="#{opcionUI.cueOpcion.condicion}" />
+
+					<h:outputText id="msgIndicadorCorrectaOpc"
+						value="#{msgOpc.lbl_opcion_indicadorCorrecta}" />
+
+					<p:selectOneRadio id="txtIndicadorCorrecta" disabled="false"
+						value="#{opcionUI.cueOpcion.indicadorCorrecta}">
+						<f:selectItem itemLabel="#{msgGen.lbl_general_si}" itemValue="1" />
+						<f:selectItem itemLabel="#{msgGen.lbl_general_no}" itemValue="0" />
+					</p:selectOneRadio>
+
+					<h:outputText id="msgRequiereAmpliacionOpc"
+						value="#{msgOpc.lbl_opcion_requiereAmpliacion}" />
+
+					<p:selectOneRadio id="txtRequiereAmpliacionOpc" disabled="false"
+						value="#{opcionUI.cueOpcion.requiereAmpliacion}">
+						<f:selectItem itemLabel="#{msgGen.lbl_general_si}" itemValue="1" />
+						<f:selectItem itemLabel="#{msgGen.lbl_general_no}" itemValue="0" />
+						<p:ajax update="msgLabelAmpliacionOpc,txtLabelAmpliacionOpc"
+							listener="#{opcionUI.listener_ampliacion}" partialSubmit="true" />
+					</p:selectOneRadio>
+					<h:outputText id="msgLabelAmpliacionOpc" rendered="false"
+						value="#{msgOpc.lbl_opcion_labelAmpliacion}" />
+					<p:inputTextarea id="txtLabelAmpliacionOpc" disabled="false" immediate="true" rendered="false"
+						value="#{opcionUI.cueOpcion.labelAmpliacion}" />
+					<h:outputText id="msgOrdenOpc" value="#{msgOpc.lbl_opcion_orden}" />
+					<p:inputText id="txtOrdenOpc" disabled="false"
+						value="#{opcionUI.cueOpcion.orden}" />
+					<h:outputText id="msgPuntajeOpc"
+						value="#{msgOpc.lbl_opcion_puntaje}" />
+					<p:inputText id="txtPuntajeOpc" disabled="false"
+						value="#{opcionUI.cueOpcion.puntaje}" />
+
+
+
+					<h:outputText id="msgEstadoOpc" value="#{msgOpc.lbl_opcion_estado}" />
+
+					<p:selectOneRadio id="txtEstadoOpc" disabled="false"
+						value="#{opcionUI.cueOpcion.estado}">
+						<f:selectItem itemLabel="#{msgGen.lbl_general_activo}"
+							itemValue="1" />
+						<f:selectItem itemLabel="#{msgGen.lbl_general_inactivo}"
+							itemValue="0" />
+					</p:selectOneRadio>
+
+				</h:panelGrid>
+
+				<br />
+				<h:panelGrid id="panelBotonesOpc" columns="4">
+
+					<p:commandButton id="btnSaveOpc" disabled="#{opcionUI.disableSave}"
+						value="#{msgGen.btn_general_save}"
+						action="#{opcionUI.action_save}"
+						update="msgOpc,panelOpc,panelBotonesOpc,:formOpc:tableOpcionesOpc" />
+					<p:commandButton id="btnModifyOpc"
+						disabled="#{opcionUI.disableModify}"
+						value="#{msgGen.btn_general_modify}"
+						action="#{opcionUI.action_modify}"
+						update="msgOpc,panelOpc,panelBotonesOpc,:formOpc:tableOpcionesOpc" />
+					<p:commandButton id="btnDeleteOpc"
+						disabled="#{opcionUI.disableDelete}"
+						value="#{msgGen.btn_general_delete}"
+						action="#{opcionUI.action_delete}"
+						update="msgOpc,panelOpc,panelBotonesOpc,:formOpc:tableOpcionesOpc"
+						onclick="return confirm('#{msgGen.lbl_general_confirm}')" />
+					<p:commandButton id="btnClearOpc"
+						disabled="#{opcionUI.disableClear}"
+						value="#{msgGen.btn_general_clear}"
+						action="#{opcionUI.action_clear}"
+						update="msgOpc,panelOpc,panelBotonesOpc" />
+
+				</h:panelGrid>
+
+				<br />
+
+				<p:dataTable value="#{opcionUI.data}" var="cueOpcion"
+					id="tableOpcionesOpc" paginator="true" rows="5">
+					<f:facet name="header">
+						<h:outputText value="#{opcionUI.cuePregunta.enunciado}" />
+					</f:facet>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msgOpc.lbl_opcion_enunciado}" />
+						</f:facet>
+						<h:outputText value="#{cueOpcion.enunciado}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msgOpc.lbl_opcion_orden}" />
+						</f:facet>
+						<h:outputText value="#{cueOpcion.orden}" />
+						<h:outputText value=" - " />
+
+						<p:commandButton id="downOrden"
+							action="#{opcionUI.action_bajar_opcion}"
+							update="tableOpcionesOpc" icon="ui-icon-arrowreturnthick-1-s">
+							<f:setPropertyActionListener target="#{opcionUI.cueOpcion}"
+								value="#{cueOpcion}" />
+						</p:commandButton>
+
+						<p:commandButton id="upOrden"
+							action="#{opcionUI.action_subir_opcion}"
+							update="tableOpcionesOpc" icon="ui-icon-arrowreturnthick-1-n">
+							<f:setPropertyActionListener target="#{opcionUI.cueOpcion}"
+								value="#{cueOpcion}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msgOpc.lbl_opcion_requiereAmpliacion}" />
+						</f:facet>
+						<h:outputText
+							value="#{cueOpcion.requiereAmpliacion eq 1 ? 'SI' : 'NO'}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msgOpc.lbl_opcion_estado}" />
+						</f:facet>
+						<h:outputText
+							value="#{cueOpcion.estado eq 1 ? 'Activo' : 'Inactivo'}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="" />
+						</f:facet>
+						<p:commandButton id="selectButton"
+							update=":formOpc:msgOpc,:formOpc:panelOpc,:formOpc:panelBotonesOpc"
+							icon="ui-icon-search">
+							<f:setPropertyActionListener target="#{opcionUI.cueOpcion}"
+								value="#{cueOpcion}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+			</p:panel>
+
+		</h:form>
+	</f:view>
+
+
+</h:body>
+
+</html>

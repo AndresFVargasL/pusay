@@ -1,0 +1,234 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AB5DAD16-4ED8-C0BF-70AA-8E35FF9E6316" name="PSY_IPU">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:08:20 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>IPU</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IPU_CODIGO" id="F1BAD0F9-32CD-8AA0-9D27-6D5AEE7B0179">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:08:43 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PLAC_CODIGO" id="E9147864-57B0-A1E5-7104-C6906589DD71">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:08:50 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7E1BC716-86D3-2029-E344-472EA49246BF" referredColumn="316951A5-8146-69EE-7FA1-6D4E5040446F"/>
+</associations>
+</Column>
+<Column name="FECHA_INFORME" id="0BBD343C-DE89-BFA1-B5AE-BB4881559A9A">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:54:21 UTC</createdTime>
+<comment>FECHA DEL IPU</comment>
+<commentInRDBMS>FECHA DEL IPU</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PERIODO" id="CF4D4650-4523-1C17-9AE3-4920DCD44A9C">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:54:21 UTC</createdTime>
+<comment>PERIODO DEL IPU</comment>
+<commentInRDBMS>PERIODO DEL IPU</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PERIODO_FECHA_INICIO" id="81A45EE8-C1A1-3725-095F-CF0B36C8700F">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:54:21 UTC</createdTime>
+<comment>FECHA EN LA QUE INICIA EL PERIODO QUE ESTOY EVALUANDO</comment>
+<commentInRDBMS>FECHA EN LA QUE INICIA EL PERIODO QUE ESTOY EVALUANDO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PERIODO_FECHA_FIN" id="986AEB80-1D6A-5212-9585-8247EAA0FD9B">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:54:21 UTC</createdTime>
+<comment>FECHA EN LA QUE TERMINA EL PERIODO QUE ESTOY EVALUANDO</comment>
+<commentInRDBMS>FECHA EN LA QUE TERMINA EL PERIODO QUE ESTOY EVALUANDO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_IPU" id="108B51F8-39FB-DBB7-0F6C-67FAB47EB91F">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 23:45:56 UTC</createdTime>
+<comment>ESTADOS POR LOS CUALES PUEDE PASAR EL IPU</comment>
+<commentInRDBMS>ESTADOS POR LOS CUALES PUEDE PASAR EL IPU</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="068D1977-126D-B21C-3400-2FD3E398D5A5">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:54:21 UTC</createdTime>
+<commentInRDBMS>A-ACTIVO, I-INACTIVO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="AVANCE_PRESUPUESTADO" id="869C8212-14CB-BD15-810A-7EFA0FD3E981">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-26 21:51:36 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>14</dataTypePrecision>
+<dataTypeScale>4</dataTypeScale>
+<ownDataTypeParameters>,14,4</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="AVANCE_REAL" id="ACA1EE87-4AED-95BD-3CAC-E0E1D35DF83F">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-26 21:51:36 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>14</dataTypePrecision>
+<dataTypeScale>4</dataTypeScale>
+<ownDataTypeParameters>,14,4</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CAUSAS_DESVIACION" id="04988A81-5638-EE2D-FD34-244884BA8E7D">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-26 21:51:36 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000</dataTypeSize>
+<ownDataTypeParameters>2000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ACCIONES_PROPUESTAS" id="4DF16B33-8EE1-6692-957A-33DDDE80B58C">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-26 21:51:36 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000</dataTypeSize>
+<ownDataTypeParameters>2000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LOGROS ALCANZADOS" id="CD6206CC-C939-4A45-7F93-363A020C3BE8">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-26 21:51:36 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000</dataTypeSize>
+<ownDataTypeParameters>2000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LOGROS_NO_ALCANZADOS" id="F01B0C31-9145-5982-D5DF-1937DC478AB6">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-26 21:51:36 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000</dataTypeSize>
+<ownDataTypeParameters>2000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TIPO_IPU" id="F46CFFA8-2C1C-EABD-1B20-38A5BE9AA012">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-26 21:51:36 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7760FA7D-48CC-8A0C-5542-14B66D1D4F33" name="PSY_IPU_PK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:08:43 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F1BAD0F9-32CD-8AA0-9D27-6D5AEE7B0179"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="54A63F41-349E-28B4-86CF-1BD28DB5372A" name="IPU_PLAC_FK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:08:50 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E9147864-57B0-A1E5-7104-C6906589DD71"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

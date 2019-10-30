@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">	
+
+			<f:loadBundle basename="i18n.msj_diligenciar_cuestionario" var="msg" />
+			<f:loadBundle basename="i18n.msj_general" var="msgGen" />
+
+			<f:view>
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+					draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form id="form">
+					<div align="center">
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<h:outputText id="msgIdentificacion"
+						value="#{msgGen.lbl_encuestaFinalizada}" />
+					<br />
+					<br />
+					<br />
+					</div>
+				</h:form>
+			</f:view>
+		</ui:define>
+
+</ui:composition>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-jul-2015 10:11:09 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyEvaluacionPeaObjetivo" table="psy_evaluacion_pea_objetivo" schema="public">
+        <id name="codigo" type="java.lang.Long">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="psyObjetivoAmbiental" class="com.vortexbird.pusay.modelo.PsyObjetivoAmbiental" fetch="select">
+            <column name="obam_codigo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="psyPlanEstrategicoAmbiental" class="com.vortexbird.pusay.modelo.PsyPlanEstrategicoAmbiental" fetch="select">
+            <column name="pea_codigo" not-null="true" />
+        </many-to-one>
+        <property name="periodo" type="java.lang.Long">
+            <column name="periodo" precision="2" scale="0" not-null="true" />
+        </property>
+        <property name="resultado" type="java.lang.Double">
+            <column name="resultado" precision="5" not-null="true" />
+        </property>
+        <property name="historial" type="java.lang.Double">
+            <column name="historial" precision="12" />
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

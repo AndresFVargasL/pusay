@@ -1,0 +1,88 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<p:messages id="msg" showDetail="true" />
+	<p:growl id="men" />
+	<h:panelGrid columns="1" id="panelLista">
+
+		<p:dataTable value="#{listaUI.data}" var="cueLista" paginator="true"
+			rows="8" id="tableLista">
+
+			<f:facet name="header">
+				<h:outputText value="#{msgLista.lbl_lista_lista}" />
+			</f:facet>
+
+			<p:column sortBy="#{cueLista.nombre}">
+				<f:facet name="header">
+					<h:outputText value="#{msgLista.lbl_lista_nombre}" />
+				</f:facet>
+				<h:outputText value="#{cueLista.nombre}" />
+			</p:column>
+
+			<p:column sortBy="#{cueLista.descripcion}">
+				<f:facet name="header">
+					<h:outputText value="#{msgLista.lbl_lista_descripcion}" />
+				</f:facet>
+				<h:outputText value="#{cueLista.descripcion}" />
+			</p:column>
+
+			<p:column sortBy="#{cueLista.estado}">
+				<f:facet name="header">
+					<h:outputText value="#{msgLista.lbl_lista_estado}" />
+				</f:facet>
+				<h:outputText
+					value="#{cueLista.estado eq 1 ? 'Activo' : 'Inactivo'}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="" />
+				</f:facet>
+				<p:commandButton id="selectButton"
+					action="#{cuestionarioUI.action_agregar_lista}"
+					update=":form:msg,:form:panel" icon="ui-icon-plusthick">
+					<f:setPropertyActionListener target="#{cuestionarioUI.listaCuestionario.cueLista}"
+						value="#{cueLista}" />
+				</p:commandButton>
+			</p:column>
+
+		</p:dataTable>
+
+		<br />
+		<br />
+
+		<p:dataTable value="#{cueListaCuestionarioView.data}" id="listadoCuestionario"
+			var="cueListaCuestionario" paginator="true" rows="5">
+
+			<f:facet name="header">
+				<h:outputText value="#{msgLista.lbl_lista_listaCuestionario}" />
+			</f:facet>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="FechaHoraAsignacion" />
+				</f:facet>
+				<h:outputText value="#{cueListaCuestionario.fechaHoraAsignacion}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Consecutivo_CueLista" />
+				</f:facet>
+				<h:outputText value="#{cueListaCuestionario.consecutivo_CueLista}" />
+			</p:column>
+
+		</p:dataTable>
+
+	</h:panelGrid>
+
+</h:body>
+
+</html>

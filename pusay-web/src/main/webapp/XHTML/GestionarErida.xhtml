@@ -1,0 +1,182 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+		<f:view>
+
+
+			<!-- Expired session -->
+			<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();"
+				timeout="#{session.maxInactiveInterval * 1000}" />
+			<p:dialog modal="true" widgetVar="sessionTimeOutDialog"
+				header="Sesión Expirada" draggable="false" closable="false">
+				<h:outputText value="la sesión ha finalizado" />
+				<input id="confirmBackToLogin" type="button" value="Iniciar Sesión"
+					onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />
+			</p:dialog>
+			<h:form id="form">
+				<p:growl id="messages" showDetail="false" autoUpdate="true"
+					closable="true" />
+				
+						<div align="center">
+						<h2>
+						GESTIONAR DIAGNOSTICO ESTRATÉGICO AMBIENTAL
+						</h2>		
+						</div>	 
+						
+						<div align="center">
+						<h:panelGrid columns="1">
+						<p:outputLabel rendered="#{detalleEridaView.mostrarMensaje}" value="NO EXISTE UN PLAN DE ACCIÓN EN ESTADO INICIADO" style="color: darkgreen; font-weight:bold; font-size:large"></p:outputLabel>
+						<p:outputLabel rendered="#{detalleEridaView.mostrarMensaje}" value="POR FAVOR ELEGIR LOS OBJETIVOS CORPORATIVOS"></p:outputLabel>
+						</h:panelGrid>
+						</div>
+						
+					
+						<div align="center">
+							<p:commandButton id="btnGuardar"
+								binding="#{detalleEridaView.btnGuardar}"
+								action="#{detalleEridaView.guardarTablaErida()}" value="Guardar"
+								disabled="#{detalleEridaView.bloqueado}"
+								update=":form" rendered="#{detalleEridaView.mostrar}" />
+							<p:commandButton id="btnTerminar"
+								binding="#{detalleEridaView.btnTermianar}"
+								action="#{detalleEridaView.terminarErida()}"
+								value="Definir diagnostico definitivo" disabled="#{detalleEridaView.bloqueado}"
+								update=":form, @([id$=dialogPsyAsuntoAmbiental])" rendered="#{detalleEridaView.mostrar}" />
+						</div>
+						
+<p:spacer height="20"></p:spacer>
+
+
+				<p:accordionPanel multiple="true" rendered="#{detalleEridaView.mostrar}" >
+					<p:tab
+						title="Evaluación Rápida Inicial de Desempeño Ambiental (ERIDA)">
+						<p:dataTable var="eri" id="dataErida"
+							value="#{detalleEridaView.dataPsyTablaEridaDTO}">
+							<f:facet name="header">
+								<p:outputLabel value="ASUNTO AMBIENTAL: " style="color: white; font-weight:bold"/>
+								<p:spacer width="10"></p:spacer>
+								<p:selectOneMenu id="onemenuAspectoAmbiental"
+									binding="#{detalleEridaView.selectSelectOneMenuAsuntoAmbiental}"
+									disabled="false" style="width: 216px;">
+									<p:ajax listener="#{detalleEridaView.cargarTablaErida()}"
+										update=":form" />
+									<f:selectItem itemLabel="Seleccionar un Asunto Ambiental"
+										itemValue="0" />
+									<f:selectItems
+										value="#{detalleEridaView.dataOneMenuAsuntoAmbiental}" />
+								</p:selectOneMenu>
+
+							</f:facet>
+							<p:column headerText="Impacto Asunto Ambientales">
+								<h:outputText value="#{eri.impactoAmbiental}" />
+							</p:column>
+
+							<p:column headerText="Peso%" style="text-align:center">
+								<p:spinner id="spinnerStep1" value="#{eri.peso}" stepFactor="1"
+									min="0" max="100" disabled="#{detalleEridaView.bloqueado}">
+									<p:ajax
+										listener="#{detalleEridaView.cargarTotalesTablaErida()}"
+										update="dataErida" />
+								</p:spinner>
+							</p:column>
+
+							<p:column headerText="Calificación" style="text-align:center">
+								<p:spinner id="spinnerStep2" value="#{eri.calificacion}"
+									stepFactor="1" min="0" max="10" disabled="#{detalleEridaView.bloqueado}">
+									<p:ajax
+										listener="#{detalleEridaView.cargarTotalesTablaErida()}"
+										update="dataErida" />
+								</p:spinner>
+							</p:column>
+
+							<p:column headerText="Valoración" style="text-align:center">
+								<h:outputText value="#{eri.valoracion}" />
+							</p:column>
+
+							<p:columnGroup type="footer">
+								<p:row>
+									<p:column colspan="1" style="text-align:center"
+										footerText="Total:" />
+									<p:column footerText="#{detalleEridaView.txtPesoTotal}" />
+									<p:column footerText="#{detalleEridaView.txtCalificacionTotal}" />
+									<p:column footerText="#{detalleEridaView.txtValoracionTotal}" />
+								</p:row>
+							</p:columnGroup>
+						</p:dataTable>
+						
+					</p:tab>
+					<p:tab title="Priorizacion de Asuntos Ambientales">
+						<p:dataTable var="prioaa" id="dataPriorizacionAsuntoAmbiental"
+							value="#{detalleEridaView.dataPriorizacionAsuntoAmbiental}">
+
+							<f:facet name="header">
+             Priorización de Asunto Ambiental : A Mayor calificación, mayor prioridad.
+        </f:facet>
+
+
+
+							<p:column headerText="Asunto Ambiental" style="text-align:center">
+								<h:outputText value="#{prioaa.nombre}" />
+							</p:column>
+
+							<p:column headerText="Valoración" style="text-align:center">
+								<h:outputText value="#{prioaa.valoracion}" />
+							</p:column>
+
+						</p:dataTable>
+					</p:tab>
+					<p:tab title="Priorizacion Impactos Ambientales">
+						<p:dataTable var="prioia" id="dataPriorizacionImpactosAmbientales"
+							value="#{detalleEridaView.dataPriorizacionImpactosAmbientales}">
+
+							<f:facet name="header">
+             Priorización Impactos Ambientales : A Mayor calificación, mayor prioridad.
+        </f:facet>
+
+
+
+
+							<p:column headerText="Impactos Ambientales"
+								style="text-align:center">
+								<h:outputText value="#{prioia.nombre}" />
+							</p:column>
+
+							<p:column headerText="Valoración" style="text-align:center">
+								<h:outputText value="#{prioia.valoracion}" />
+							</p:column>
+
+						</p:dataTable>
+					</p:tab>
+				</p:accordionPanel>
+
+	</h:form>
+	
+				<p:dialog id="dialogPsyAsuntoAmbiental" appendTo="@(body)"
+					draggable="true" closable="false" widgetVar="psyAsuntoAmbiental"
+					visible="#{detalleEridaView.showDialogMensajelstAsuntoAmbientalFaltantes}"
+					resizable="false" width="500" modal="true">
+					<h:form id="formDialogPsyAsuntoAmbiental">
+						<h:outputLabel
+							value="Faltan por terminar los sigiuentes asuntos ambientales:"></h:outputLabel>
+						<p:dataTable
+							value="#{detalleEridaView.lstAsuntoAmbientalFaltantes}"
+							var="psyAsuntoAmbiental">
+							<p:column>
+								<h:outputText value="#{psyAsuntoAmbiental.nombre}" />
+							</p:column>
+						</p:dataTable>
+						<p:commandButton id="btnExit" value="Salir"
+							action="#{detalleEridaView.cerrarDialogo()}"
+							update="@([id$=dialogPsyAsuntoAmbiental])" />
+					</h:form>
+				</p:dialog>
+			
+			
+		</f:view>
+	</ui:define>
+
+</ui:composition>

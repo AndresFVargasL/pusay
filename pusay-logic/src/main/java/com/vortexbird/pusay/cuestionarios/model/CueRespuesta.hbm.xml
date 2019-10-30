@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-jun-2013 19:14:26 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.cuestionarios.model.CueRespuesta" table="CUE_RESPUESTA">
+        <id name="consecutivo" type="java.lang.Long">
+            <column name="CONSECUTIVO" precision="10" scale="0" />
+            <generator class="native">
+		    	<param name="sequence">SEQ_CUE_ESTADO</param>
+		   </generator>
+        </id>
+        <many-to-one name="cueOpcion" class="com.vortexbird.pusay.cuestionarios.model.CueOpcion" fetch="select">
+            <column name="OPCION" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cueListaContacto" class="com.vortexbird.pusay.cuestionarios.model.CueListaContacto" fetch="select">
+            <column name="LISTA_CONTACTO" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="fechaHoraRespuesta" type="java.util.Date">
+            <column name="FECHA_HORA_RESPUESTA" length="11" not-null="true" />
+        </property>
+        <property name="ip" type="java.lang.String">
+            <column name="IP" length="128" not-null="true" />
+        </property>
+        <property name="respuestaAmpliacion" type="java.lang.String">
+            <column name="RESPUESTA_AMPLIACION" length="200" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

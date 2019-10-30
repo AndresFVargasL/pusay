@@ -1,0 +1,179 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+	<f:view>
+			<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>               
+			<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"  draggable="false" closable="false">  
+   				<p:graphicImage value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />   
+			</p:dialog>
+			
+			<!-- Expired session -->
+					<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();" timeout="#{session.maxInactiveInterval * 1000}" />
+					<p:dialog modal="true" widgetVar="sessionTimeOutDialog" header="Sesión Expirada"  draggable="false" closable="false">  
+	   					<h:outputText value="La sesión ha finalizado" />
+	                 	<input id="confirmBackToLogin" 
+	                 		type="button" 
+	                 		value="Iniciar Sesión"
+	                    	onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />   
+					</p:dialog>
+			
+			
+			<h:form id="formDialog">
+				<p:growl id="men" autoUpdate="true" showDetail="false"/>
+						<div align="center">
+						<h2>
+						MATRIZ CORRELACIÓN DE IMPACTOS AMBIENTALES
+						</h2>		
+						</div>	 
+						<h:panelGrid columns="2">
+						<p:outputLabel rendered="#{psyMatrizCorrelacionView.pintar}" value="A continuacion se muestran las correlaciones afectadas para los objetivos seleccionados anteriormente"></p:outputLabel>
+							
+						</h:panelGrid>
+						<div align="center">
+						<h:panelGrid columns="1">
+						<p:outputLabel rendered="#{psyMatrizCorrelacionView.pintarMensajeVacio}" value="NO EXISTEN OBJETIVOS CORPORATIVOS DEFINIDOS" style="color: darkgreen; font-weight:bold; font-size:large"></p:outputLabel>
+						<p:outputLabel rendered="#{psyMatrizCorrelacionView.pintarMensajeVacio}" value="POR FAVOR GENERAR LOS OBJETIVOS CORPORATIVOS DEFINITIVOS PARA PODER CONTINUAR"></p:outputLabel>
+						</h:panelGrid>
+						</div>
+						
+				<h:panelGrid columns="2" >
+				
+				<p:panel style=" text-align: center; margin:0 auto"  rendered="#{psyMatrizCorrelacionView.pintar}"> 
+                            <h:panelGrid columns="1">
+                             <p:panel>
+                             <p:inputText value="IMPACTO AMBIENTAL"  size="22" style="font-size: small; width:150px" readonly="true"/>
+							 </p:panel>
+                            
+                            
+							 <p:dataGrid var="impacto" value="#{psyMatrizCorrelacionView.lstImpactoAmbiental}" columns="1" layout="grid"
+							        id="impacto">
+							        <p:commandLink action="#{psyMatrizCorrelacionView.action_seleccionarImpacto}" update=":formDialog">  
+							                <p:inputText id="texto" value="#{impacto.nombre}" label="#{impacto.nombre}" size="22" style="font-size: small; width:150px" readonly="true">
+							               <p:tooltip for="texto" value="#{impacto.nombre} - #{impacto.descripcion}"
+               showEffect="clip" hideEffect="explode" />
+							                </p:inputText>
+							        <f:setPropertyActionListener value="#{impacto}" target="#{psyMatrizCorrelacionView.impactoSeleccionado}" />
+               						 </p:commandLink>        
+							  </p:dataGrid>
+							
+				</h:panelGrid>
+                        </p:panel>
+                        
+                         <p:panel id="panel1"  rendered="#{psyMatrizCorrelacionView.pintar}">
+                         
+                         <h:panelGrid columns="1">
+                              <p:dataGrid var="objetivo" value="#{psyMatrizCorrelacionView.lstDetalleObjetivoPlan}" columns="#{psyMatrizCorrelacionView.cantidadObjetivos}" layout="grid"
+							        id="objetivos">  
+							                <p:inputText id="txtObjetivo" value="#{objetivo.nombre}" size="22" style="font-size: small; width:150px" readonly="true"/>
+									   <p:tooltip for="txtObjetivo" value="#{objetivo.nombre} - #{objetivo.descripcion}"
+		               showEffect="clip" hideEffect="explode" />
+							  </p:dataGrid>
+							  
+                            <p:dataGrid var="car" value="#{psyMatrizCorrelacionView.matrizRelacion}" columns="#{psyMatrizCorrelacionView.cantidadObjetivos}" layout="grid"
+							        id="cars">
+							      
+							                 <p:commandLink disabled="#{car.bloquear}" update=":formDialog" oncomplete="PF('carDialog').show()" title="Click para detallar">
+                    				<p:inputText value="" size="22" style="font-size: small; width:150px; color:#{car.colorFondo}; background-color:#{car.colorFondo} " readonly="true"/>
+							        
+                  						  <f:setPropertyActionListener value="#{car}" target="#{psyMatrizCorrelacionView.relacionSeleccionada}" />
+               						 </p:commandLink>
+							 
+							    </p:dataGrid>
+							    </h:panelGrid>
+                             </p:panel>
+				
+				
+				</h:panelGrid>
+				
+				
+    
+    <div align="center">
+					<h:panelGrid columns="2"
+						rendered="#{psyMatrizCorrelacionView.pintar}">
+						<p:commandButton value="Generar mapa estratégico definitivo"
+							onclick="PF('mapaDialog').show()" update="formDialog:mapaDetail"
+							disabled="#{psyMatrizCorrelacionView.bloqueado}" />
+					</h:panelGrid>
+				</div>
+    <p:spacer height="30"></p:spacer>
+    <div align="center">
+    <p:panelGrid  columns="6"  rendered="#{psyMatrizCorrelacionView.pintar}">
+				<p:inputText readonly="true" style="width:5px; height:5px; background-color:green"></p:inputText>
+				<p:outputLabel value="Estrategía a Trabajar"></p:outputLabel>
+				<p:inputText readonly="true" style="width:5px; height:5px; background-color:yellow"></p:inputText>
+				<p:outputLabel value="Estrategía Seleccionada"></p:outputLabel>
+				<p:inputText readonly="true" style="width:5px; height:5px; background-color:darkorange"></p:inputText>
+				<p:outputLabel value="Estrategía NO seleccionada"></p:outputLabel>
+				</p:panelGrid>
+    </div>
+					
+					
+					<p:dialog header="Estrategia" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="carDetail" style="text-align:center;">
+         
+        
+            <div align="center">
+            <p:panelGrid  columns="2" columnClasses="label,value">
+                
+                <h:outputText value="Impacto Ambiental:" />
+                <h:outputText value="#{psyMatrizCorrelacionView.relacionSeleccionada.nombreImpactoAmbiental}" />
+                
+                <h:outputText value="Objetivo Corporativo:" />
+                <h:outputText value="#{psyMatrizCorrelacionView.relacionSeleccionada.nombreObjetivoCorporativo}" />
+                
+                <h:outputText value="Estrategia:" />
+                <p:dataTable id="dataEstrategias" value="#{psyMatrizCorrelacionView.relacionSeleccionada.estrategias}" var="psyEstrategia" style="width: 400px;">
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Nombre" />
+							</f:facet>
+							<h:outputText value="#{psyEstrategia.nombre}" />
+						</p:column>
+			    </p:dataTable>
+                
+                              
+            </p:panelGrid>
+            </div>
+            <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5" rendered="false">
+		        <p:outputLabel for="console" value="Desea trabajar ésta estrategía? " />
+		        <p:selectOneRadio id="console" value="#{psyMatrizCorrelacionView.trabajarRelacion}" disabled="#{psyMatrizCorrelacionView.bloqueado}">
+		            <f:selectItem itemLabel="Si, deseo trabajarla" itemValue="SI" />
+		            <f:selectItem itemLabel="No" itemValue="NO" />		            
+		        </p:selectOneRadio>
+		    </h:panelGrid>
+		    
+		    <p:spacer height="20"></p:spacer>
+		    <p:commandButton value="Aceptar" disabled="#{psyMatrizCorrelacionView.bloqueado}" update="formDialog" />
+						
+        </p:outputPanel>
+    </p:dialog>
+    
+    
+    
+    <p:dialog header="MAPA ESTRATEGICO DEFINITIVO" widgetVar="mapaDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="mapaDetail" style="text-align:center;">
+         
+        <h:panelGrid columns="1">
+        <p:outputLabel value="Se va a generar el mapa estrategico definitivo"></p:outputLabel>
+         <p:outputLabel value="una vez generado el mapa estrategico definitivo no se permitirá modificar las estrategias"></p:outputLabel>
+        <p:outputLabel value="Desea generar el mapa estrategico definitivo?"></p:outputLabel>
+        </h:panelGrid>
+           
+		    <p:spacer height="20"></p:spacer>
+		<p:commandButton value="GENERAR" action="#{psyMatrizCorrelacionView.action_generarMapaEstrategicoDefinitvo}" update="formDialog" />
+		<p:commandButton value="CANCELAR" onclick="PF('mapaDialog').hide()" update="formDialog" />
+					
+        </p:outputPanel>
+    </p:dialog>
+					
+			</h:form>
+		
+		</f:view>
+</ui:define>
+
+</ui:composition>

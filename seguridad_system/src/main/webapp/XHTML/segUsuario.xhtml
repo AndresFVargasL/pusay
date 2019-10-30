@@ -1,0 +1,187 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/WEB-INF/facelets/templateMenu.xhtml">
+		<ui:define name="header">
+			<ui:include src="/WEB-INF/facelets/header.jspx" />
+		</ui:define>
+		<br />
+		<br />
+
+		<ui:define name="body">
+			<f:view>
+
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog"
+					header="Cargando informacion" draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form>
+					<br />
+					<p:panel id="msgProjectSegUsuarioTitle" header="Usuarios"
+						style="width: 100%">
+
+						<p:messages id="msg" showDetail="false" />
+
+						<div align="center">
+
+							<h:panelGrid columns="2" id="panel">
+
+								<h:outputText id="msgUsuCodigoInterno" value=" Codigo Interno" />
+								<p:inputText id="txtUsuCodigoInterno" disabled="false"
+									binding="#{segUsuarioView.txtUsuCodigoInterno}">
+									<p:ajax update="panel,msg,panelBotones"
+										listener="#{segUsuarioView.listener_codigoInterno}" />
+								</p:inputText>
+
+								<h:outputText id="msgUsuLogin" value=" Login" />
+								<p:inputText id="txtUsuLogin" disabled="false"
+									binding="#{segUsuarioView.txtUsuLogin}" >
+									<p:ajax update="panel,msg,panelBotones"
+										listener="#{segUsuarioView.listener_login}" />
+									</p:inputText>
+
+								<h:outputText id="msgUsuNombres" value=" Nombres" />
+								<p:inputText id="txtUsuNombres" disabled="false"
+									binding="#{segUsuarioView.txtUsuNombres}" />
+
+								<h:outputText id="msgUsuApellidos" value=" Apellidos" />
+								<p:inputText id="txtUsuApellidos" disabled="false"
+									binding="#{segUsuarioView.txtUsuApellidos}" />
+
+								<h:outputText id="msgUsuConstrasena" value=" Contraseña" />
+								<p:password id="txtUsuConstrasena" disabled="false"
+									binding="#{segUsuarioView.txtUsuConstrasena}" />
+
+								<h:outputText id="msgUsuEstadoRegistro"
+									value=" Estado de Registro" />
+								<p:selectOneMenu
+									binding="#{segUsuarioView.txtUsuEstadoRegistro}"
+									styleClass="inputstyle">
+									<f:selectItem itemValue="-1" itemLabel="Seleccione el Estado" />
+									<f:selectItem itemValue="1" itemLabel="Activo" />
+									<f:selectItem itemValue="0" itemLabel="Inactivo" />
+								</p:selectOneMenu>
+								
+								<h:outputText id="msgcompania"
+									value=" Companias" />
+								<p:selectOneMenu binding="#{segUsuarioView.somCompanias}" 
+									styleClass="inputstyle">
+									<f:selectItem itemValue="-1" itemLabel="Seleccione una Compañia" />
+									<f:selectItems value="#{segUsuarioView.lasCompanias}" />
+								</p:selectOneMenu>
+
+								<h:outputText id="msgUsuCorreo" value=" Correo" />
+								<p:inputText id="txtUsuCorreo" disabled="false"
+									binding="#{segUsuarioView.txtUsuCorreo}" />
+
+								<h:outputText id="msgAsignarRoles"
+									value=" Asignar Roles X Usuario " />
+
+								<p:selectCheckboxMenu id="scmRoles"
+									value="#{segUsuarioView.rolesAsignados}"
+									binding="#{segUsuarioView.scmRoles}" label="Roles "
+									filter="true" filterText="Filter" filterMatchMode="startsWith"
+									panelStyle="width:220px">
+									<f:selectItems value="#{segUsuarioView.selectRoles}" />
+								</p:selectCheckboxMenu>
+
+								<p:inputText id="txtUsuCodigo" type="hidden" readonly="true"
+									binding="#{segUsuarioView.txtUsuCodigo}" />
+
+							</h:panelGrid>
+						</div>
+
+						<br />
+
+						<div align="center">
+							<h:panelGrid id="panelBotones" columns="3">
+
+								<p:commandButton id="btnSave" disabled="false" value="Guardar"
+									action="#{segUsuarioView.action_save}"
+									update="msg,panelBotones,panel,panelUsuarios"
+									binding="#{segUsuarioView.btnSave}" />
+
+								<p:commandButton id="btnModify" disabled="true"
+									value="Modificar" action="#{segUsuarioView.action_modify}"
+									update="msg,panelBotones,panel,panelUsuarios"
+									binding="#{segUsuarioView.btnModify}" />
+
+								<p:commandButton id="btnClear" disabled="false" value="Limpiar"
+									action="#{segUsuarioView.action_clear}"
+									update="msg,panelBotones,panel"
+									binding="#{segUsuarioView.btnClear}" />
+
+							</h:panelGrid>
+						</div>
+
+						<br />
+
+						<div align="center">
+							<h:panelGrid id="panelUsuarios">
+								<p:dataTable id="dataTableUsuarios"
+									value="#{segUsuarioView.data}" var="segUsuario"
+									paginator="true" rows="10">
+
+									<p:column headerText="Editar">
+										<h:commandLink action="#{segUsuarioView.action_selected}"
+											style="color:blue;">
+											<h:outputText value="Editar" />
+											<f:param name="usuCodigo" value="#{segUsuario.usuCodigo}" />
+										</h:commandLink>
+									</p:column>
+
+									<p:column filterBy="#{segUsuario.usuCodigoInterno}"
+										sortBy="#{segUsuario.usuCodigoInterno}"
+										headerText="Codigo Interno">
+										<h:outputText value="#{segUsuario.usuCodigoInterno}" />
+									</p:column>
+
+									<p:column filterBy="#{segUsuario.usuNombres}"
+										sortBy="#{segUsuario.usuNombres}" headerText="Nombres">
+										<h:outputText value="#{segUsuario.usuNombres}" />
+									</p:column>
+
+									<p:column filterBy="#{segUsuario.usuApellidos}"
+										sortBy="#{segUsuario.usuApellidos}" headerText="Apellidos">
+										<h:outputText value="#{segUsuario.usuApellidos}" />
+									</p:column>
+
+									<p:column filterBy="#{segUsuario.usuEstadoRegistroNombre}"
+										sortBy="#{segUsuario.usuEstadoRegistro}"
+										headerText="Estado Registro">
+										<h:outputText value="#{segUsuario.usuEstadoRegistroNombre}" />
+									</p:column>
+
+									<p:column filterBy="#{segUsuario.usuLogin}"
+										sortBy="#{segUsuario.usuLogin}" headerText="Login">
+										<h:outputText value="#{segUsuario.usuLogin}" />
+									</p:column>
+									
+									
+									</p:dataTable>
+							</h:panelGrid>
+						</div>
+					</p:panel>
+				</h:form>
+			</f:view>
+		</ui:define>
+
+		<ui:define name="footer">
+			<ui:include src="/WEB-INF/facelets/footer.jspx" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

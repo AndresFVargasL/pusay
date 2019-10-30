@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BDEC449C-7663-688A-725C-00AAFCF1EE8C" name="PSY_MATRIZ_ENCUESTA">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:10:22 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>MAEN</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MAEN_CODIGO" id="79C9CB21-F374-B659-1D0D-24CBF0D79C65">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:10:54 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PEST_CODIGO" id="AFB9C6D6-D5E9-A4B3-924F-D20051706F65">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:11:28 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E0A35308-889D-31E8-C2E7-4D9F3DECF301" referredColumn="19997DFD-83AF-9363-CD39-14023390B25C"/>
+</associations>
+</Column>
+<Column name="CODIGO_ENCUESTA" id="E7756178-4128-6F70-3F80-D0C447031F3E">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 19:13:55 UTC</createdTime>
+<comment>CODIGO DE LA ENCUESTA QUE RELACIONA LA MATRIZ CON EL SISTEMA DE ENCUESTA</comment>
+<commentInRDBMS>CODIGO DE LA ENCUESTA QUE RELACIONA LA MATRIZ CON EL SISTEMA DE ENCUESTA</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="D038F71A-749B-CC6E-7BF4-34C7B0ADFDCD">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 19:17:45 UTC</createdTime>
+<comment>A-ACTIVO, I-INACTIVO</comment>
+<commentInRDBMS>A-ACTIVO, I-INACTIVO</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E630C3DD-3D0B-5560-C0E0-6BD7787E77E0" name="MATRIZ_ENCUESTA_PK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:10:54 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="79C9CB21-F374-B659-1D0D-24CBF0D79C65"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A6E38303-12DA-9831-8FC7-4D1CF467A9B8" name="MAEN_PEST_FK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:11:28 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AFB9C6D6-D5E9-A4B3-924F-D20051706F65"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

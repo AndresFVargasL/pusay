@@ -1,0 +1,104 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FA6A1C51-31F1-4E6F-947D-3D904A395DBF" name="PSY_PLAN_ESTRATEGIA">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:46:56 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>PLES</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PLES_CODIGO" id="D5001CB9-AD4E-B2CA-FCB3-C27180A7E822">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:48:05 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DMAE_CODIGO" id="683CCCF5-3210-80B3-F24E-AB4CBD4B8905">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:48:13 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EC8B4F0E-7C11-FE08-6A91-3CDD39396E5F" referredColumn="8E0108D8-F077-E2E5-6C73-07748D1319B3"/>
+</associations>
+</Column>
+<Column name="PROG_CODIGO" id="BB91F3B2-3BAB-F71D-74E9-3DBA7F178D31">
+<createdBy>andresfelipevargaslopez</createdBy>
+<createdTime>2015-07-13 14:53:48 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="26760D75-1707-0A52-10FD-4D99416324D4" referredColumn="E4FE1541-5A61-CC91-0906-FBFAB85BC3A9"/>
+</associations>
+</Column>
+<Column name="ESTADO_REGISTRO" id="73874F94-7D63-2D74-FAB2-DCD61F01D770">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-03-14 15:11:06 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="768F0673-D8B1-9F61-8B64-2038B5D683BB" name="PSY_PLAN_ESTRATEGIA_PK">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:48:05 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D5001CB9-AD4E-B2CA-FCB3-C27180A7E822"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EF9878F6-9BF5-C316-3C33-774D99CC06E5" name="DMAE_PLES_FK">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:48:13 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="683CCCF5-3210-80B3-F24E-AB4CBD4B8905"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E5255FC9-621B-C146-9088-56D6E0996DD1" name="PSY_PLES_PROG_FK">
+<createdBy>andresfelipevargaslopez</createdBy>
+<createdTime>2015-07-13 14:53:48 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BB91F3B2-3BAB-F71D-74E9-3DBA7F178D31"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

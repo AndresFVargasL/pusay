@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	</h:head>		
+	
+	<h:body>
+		  <ui:composition template="/XHTML/CommonColumnsContent.xhtml">
+			<ui:define name="header">
+				<ui:include src="/WEB-INF/facelets/header.jspx" />
+			</ui:define>
+        	<br/>
+        	<br/> 	
+		 
+		 <ui:define name="body">	
+			<f:view>
+		 
+		  <h:form>
+			<div align="center">
+               <h:link id="cmdBack" outcome="goInitialMenu" value="Back" style="color:blue;" />
+			 </div>
+			 <br />
+			<p:panel id="msgProjectSegHistorialConstrasenaTitle" header="SegHistorialConstrasena" >
+			   <p:messages id="msg" showDetail="true"/>
+			   <p:growl id="men"/>
+			       <h:panelGrid columns="2" id="panel" >
+												 <h:outputText id="msgHcoCodigo" value="HcoCodigo"/>
+						 <p:inputText id="txtHcoCodigo" binding="#{segHistorialConstrasenaView.txtHcoCodigo}">
+						 <p:ajax update="panel,msg,panelBotones" listener="#{segHistorialConstrasenaView.listener_txtId}"/>
+						 </p:inputText>	
+																		
+												<h:outputText id="msgHcoConstrasena" value=" HcoConstrasena"/>
+						<p:inputText id="txtHcoConstrasena" disabled="true" binding="#{segHistorialConstrasenaView.txtHcoConstrasena}"/>
+												<h:outputText id="msgHcoDetalleCambio" value=" HcoDetalleCambio"/>
+						<p:inputText id="txtHcoDetalleCambio" disabled="true" binding="#{segHistorialConstrasenaView.txtHcoDetalleCambio}"/>
+												<h:outputText id="msgUsuCodigo_SegUsuario" value=" UsuCodigo_SegUsuario"/>
+						<p:inputText id="txtUsuCodigo_SegUsuario" disabled="true" binding="#{segHistorialConstrasenaView.txtUsuCodigo_SegUsuario}"/>
+												
+																				<h:outputText id="msgHcoFechaCambio" value=" HcoFechaCambio"/>
+														<p:calendar showOn="button" navigator="true" locale="en" onSelectUpdate="men"
+							binding="#{segHistorialConstrasenaView.txtHcoFechaCambio}" selectListener="#{segHistorialConstrasenaView.listener_txtHcoFechaCambio}"/>
+																			
+				   </h:panelGrid>
+				   
+				   <h:panelGrid id="panelBotones" columns="4">
+					
+						<p:commandButton id="btnSave" disabled="true" value="Save" action="#{segHistorialConstrasenaView.action_save}" update="msg,panel,panelBotones"          binding="#{segHistorialConstrasenaView.btnSave}" />
+						<p:commandButton id="btnModify" disabled="true" value="Modify" action="#{segHistorialConstrasenaView.action_modify}" update="msg,panel,panelBotones"    binding="#{segHistorialConstrasenaView.btnModify}" />
+						<p:commandButton id="btnDelete" disabled="true" value="Delete" action="#{segHistorialConstrasenaView.action_delete}" update="msg,panel,panelBotones"    binding="#{segHistorialConstrasenaView.btnDelete}"  />
+						<p:commandButton id="btnClear" disabled="false" value="Clear" action="#{segHistorialConstrasenaView.action_clear}" update="msg,panel,panelBotones"      binding="#{segHistorialConstrasenaView.btnClear}" />
+				   
+				   </h:panelGrid>
+					
+			</p:panel>
+			
+		</h:form>	
+		  </f:view>
+	 </ui:define>	  
+	
+	  <ui:define name="footer">
+		 <ui:include src="/WEB-INF/facelets/footer.jspx" />
+	   </ui:define>	
+	</ui:composition>
+	</h:body>	
+
+</html>	

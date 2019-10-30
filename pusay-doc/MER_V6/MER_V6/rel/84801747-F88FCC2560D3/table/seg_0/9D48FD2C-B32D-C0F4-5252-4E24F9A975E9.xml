@@ -1,0 +1,90 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9D48FD2C-B32D-C0F4-5252-4E24F9A975E9" name="PSY_SUBTEMA">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 21:23:06 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>SUBTE</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="CODIGO" id="7665A090-2D4A-6883-CADD-B1BBD56DC064">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 21:24:03 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TEMA_CODIGO" id="E0BD8554-8479-63CD-8EF2-EB4EE0FFAADE">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 21:37:37 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="398F90F7-C6AC-A2B1-C66D-4E9E64B3F955" referredColumn="5026E321-1DE2-FD58-9CE6-BE7B9C4DEE52"/>
+</associations>
+</Column>
+<Column name="DESCRIPCION" id="062A4525-BC7A-F551-7242-7D77D7268E2D">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 21:24:35 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="49EC3066-E2E8-8E11-D391-B3D14330A67C">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 21:25:47 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0D6BBFBA-1EB1-B4F5-2EBC-11B2830DBBA3" name="PSY_SUBTEMA_PK">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 21:24:03 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7665A090-2D4A-6883-CADD-B1BBD56DC064"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BAAA8E60-E32B-6C65-E99C-01F0E0F0E22D" name="SUBTEMA_TEMA_FK">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 21:37:37 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E0BD8554-8479-63CD-8EF2-EB4EE0FFAADE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

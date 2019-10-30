@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05-ago-2015 11:08:40 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyImpactoObjetivo" table="psy_impacto_objetivo" schema="public">
+        <id name="imobCodigo" type="java.lang.Long">
+            <column name="imob_codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="psyImpactoAmbiental" class="com.vortexbird.pusay.modelo.PsyImpactoAmbiental" fetch="select">
+            <column name="imam_codigo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="psyObjetivoAmbiental" class="com.vortexbird.pusay.modelo.PsyObjetivoAmbiental" fetch="select">
+            <column name="obam_codigo" not-null="true" />
+        </many-to-one>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

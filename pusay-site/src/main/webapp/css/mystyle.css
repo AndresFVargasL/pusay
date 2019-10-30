@@ -1,0 +1,68 @@
+.header {
+  background-image: url(../img/tree_.jpg);
+}
+.title-section {
+  padding: 2rem 0;
+  background-color: #85BF44;
+  background-image: url(../img/title_header.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.title-header {
+  font-size: 2.5rem;
+  color: white;
+}
+.testimonial {
+  border-left: 3px solid #99c038;
+}
+.testimonial_bq {
+  color: #252525;
+}
+body {
+  background-image: url('../img/land_.jpg') !important;
+}
+.parallax-slider #mainImageHolder .primaryHolder .obj-inner,
+.parallax-slider #mainImageHolder .secondaryHolder .obj-inner {
+  background-image: url(../img/tree.jpg)
+}
+#content {
+  padding-top: 2em;
+}
+#content h1 {
+  font-weight: bold!important;
+  border-bottom: thin solid #99c038;
+  margin-bottom: .8rem;
+  color: #99c038;
+  padding-bottom: .5rem;
+}
+#content p,
+#content li {
+  font-size: 16px;
+  text-align: justify;
+}
+#content li {
+  margin-bottom: .8rem;
+}
+@media (max-width: 979px) and (min-width: 768px){
+  .home .logo {margin-top: 45px;}
+}
+@media (max-width: 768px){
+  .home .logo {margin-top: 50px!important;}
+  .parallax-slider #mainCaptionHolder .slider_caption h1, .parallax-slider #mainCaptionHolder .slider_caption h2{font-size: 40px;}
+}
+.parallax-slider #mainImageHolder .primaryHolder .obj-inner, .parallax-slider #mainImageHolder .secondaryHolder .obj-inner{background-image: url(../img/p.jpg)!important;}
+.sf-menu > li{background: #85BF44!important;}
+.sf-menu > li.current-menu-item > a, .sf-menu > li.current_page_item > a,.sf-menu > li > a:after{background: rgb(255, 140, 63)!important;}
+.img-botones{
+	text-align:center;
+	margin: 20px auto 0;
+}
+.banner-inf{
+  
+  background-color:#6E6E6E;
+  margin:10px;
+  text-align:center;
+  padding:1px;
+  
+}

@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	</h:head>
+
+	<h:body>
+	    <ui:composition template="/XHTML/CommonColumnsContent.xhtml">
+			<ui:define name="header">
+				<ui:include src="/WEB-INF/facelets/header.jspx" />
+			</ui:define>
+        <br/>
+        <br/> 	
+	   <ui:define name="body">	
+		 <f:view>
+	   <h:form>
+			<div align="center">
+               <h:link id="cmdBack" outcome="goInitialMenu" value="Back" style="color:blue;" />
+			 </div>
+			 <br />
+			 
+			<p:panel id="msgProjectClientesTitle" header="SegHistorialConstrasenaData">
+				
+				<p:dataTable value="#{segHistorialConstrasenaView.data}" var="segHistorialConstrasena"
+					paginator="true" rows="5">
+																	<p:column filterBy="#{segHistorialConstrasena.hcoCodigo}" sortBy="#{segHistorialConstrasena.hcoCodigo}" >
+							 <f:facet name="header">
+							<h:outputText value="hcoCodigo"/>
+							</f:facet>
+							 <h:outputText value="#{segHistorialConstrasena.hcoCodigo}"/>
+							 </p:column>
+                    																
+							<p:column filterBy="#{segHistorialConstrasena.hcoConstrasena}" sortBy="#{segHistorialConstrasena.hcoConstrasena}" >
+							 <f:facet name="header">
+							<h:outputText value="HcoConstrasena"/>
+							</f:facet>
+							 <h:outputText value="#{segHistorialConstrasena.hcoConstrasena}"/>
+							</p:column>   
+                    						
+							<p:column filterBy="#{segHistorialConstrasena.hcoDetalleCambio}" sortBy="#{segHistorialConstrasena.hcoDetalleCambio}" >
+							 <f:facet name="header">
+							<h:outputText value="HcoDetalleCambio"/>
+							</f:facet>
+							 <h:outputText value="#{segHistorialConstrasena.hcoDetalleCambio}"/>
+							</p:column>   
+                    						
+							<p:column filterBy="#{segHistorialConstrasena.hcoFechaCambio}" sortBy="#{segHistorialConstrasena.hcoFechaCambio}" >
+							 <f:facet name="header">
+							<h:outputText value="HcoFechaCambio"/>
+							</f:facet>
+							 <h:outputText value="#{segHistorialConstrasena.hcoFechaCambio}"/>
+							</p:column>   
+                    						
+							<p:column filterBy="#{segHistorialConstrasena.usuCodigo_SegUsuario}" sortBy="#{segHistorialConstrasena.usuCodigo_SegUsuario}" >
+							 <f:facet name="header">
+							<h:outputText value="UsuCodigo_SegUsuario"/>
+							</f:facet>
+							 <h:outputText value="#{segHistorialConstrasena.usuCodigo_SegUsuario}"/>
+							</p:column>   
+                    						
+					
+				
+				</p:dataTable>	
+					
+				
+			</p:panel>
+				
+	   </h:form>
+	     </f:view>
+	 </ui:define>
+	 
+	 <ui:define name="footer">
+		 <ui:include src="/WEB-INF/facelets/footer.jspx" />
+	 </ui:define>	
+</ui:composition> 
+   	 
+	</h:body>	
+	
+</html>	

@@ -1,0 +1,236 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+    
+	<f:view>
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+					draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<!-- Expired session -->
+				<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();"
+					timeout="#{session.maxInactiveInterval * 1000}" />
+				<p:dialog modal="true" widgetVar="sessionTimeOutDialog"
+					header="Sesión Expirada" draggable="false" closable="false">
+					<h:outputText value="La sesión ha finalizado" />
+					<input id="confirmBackToLogin" type="button" value="Iniciar Sesión"
+						onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />
+				</p:dialog>
+
+
+				<h:form id="formDialog" enctype="multipart/form-data">
+					<p:growl id="men" autoUpdate="true" showDetail="false"/>
+					
+					<div align="center">
+						<h2>
+						OBJETIVOS ESTRATÉGICOS CORPORATIVOS
+						</h2>		
+						</div>	 
+					
+						<div align="center">
+						<h:panelGrid columns="1">
+						<p:outputLabel rendered="#{psyDetalleObjetivoPlanView.mostrarMensaje}" value="NO EXISTE UN PLAN DE ACCIÓN EN ESTADO ABIERTO O INICIADO" style="color: darkgreen; font-weight:bold; font-size:large"></p:outputLabel>
+						<p:outputLabel rendered="#{psyDetalleObjetivoPlanView.mostrarMensaje}" value="POR FAVOR ABRA UN NUEVO PLAN DE ACCIÓN PARA PODER ELEGIR SUS OBJETIVOS CORPORATIVOS"></p:outputLabel>
+						</h:panelGrid>
+						</div>
+						
+
+					<p:dialog header="Objetivo Corporativo" widgetVar="carDialog"
+						modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+						<p:outputPanel id="carDetail" style="text-align:center;"
+							layout="block">
+							<p:panelGrid columns="2">
+
+								<h:outputText value="Nombre:" />
+								<h:outputText
+									value="#{psyDetalleObjetivoPlanView.objetivoCorporativoRing.nombre}" />
+
+								<h:outputText value="Descripción:" />
+								<h:outputText
+									value="#{psyDetalleObjetivoPlanView.objetivoCorporativoRing.descripcion}" />
+
+								<h:outputText value="Grupo objetivo:" />
+								<h:outputText
+									value="#{psyDetalleObjetivoPlanView.objetivoCorporativoRing.nombreObjetivoEstrategico}" />
+
+
+
+							</p:panelGrid>
+						</p:outputPanel>
+					</p:dialog>
+
+					<p:dialog header="Objetivos corporativos definidos"
+						widgetVar="objetivosDefinidosDialog" modal="true"
+						showEffect="fade" hideEffect="fade" resizable="false">
+
+
+						<p:outputLabel
+							value="Se guardarán los siguientes objetivos corporativos en su plan definitivo: "
+							required="true" label="text" />
+						
+<p:spacer height="15px"></p:spacer>
+
+						<p:outputPanel id="objetivoDefinitivoDetalle"
+							style="text-align:center;" layout="block">
+
+							<p:dataTable id="tblObjetivosDefinidos" var="objetivo"
+								value="#{psyDetalleObjetivoPlanView.lstObjetivoCorporativoRing}">
+								
+								<p:column headerText="Nombre">
+									<h:outputText value="#{objetivo.nombre}" required="true" />
+								</p:column>
+
+								<p:column headerText="Descripción">
+									<h:outputText value="#{objetivo.descripcion}" />
+								</p:column>
+
+								<p:column headerText="Grupo">
+									<h:outputText value="#{objetivo.nombreObjetivoEstrategico}" />
+								</p:column>
+							</p:dataTable>
+
+
+						</p:outputPanel>
+						<p:spacer height="15px"></p:spacer>
+						<div align="center">						
+						 <p:outputLabel
+								value="Nota: Una vez definido los objetivos corporativos a trabajar, no padrán modificarse en este plan" />
+							</div>
+							<br/>
+							<div align="center">
+							<p:commandButton value="Guardar objetivos definitivos"
+								action="#{psyDetalleObjetivoPlanView.action_guardar_definitivo}"
+								update=":formDialog" />
+								</div>
+						
+					</p:dialog>
+
+					<div align="left">
+							<h:panelGrid columns="2">
+						
+						<p:outputLabel rendered="#{psyDetalleObjetivoPlanView.mostrar}" value="Los siguientes objetivos corporativos son los que se encuentran definidos actualmente: "></p:outputLabel>
+						
+						</h:panelGrid>
+					</div>
+
+					<!-- <p:ring id="basic"
+						value="#{psyDetalleObjetivoPlanView.lstObjetivoCorporativoRing}"
+						var="car" style="widht:200" rendered="#{psyDetalleObjetivoPlanView.mostrar}">
+						<p:outputPanel style="text-align: center;" layout="block">
+    	       			 #{car.nombre}
+         		  	 <br />
+							<p:commandButton update=":formDialog:carDetail"
+								icon="ui-icon-search" title="View"
+								oncomplete="PF('carDialog').show();">
+								<f:setPropertyActionListener value="#{car}"
+									target="#{psyDetalleObjetivoPlanView.objetivoCorporativoRing}" />
+							</p:commandButton>
+						</p:outputPanel>
+					</p:ring> --> 
+					
+					<p:dataTable id="basic" value="#{psyDetalleObjetivoPlanView.lstObjetivoCorporativoRing}" var="objcorp" rendered="#{psyDetalleObjetivoPlanView.mostrar}">
+						
+						<p:column sortBy="#{objcorp.nombre}">
+							<f:facet name="header">
+								<h:outputText value="Nombre" />
+							</f:facet>
+							<h:outputText value="#{objcorp.nombre}" />
+						</p:column>
+
+						<p:column sortBy="#{objcorp.descripcion}">
+							<f:facet name="header">
+								<h:outputText value="Descripcion" />
+							</f:facet>
+							<h:outputText value="#{objcorp.descripcion}" />
+						</p:column>
+												
+						<p:column sortBy="#{objcorp.nombreObjetivoEstrategico}">
+							<f:facet name="header">
+								<h:outputText value="Grupo Objetivo" />
+							</f:facet>
+							<h:outputText value="#{objcorp.nombreObjetivoEstrategico}" />
+						</p:column>
+						
+					</p:dataTable>
+
+
+					<div align="left">
+							<h:panelGrid columns="2">
+						<p:outputLabel rendered="#{psyDetalleObjetivoPlanView.mostrar}" value="Por favor ingrese los objetivos corporativos que desea trabajar: "></p:outputLabel>
+						
+						</h:panelGrid>
+					</div>
+					
+					<p:dataTable rowKey="#{objetivo.dobpCodigo}" id="tblObjetivos"
+						var="objetivo" 
+						value="#{psyDetalleObjetivoPlanView.lstObjetivoCorporativo}" rendered="#{psyDetalleObjetivoPlanView.mostrar}">
+
+
+
+						<p:column headerText="Nombre">
+
+							<p:inplace id="ajax" editor="true" disabled="#{psyDetalleObjetivoPlanView.bloqueado}">
+								<p:inputText value="#{objetivo.nombre}" required="true"
+									label="text" />
+							</p:inplace>
+
+						</p:column>
+
+						<p:column headerText="Descripción">
+
+							<p:inplace id="ajax2" editor="true" disabled="#{psyDetalleObjetivoPlanView.bloqueado}">
+								<p:inputTextarea value="#{objetivo.descripcion}" required="true"
+									label="text" />
+							</p:inplace>
+
+						</p:column>
+
+						<p:column headerText="Grupo">
+
+							<p:selectOneMenu id="console"
+								value="#{objetivo.codigoObjetivoEstrategico}"
+								style="width: 90%" disabled="#{psyDetalleObjetivoPlanView.bloqueado}" filter="true" filterMatchMode="startsWith">
+								<f:selectItem itemLabel="Seleccione un grupo" itemValue="-1" />
+								<f:selectItems
+									value="#{psyDetalleObjetivoPlanView.listaObjetivosEstrategicos}" />
+
+							</p:selectOneMenu>
+
+						</p:column>
+
+						<p:column headerText="Eliminar">
+<div align="center">
+							<p:commandButton icon="ui-icon-circle-close"
+								action="#{psyDetalleObjetivoPlanView.seleccionareliminarDetalleObjetivo}"
+								update=":formDialog:tblObjetivos" disabled="#{psyDetalleObjetivoPlanView.bloqueado}">
+								<f:setPropertyActionListener value="#{objetivo}"
+									target="#{psyDetalleObjetivoPlanView.objetivoCorporativo}" />
+							</p:commandButton>
+</div>
+						</p:column>
+					</p:dataTable>
+
+					<p:panel id="panelBotones" rendered="#{psyDetalleObjetivoPlanView.mostrar}">
+						<div align="center">
+							<p:commandButton value="Guardar información"
+								action="#{psyDetalleObjetivoPlanView.action_save()}"
+								update=":formDialog:basic, :formDialog:men" disabled="#{psyDetalleObjetivoPlanView.bloqueado}"/>
+							<p:commandButton
+								value="Generar Apertura de Plan Estratégico Definitivo"
+								oncomplete="PF('objetivosDefinidosDialog').show();" update=":formDialog" disabled="#{psyDetalleObjetivoPlanView.bloqueado}"/>
+						</div>
+					</p:panel>
+				</h:form>
+			</f:view>
+</ui:define>
+
+</ui:composition>

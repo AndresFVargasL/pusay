@@ -1,0 +1,204 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">	
+		<f:view>
+			<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>               
+			<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"  draggable="false" closable="false">  
+   				<p:graphicImage value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />   
+			</p:dialog>
+			
+			<!-- Expired session -->
+					<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();" timeout="#{session.maxInactiveInterval * 1000}" />
+					<p:dialog modal="true" widgetVar="sessionTimeOutDialog" header="Sesión Expirada"  draggable="false" closable="false">  
+	   					<h:outputText value="La sesión ha finalizado" />
+	                 	<input id="confirmBackToLogin" 
+	                 		type="button" 
+	                 		value="Iniciar Sesión"
+	                    	onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />   
+					</p:dialog>
+			
+			
+			<h:form id="formDialog">
+				<p:growl id="men" autoUpdate="true" showDetail="false"/>
+				
+				
+				<p:spacer height="50"></p:spacer>
+				
+				<div align="center">
+						<h2>
+						INFORME DE PROGRESO UNIFICADO (IPU TIEMPO)
+						</h2>		
+						</div>	 
+					
+						<div align="center">
+						<h:panelGrid columns="1">
+						<p:outputLabel rendered="#{ipuView.mostrarMensaje}" value="#{ipuView.mensaje}" style="color: darkgreen; font-weight:bold; font-size:large"></p:outputLabel>
+						<p:outputLabel rendered="#{ipuView.mostrarMensaje}" value="POR FAVOR VERIFIQUE QUE EXISTA UN PLAN ESTRATÉGICO EN ESTADO INICIADO Y  PLANES DE ACCIÓN EN ESTADO INICIADO O PRESUPUESTADO "></p:outputLabel>
+						</h:panelGrid>
+						</div>
+				
+				
+				<p:panel id="panelPsyIpu"  rendered="#{ipuView.mostrar}">							
+						<p:spacer height="10"></p:spacer>
+					<div align="center">
+					
+					<h:panelGrid columns="3">
+					
+					<h:panelGrid columns="2">	
+					
+					<p:outputLabel value="Seleccione el proyecto: "></p:outputLabel>
+					
+				   				
+    				<p:selectOneMenu id="planesAccion" style="width: 163px;"
+								value="#{ipuView.planAccionSeleccionadoItem}">
+								<f:selectItem itemLabel="Seleccione un proyecto" itemValue="-1"/>
+								<f:selectItems value="#{ipuView.lstPlanAccionItem}"
+									var="p" itemLabel="#{p.nombre}">
+								</f:selectItems>
+								<p:ajax
+									listener="#{ipuView.listener_plan_accion}"
+									update="@([id$=panelPsyIpu]), @([id$=panelListaIpu]), @([id$=panelGrafica])" />
+					</p:selectOneMenu>									
+					<p:outputLabel value="Fecha de informe: "></p:outputLabel>
+					
+							
+							<p:calendar showOn="button" navigator="true" locale="en"
+							pattern="dd-MM-yyyy" mask="true" converterMessage="Fecha incorrecta"
+								value="#{ipuView.fechaInforme}">
+								<p:ajax event="dateSelect"
+									listener="#{ipuView.listener_fechaInforme}"  update=":formDialog"/>
+							</p:calendar>
+							
+							<p:outputLabel value="Semana: " style="color: blue; font-weight: bold; font-size: medium "></p:outputLabel>
+					<p:outputLabel value="#{ipuView.semanaInforme}" style="color: blue; font-weight: bold; font-size: medium "></p:outputLabel>
+					
+							
+							
+					</h:panelGrid>
+					<p:spacer width="15"></p:spacer>
+					<p:panel id="panelGrafica"  rendered="#{ipuView.mostrar}">	
+				<p:chart type="line" model="#{ipuView.lineModel1}" style="height:250px; width: 300px"/>
+				</p:panel>
+					</h:panelGrid>
+					
+					
+					
+					</div>	
+					
+					<p:spacer width="10"></p:spacer>		
+					<div align="center">
+					<p:commandButton action="#{ipuView.generarIpuLogico}" value="Generar IPU" update=":formDialog" />
+					<p:commandButton action="#{ipuView.action_ingresarIpu}" oncomplete="PF('guardarIpuDialog').show()" value="Registrar IPU" update=":formDialog" />
+					
+					</div>
+												
+				</p:panel>
+				
+				<p:panel id="panelListaIpu" header="Control de tiempo" rendered="#{ipuView.mostrar}">
+				
+				<p:dataTable id="tblIpu" var="periodo" value="#{ipuView.lstIpu}" rendered="#{ipuView.mostrar}"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                 paginator="true" rows="10" style="margin-bottom:20px">
+				
+				<f:facet name="{Exporters}">
+				<h:commandLink>
+                <p:graphicImage value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/iconoPdf.png"/>
+                <p:dataExporter type="pdf" target="tblIpu" fileName="IPU tiempo" />
+           		 </h:commandLink>
+           		
+				</f:facet>
+ 
+				    <p:column headerText="Semana" style="text-align:center">
+				    
+				        <h:outputText value="#{periodo.periodo}" style="text-align:center"/>
+				       
+				    </p:column>
+				 
+				    <p:column headerText="% Avance Pptado" style="text-align:center">
+				   
+				        <h:outputText value="#{periodo.avancePresupuestado}" style="text-align:center">
+				        <f:convertNumber maxFractionDigits="2" minFractionDigits="2" type="percent"  ></f:convertNumber>
+				        </h:outputText>
+				       
+				    </p:column>
+				 
+				    <p:column headerText="% Avance Real" style="text-align:center">
+				    
+				        <h:outputText value="#{periodo.avanceReal}" style="text-align:center" >
+				        <f:convertNumber maxFractionDigits="2" minFractionDigits="2" type="percent"></f:convertNumber>
+				        </h:outputText>
+				
+				    </p:column>
+				 
+				    <p:column headerText="Variacion" style="text-align:center"> 
+				   
+				        <h:outputText value="#{periodo.variacion}" style="text-align:center">
+				        <f:convertNumber maxFractionDigits="2" minFractionDigits="2" type="percent"></f:convertNumber>
+				        </h:outputText>
+				       
+				    </p:column>
+				    <p:column headerText="Ver" exportable="false">
+				    <div align="center">
+				       <p:commandButton icon="ui-icon-search"
+								action="#{ipuView.seleccionarPeriodo}"
+								update=":formDialog" oncomplete="PF('guardarIpuDialog').show()">
+								<f:setPropertyActionListener value="#{periodo}"
+									target="#{ipuView.ipuSeleccionado}" />
+							</p:commandButton>
+							</div>
+				    </p:column>
+				</p:dataTable>
+	   					</p:panel>
+	   					
+	   				<p:dialog id="dialog" header="GUARDAR IPU"
+						widgetVar="guardarIpuDialog" modal="true"
+						showEffect="fade" hideEffect="fade" resizable="false" height="60%">
+
+					<p:panel  header="LOGROS SIGNIFICATIVOS DEL PERIODO" style="text-align:center">
+					
+					<p:inputTextarea rows="4" cols="100" value="#{ipuView.logrosSignificativos}" readonly="#{ipuView.soloLectura}"></p:inputTextarea>
+					
+					</p:panel>
+					
+					<p:spacer height="20"></p:spacer>
+					
+					<p:panel  header="LOGROS NO ALCANZADOS" style="text-align:center">
+					
+					<p:inputTextarea rows="4" cols="100" value="#{ipuView.logrosNoAlcanzados}" readonly="#{ipuView.soloLectura}">
+					</p:inputTextarea>
+					
+					<div align="center">
+					<h:panelGrid columns="2">
+					
+					<p:outputLabel value="Causas de desviación"></p:outputLabel>
+					
+					<p:outputLabel value="Acciones Propuestas"></p:outputLabel>
+					
+					
+					<p:inputTextarea rows="4" cols="30" value="#{ipuView.causasDesviacion}" readonly="#{ipuView.soloLectura}"/>
+										
+					<p:inputTextarea rows="4" cols="30" value="#{ipuView.accionesPropuestas}" readonly="#{ipuView.soloLectura}"/>
+									
+					
+					</h:panelGrid>
+					</div>
+					</p:panel>
+					
+					<div align="center">
+					<p:commandButton action="#{ipuView.generarIpu}" value="Registrar IPU" update=":formDialog" oncomplete="PF('guardarIpuDialog').hide()" disabled="#{ipuView.soloLectura}"/>
+						</div>
+					</p:dialog>
+	   					
+	   					
+			</h:form>
+			
+			
+		</f:view>
+		</ui:define>
+
+</ui:composition>

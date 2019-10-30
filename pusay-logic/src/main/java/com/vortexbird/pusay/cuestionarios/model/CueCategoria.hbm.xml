@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-jun-2013 19:14:26 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.cuestionarios.model.CueCategoria" table="CUE_CATEGORIA">
+        <id name="consecutivo" type="java.lang.Long">
+            <column name="CONSECUTIVO" precision="10" scale="0" />
+            <generator class="native">
+		    	<param name="sequence">SEQ_CUE_CATEGORIA</param>
+		   </generator>
+        </id>
+        <many-to-one name="cueCuestionario" class="com.vortexbird.pusay.cuestionarios.model.CueCuestionario" fetch="select" lazy="false">
+            <column name="CUESTIONARIO" precision="10" scale="0" />
+        </many-to-one>
+        <property name="nombre" type="java.lang.String">
+            <column name="NOMBRE" length="256" not-null="true" />
+        </property>
+        <property name="descripcion" type="java.lang.String">
+            <column name="DESCRIPCION" length="512" />
+        </property>
+        <property name="estado" type="java.lang.Long">
+            <column name="ESTADO" precision="10" scale="0" not-null="true" />
+        </property>
+        <set name="cuePreguntas" inverse="true" lazy="true" table="CUE_PREGUNTA" fetch="select">
+            <key>
+                <column name="CATEGORIA" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.cuestionarios.model.CuePregunta" />
+        </set>
+    </class>
+</hibernate-mapping>

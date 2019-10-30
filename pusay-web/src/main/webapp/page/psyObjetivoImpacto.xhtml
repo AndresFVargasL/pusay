@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	</h:head>		
+	
+	<h:body>
+		<ui:composition template="/WEB-INF/facelets/template.xhtml">	
+		<ui:define name="body">	
+		<f:view>
+			<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>               
+			<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"  draggable="false" closable="false">  
+   				<p:graphicImage value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />   
+			</p:dialog>
+			
+			<!-- Expired session -->
+					<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();" timeout="#{session.maxInactiveInterval * 1000}" />
+					<p:dialog modal="true" widgetVar="sessionTimeOutDialog" header="Sesión Expirada"  draggable="false" closable="false">  
+	   					<h:outputText value="La sesión ha finalizado" />
+	                 	<input id="confirmBackToLogin" 
+	                 		type="button" 
+	                 		value="Iniciar Sesión"
+	                    	onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />   
+					</p:dialog>
+			
+			
+			<h:form id="formDialog">
+				<p:messages id="msg" />
+				<p:growl id="men"/>
+					<p:panel id="panelPsyObjetivoImpacto" header="PsyObjetivoImpacto">							
+						<h:panelGrid columns="2" id="panelGrid" >
+												 	<h:outputText id="msgObimCodigo" value="ObimCodigo"/>
+						 	<p:inputText id="txtObimCodigo" binding="#{psyObjetivoImpactoView.txtObimCodigo}">
+						 		<p:ajax update="panelPsyObjetivoImpacto,msg,panelBotones" listener="#{psyObjetivoImpactoView.listener_txtId}"/>
+						 	</p:inputText>	
+																		
+													<h:outputText id="msgEstadoRegistro" value=" EstadoRegistro"/>
+							<p:inputText id="txtEstadoRegistro" disabled="true" binding="#{psyObjetivoImpactoView.txtEstadoRegistro}"/>
+													<h:outputText id="msgImamCodigo_PsyImpactoAmbiental" value=" ImamCodigo_PsyImpactoAmbiental"/>
+							<p:inputText id="txtImamCodigo_PsyImpactoAmbiental" disabled="true" binding="#{psyObjetivoImpactoView.txtImamCodigo_PsyImpactoAmbiental}"/>
+													<h:outputText id="msgObesCodigo_PsyObjetivoEstrategico" value=" ObesCodigo_PsyObjetivoEstrategico"/>
+							<p:inputText id="txtObesCodigo_PsyObjetivoEstrategico" disabled="true" binding="#{psyObjetivoImpactoView.txtObesCodigo_PsyObjetivoEstrategico}"/>
+												
+										   </h:panelGrid>
+				</p:panel>
+	   			<p:panel id="panelBotones">
+					<div align="center">					
+						<p:commandButton id="btnSave" binding="#{psyObjetivoImpactoView.btnSave}" disabled="true" value="Save" action="#{psyObjetivoImpactoView.action_save()}" update="panelPsyObjetivoImpacto,msg,panelBotones" />
+						<p:commandButton id="btnDelete" binding="#{psyObjetivoImpactoView.btnDelete}" disabled="true" value="Delete" action="#{psyObjetivoImpactoView.action_delete_master()}" onclick="if(!confirm('Do you really want to delete this Entry?')){return false;}" update="panelPsyObjetivoImpacto,msg,panelBotones" />
+						<p:commandButton id="btnClear" value="Clear" action="#{psyObjetivoImpactoView.action_clear()}" update="panelPsyObjetivoImpacto,msg,panelBotones" />
+					</div>
+				</p:panel>			
+			</h:form>
+		</f:view>
+			</ui:define>		
+		</ui:composition>	
+	</h:body>	
+</html>	

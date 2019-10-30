@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5D3A6B33-CBDB-46E2-151F-0D03EC8F460E" name="PSY_TIPO_ITEM_PRESUPUESTO">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 18:20:09 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>TIIP</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TIIP_CODIGO" id="9AE80BBE-6AEF-8CC3-28DB-AEDB98BD24F1">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 18:21:10 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOMBRE" id="6081C181-61A3-B3CB-2E07-510CEA7C32AC">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:19:42 UTC</createdTime>
+<comment>NOMBRE DEL TIPO DE PRESUPUESTO</comment>
+<commentInRDBMS>NOMBRE DEL TIPO DE PRESUPUESTO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESCRIPCION" id="E9EE55E8-C114-3ACD-8952-7361084D7B9F">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:19:42 UTC</createdTime>
+<commentInRDBMS>DESCRIPCION DEL TIPO DE PRESUPUESTO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000</dataTypeSize>
+<ownDataTypeParameters>2000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="5B9DEB0D-32B0-8E94-E5D0-77D0F47396E9">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:19:42 UTC</createdTime>
+<commentInRDBMS>A-ACTICO, I-INACTICO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E0A84301-B901-64FC-37A6-7C33672C902B" name="PSY_TIPO_ITEM_PRESUPUESTO_PK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 18:21:10 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9AE80BBE-6AEF-8CC3-28DB-AEDB98BD24F1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

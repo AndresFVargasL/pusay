@@ -1,0 +1,146 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/WEB-INF/facelets/templateMenu.xhtml">
+		<ui:define name="header">
+			<ui:include src="/WEB-INF/facelets/header.jspx" />
+		</ui:define>
+		<br />
+		<br />
+
+		<ui:define name="body">
+			<f:view>
+
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog"
+					header="Cargando informacion" draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form>
+					<br />
+					<p:panel id="msgProjectSegOpcionTitle" header="Opciones">
+						<p:messages id="msg" showDetail="false" />
+
+						<div align="center">
+							<h:panelGrid columns="2" id="panel">
+
+								<h:outputText id="msgOpcNombre" value=" Nombre" />
+								<p:inputText id="txtOpcNombre" disabled="false"
+									binding="#{segOpcionView.txtOpcNombre}" />
+
+								<h:outputText id="msgOpcEstadoRegistro" value=" Estado Registro" />
+								<p:selectOneMenu binding="#{segOpcionView.somEstadosRegistro}"
+									styleClass="inputstyle">
+									<f:selectItem itemValue="-1" itemLabel="Seleccione el Estado" />
+									<f:selectItem itemValue="1" itemLabel="Activo" />
+									<f:selectItem itemValue="0" itemLabel="Inactivo" />
+								</p:selectOneMenu>
+
+								<h:outputText id="msgOpcLlaveAcceso" value=" Llave de Acceso" />
+								<p:inputText id="txtOpcLlaveAcceso" disabled="false"
+									binding="#{segOpcionView.txtOpcLlaveAcceso}" />
+
+								<h:outputText id="msgOpcDescripcion" value=" Descripción" />
+								<p:inputText id="txtOpcDescripcion" disabled="false"
+									binding="#{segOpcionView.txtOpcDescripcion}" />
+
+								<h:outputText id="msgGruCodigo_SegGrupoOpcion"
+									value=" Grupo Opción" />
+								<p:selectOneMenu binding="#{segOpcionView.somGrupoOpcionPadre}" 
+									styleClass="inputstyle">
+									<f:selectItem itemValue="-1"
+									itemLabel="Seleccione un Grupo Opcion" />
+									<f:selectItems value="#{segOpcionView.losGrupoOpcionPadre}" />
+								</p:selectOneMenu>
+
+								<p:inputText id="txtOpcCodigo" type="hidden" readonly="true"
+									binding="#{segOpcionView.txtOpcCodigo}" />
+
+							</h:panelGrid>
+						</div>
+						<div align="center">
+							<h:panelGrid id="panelBotones" columns="3">
+
+								<p:commandButton id="btnSave" disabled="false" value="Guardar"
+									action="#{segOpcionView.action_save}"
+									update="msg,panel,panelBotones,panelOpciones"
+									binding="#{segOpcionView.btnSave}" />
+								<p:commandButton id="btnModify" disabled="true"
+									value="Modificar" action="#{segOpcionView.action_modify}"
+									update="msg,panel,panelBotones,panelOpciones"
+									binding="#{segOpcionView.btnModify}" />
+								<p:commandButton id="btnClear" disabled="false" value="Limpiar"
+									action="#{segOpcionView.action_clear}"
+									update="msg,panel,panelBotones"
+									binding="#{segOpcionView.btnClear}" />
+
+							</h:panelGrid>
+						</div>
+
+						<br />
+
+						<div align="center">
+							<h:panelGrid id="panelOpciones">
+								<p:dataTable value="#{segOpcionView.data}" var="segOpcion" paginator="true" rows="10">
+
+									<p:column headerText="Editar">
+										<h:commandLink action="#{segOpcionView.action_selected}" style="color:blue;">
+											<h:outputText value="Editar" />
+											<f:param name="opcCodigo" value="#{segOpcion.opcCodigo}" />
+										</h:commandLink>
+									</p:column>
+
+
+									<p:column filterBy="#{segOpcion.opcNombre}"
+										sortBy="#{segOpcion.opcNombre}" headerText="Nombre">
+										<h:outputText value="#{segOpcion.opcNombre}" />
+									</p:column>
+
+									<p:column filterBy="#{segOpcion.opcEstadoRegistro}"
+										sortBy="#{segOpcion.opcEstadoRegistro}" headerText="Estado Registro">
+										<h:outputText value="#{segOpcion.opcEstadoRegistro}" />
+									</p:column>
+
+
+									<p:column filterBy="#{segOpcion.opcLlaveAcceso}"
+										sortBy="#{segOpcion.opcLlaveAcceso}" headerText="LLave de Acceso">
+										<h:outputText value="#{segOpcion.opcLlaveAcceso}" />
+									</p:column>
+
+									<p:column filterBy="#{segOpcion.opcDescripcion}"
+										sortBy="#{segOpcion.opcDescripcion}" headerText="Descripción">
+										<h:outputText value="#{segOpcion.opcDescripcion}" />
+									</p:column>
+
+
+									<p:column filterBy="#{segOpcion.gruNombre_SegGrupoOpcion}"
+										sortBy="#{segOpcion.gruCodigo_SegGrupoOpcion}" headerText="Grupo Opción">
+										<h:outputText value="#{segOpcion.gruNombre_SegGrupoOpcion}" />
+									</p:column>
+								</p:dataTable>
+							</h:panelGrid>
+						</div>
+					</p:panel>
+
+				</h:form>
+			</f:view>
+		</ui:define>
+
+		<ui:define name="footer">
+			<ui:include src="/WEB-INF/facelets/footer.jspx" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

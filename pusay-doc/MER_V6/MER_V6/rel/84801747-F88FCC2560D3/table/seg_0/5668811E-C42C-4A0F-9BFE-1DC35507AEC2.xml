@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5668811E-C42C-4A0F-9BFE-1DC35507AEC2" name="PSY_SEGUIMIENTO_TAREA">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:03:59 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>SETA</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="SETA_CODIGO" id="84F130C7-7A28-C007-3F26-293430204A83">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:04:31 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TARE_CODIGO" id="7FB5C06E-2E11-4F4B-F22B-5A242577BF46">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:04:35 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4340FB79-4216-BCF6-4F12-0A83CC0C770E" referredColumn="950750BB-D302-2959-3226-5FE28F56C677"/>
+</associations>
+</Column>
+<Column name="DESCRIPCION" id="E088B23D-89A5-E9EB-F0BC-1C1C23450DC3">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-03-14 16:03:21 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000</dataTypeSize>
+<ownDataTypeParameters>2000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FECHA" id="14CCD4CA-278B-8036-B2FE-6E3C307BA591">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:28:35 UTC</createdTime>
+<comment>FECHA EN LA QUE REGISTRO EL SEGUMIENTO</comment>
+<commentInRDBMS>FECHA EN LA QUE REGISTRO EL SEGUMIENTO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="317556ED-577B-9F7A-C6D8-AE6CC2B1EA2A">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:28:35 UTC</createdTime>
+<comment>A-ACTIVO, I-INACTIVO</comment>
+<commentInRDBMS>A-ACTIVO, I-INACTIVO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="11637DAB-EC5F-1140-06A8-EA8589252A3A" name="PSY_SEGUIMIENTO_TAREA_PK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:04:31 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="84F130C7-7A28-C007-3F26-293430204A83"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DDC4D0F1-4D4F-F936-B3A7-07A357F7E5BF" name="SETA_TARE_FK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:04:35 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7FB5C06E-2E11-4F4B-F22B-5A242577BF46"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

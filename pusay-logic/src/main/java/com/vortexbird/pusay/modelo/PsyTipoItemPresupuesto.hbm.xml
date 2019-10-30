@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 20, 2015 10:23:26 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyTipoItemPresupuesto" table="psy_tipo_item_presupuesto" schema="public">
+        <id name="tiipCodigo" type="java.lang.Long">
+            <column name="tiip_codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="java.lang.String">
+            <column name="nombre" length="100" not-null="true">
+                <comment>NOMBRE DEL TIPO DE PRESUPUESTO</comment>
+            </column>
+        </property>
+        <property name="descripcion" type="java.lang.String">
+            <column name="descripcion" length="2000">
+                <comment>DESCRIPCION DEL TIPO DE PRESUPUESTO</comment>
+            </column>
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true">
+                <comment>A-ACTICO, I-INACTICO</comment>
+            </column>
+        </property>
+        <set name="psyItemPresupuestos" table="psy_item_presupuesto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tiip_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyItemPresupuesto" />
+        </set>
+    </class>
+</hibernate-mapping>

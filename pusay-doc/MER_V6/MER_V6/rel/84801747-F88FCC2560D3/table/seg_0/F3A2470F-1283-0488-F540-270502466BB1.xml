@@ -1,0 +1,138 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F3A2470F-1283-0488-F540-270502466BB1" name="PSY_PLAN_ESTRATEGICO">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 15:17:05 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>PEST</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PEST_CODIGO" id="19997DFD-83AF-9363-CD39-14023390B25C">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 15:19:33 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EMPR_CODIGO" id="5AFED9E6-5432-D031-C212-F94E32CB2903">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 15:19:53 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E24D3D33-4D3F-3CEA-25A9-E7DEDE90F565" referredColumn="0D0A7C25-2199-55BE-9FFB-1E673D5FC29A"/>
+</associations>
+</Column>
+<Column name="NOMBRE" id="12605CFC-4F5D-92F0-B349-B4201BF77768">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 18:40:22 UTC</createdTime>
+<comment>NOMBRE DEL PLAN ESTRATEGICO</comment>
+<commentInRDBMS>NOMBRE DEL PLAN ESTRATEGICO</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FECHA_INICIO" id="FB475B12-2B1A-71CE-A968-95C631B7F84C">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 18:40:22 UTC</createdTime>
+<comment>FECHA DE APERTURA DEL PLAN ESTRATEGICO</comment>
+<commentInRDBMS>FECHA DE APERTURA DEL PLAN ESTRATEGICO</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FECHA_FIN" id="307B4B49-227E-D042-996F-2C0570F5BBDD">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 18:40:22 UTC</createdTime>
+<comment>FECHA DE CIERRE DEL PLAN</comment>
+<commentInRDBMS>FECHA DE CIERRE DEL PLAN</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESCRIPCION" id="01FC8E61-D7A8-02F2-AD04-792F77863A27">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 18:40:22 UTC</createdTime>
+<comment>DESCRIPCION DEL PLAN ESTRATEGICO AMBIENTAL</comment>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000</dataTypeSize>
+<ownDataTypeParameters>2000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_PLAN" id="8F0C3A61-C517-82DB-EED4-CCE53EBFE719">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 19:02:32 UTC</createdTime>
+<comment>ESTADO POR EL CUAL PUEDE PASAR EL PLAN</comment>
+<commentInRDBMS>ESTADO POR EL CUAL PUEDE PASAR EL PLAN</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="8DF3B474-4ACC-B10A-80AA-C0AE679BBEA4">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 19:02:32 UTC</createdTime>
+<comment>A- ACTIVO, I- INACTIVO</comment>
+<commentInRDBMS>A- ACTIVO, I- INACTIVO</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0D1D893C-03AD-3ACB-11DE-4DFF9EE8F9D4" name="PSY_PLAN_ESTRATEGICO_PK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 15:19:49 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="19997DFD-83AF-9363-CD39-14023390B25C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CAA73366-B00E-7CE4-4D98-DA0A0BD5451B" name="PEST_EMPR_FK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 15:19:53 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5AFED9E6-5432-D031-C212-F94E32CB2903"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

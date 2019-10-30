@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05-ago-2015 11:08:40 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyImpactoAmbiental" table="psy_impacto_ambiental" schema="public">
+        <id name="imamCodigo" type="java.lang.Long">
+            <column name="imam_codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="java.lang.String">
+            <column name="nombre" not-null="true" />
+        </property>
+        <property name="descripcion" type="java.lang.String">
+            <column name="descripcion" length="2000" not-null="true" />
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true">
+                <comment>A-ACTIVO, I- INACTIVO</comment>
+            </column>
+        </property>
+        <set name="psyObjetivoImpactos" table="psy_objetivo_impacto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="imam_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyObjetivoImpacto" />
+        </set>
+        <set name="psyImpactoObjetivos" table="psy_impacto_objetivo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="imam_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyImpactoObjetivo" />
+        </set>
+        <set name="psyMatrizCorrelacions" table="psy_matriz_correlacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="imam_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyMatrizCorrelacion" />
+        </set>
+        <set name="psyTemas" table="psy_tema" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="imam_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyTema" />
+        </set>
+        <set name="psyDetalleEridas" table="psy_detalle_erida" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="imam_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyDetalleErida" />
+        </set>
+    </class>
+</hibernate-mapping>

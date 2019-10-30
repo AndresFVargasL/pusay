@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-jun-2013 19:14:26 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.cuestionarios.model.CueContacto" table="CUE_CONTACTO">
+        <id name="identificacion" type="java.lang.Long">
+            <column name="IDENTIFICACION" precision="17" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="java.lang.String">
+            <column name="NOMBRE" length="256" not-null="true" />
+        </property>
+        <property name="apellido" type="java.lang.String">
+            <column name="APELLIDO" length="256" not-null="true" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL" length="256" />
+        </property>
+        <property name="celular" type="java.lang.String">
+            <column name="CELULAR" length="256" />
+        </property>
+        <property name="empresa" type="java.lang.String">
+            <column name="EMPRESA" length="256" />
+        </property>
+        <property name="estado" type="java.lang.Long">
+            <column name="ESTADO" precision="10" scale="0" not-null="true" />
+        </property>
+        <set name="cueListaContactos" inverse="true" lazy="true" table="CUE_LISTA_CONTACTO" fetch="select">
+            <key>
+                <column name="CONTACTO" precision="17" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.cuestionarios.model.CueListaContacto" />
+        </set>
+    </class>
+</hibernate-mapping>

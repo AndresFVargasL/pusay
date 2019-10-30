@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-jul-2015 10:11:09 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyPrograma" table="psy_programa" schema="public">
+        <id name="progCodigo" type="java.lang.Long">
+            <column name="prog_codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="java.lang.String">
+            <column name="nombre" length="250" not-null="true" />
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" />
+        </property>
+        <set name="psyPlanAccions" table="psy_plan_accion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="prog_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyPlanAccion" />
+        </set>
+        <set name="psyPlanEstrategias" table="psy_plan_estrategia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="prog_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyPlanEstrategia" />
+        </set>
+    </class>
+</hibernate-mapping>

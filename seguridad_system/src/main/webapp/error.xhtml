@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/WEB-INF/facelets/mainTemplateLogin.xhtml">
+		<ui:define name="header">
+			<ui:include src="/WEB-INF/facelets/header.jspx" />
+		</ui:define>
+		<br />
+		<br />
+
+		<ui:define name="body">
+			<f:view>
+
+				<h:form>
+					<div align="center">
+						<p:panel id="panelLogin" header="Comunicado"
+							style="width: 750px;height: 130px;">
+							<p:messages id="msg" />
+							<h1>Temporalmente fuera de funcionamiento, por favor ingrese
+								de nuevo a la pagina de inicio para hacer su autenticacion.
+								Gracias</h1>
+						</p:panel>
+					</div>
+				</h:form>
+			</f:view>
+		</ui:define>
+		
+		<ui:define name="footer">
+			<ui:include src="/WEB-INF/facelets/footer.jspx" />
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</html>
+

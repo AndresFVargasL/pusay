@@ -1,0 +1,143 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/WEB-INF/facelets/templateMenu.xhtml">
+		<ui:define name="header">
+			<ui:include src="/WEB-INF/facelets/header.jspx" />
+		</ui:define>
+		<br />
+		<br />
+
+		<ui:define name="body">
+			<f:view>
+
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog"
+					header="Cargando informacion" draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form>
+					<br />
+					<p:panel id="msgProjectSegSucursalTitle" header="Sucursal">
+
+						<p:messages id="msg" showDetail="false" />
+
+						<div align="center">
+							<h:panelGrid columns="2" id="panel">
+
+								<h:outputText id="msgSucCodigoInterno" value=" Codigo Interno" />
+								<p:inputText id="txtSucCodigoInterno" disabled="false"
+									binding="#{segSucursalView.txtSucCodigoInterno}" />
+
+								<h:outputText id="msgSucEstadoRegistro" value=" Estado Registro" />
+								<p:selectOneMenu
+									binding="#{segSucursalView.txtSucEstadoRegistro}"
+									styleClass="inputstyle">
+									<f:selectItem itemValue="-1" itemLabel="Seleccione el Estado" />
+									<f:selectItem itemValue="1" itemLabel="Activo" />
+									<f:selectItem itemValue="0" itemLabel="Inactivo" />
+								</p:selectOneMenu>
+
+								<h:outputText id="msgSucNombre" value=" Nombre" />
+								<p:inputText id="txtSucNombre" disabled="false"
+									binding="#{segSucursalView.txtSucNombre}" />
+
+								<h:outputText id="msgCiaCodigo_SegCompania" value=" Compañia" />
+								<p:selectOneMenu id="somCompanias"
+									binding="#{segSucursalView.somCompanias}">
+									<f:selectItem itemValue="-1"
+										itemLabel="Seleccione una Compañia" />
+									<f:selectItems value="#{segSucursalView.lasCompanias}" />
+								</p:selectOneMenu>
+
+								<p:inputText id="txtSucCodigo" type="hidden" readonly="true"
+									binding="#{segSucursalView.txtSucCodigo}" />
+							</h:panelGrid>
+						</div>
+
+						<div align="center">
+							<h:panelGrid id="panelBotones" columns="3">
+
+								<p:commandButton id="btnSave" disabled="false" value="Guardar"
+									action="#{segSucursalView.action_save}"
+									update="msg,panel,panelBotones,panelSucursales"
+									binding="#{segSucursalView.btnSave}" />
+
+								<p:commandButton id="btnModify" disabled="true"
+									value="Modificar" action="#{segSucursalView.action_modify}"
+									update="msg,panel,panelBotones,panelSucursales"
+									binding="#{segSucursalView.btnModify}" />
+
+								<p:commandButton id="btnClear" disabled="false" value="Limpiar"
+									action="#{segSucursalView.action_clear}"
+									update="msg,panel,panelBotones"
+									binding="#{segSucursalView.btnClear}" />
+
+							</h:panelGrid>
+						</div>
+
+						<br />
+
+						<div align="center">
+							<h:panelGrid id="panelSucursales">
+								<p:dataTable id="dataTableSucursales"
+									value="#{segSucursalView.data}" var="segSucursal"
+									paginator="true" rows="10">
+
+									<p:column headerText="Editar">
+										<h:commandLink action="#{segSucursalView.action_selected}"
+											style="color:blue;">
+											<h:outputText value="Editar" />
+											<f:param name="sucCodigo" value="#{segSucursal.sucCodigo}" />
+										</h:commandLink>
+									</p:column>
+
+									<p:column filterBy="#{segSucursal.sucCodigoInterno}"
+										sortBy="#{segSucursal.sucCodigoInterno}"
+										headerText="Codigo Interno">
+										<h:outputText value="#{segSucursal.sucCodigoInterno}" />
+									</p:column>
+
+									<p:column filterBy="#{segSucursal.sucEstadoRegistroNombre}"
+										sortBy="#{segSucursal.sucEstadoRegistro}"
+										headerText="Estado Registro">
+										<h:outputText value="#{segSucursal.sucEstadoRegistroNombre}" />
+									</p:column>
+
+									<p:column filterBy="#{segSucursal.sucNombre}"
+										sortBy="#{segSucursal.sucNombre}" headerText="Nombre">
+										<h:outputText value="#{segSucursal.sucNombre}" />
+									</p:column>
+
+									<p:column filterBy="#{segSucursal.ciaNombre_SegCompania}"
+										sortBy="#{segSucursal.ciaCodigo_SegCompania}"
+										headerText="Compañia">
+										<h:outputText value="#{segSucursal.ciaNombre_SegCompania}" />
+									</p:column>
+								</p:dataTable>
+							</h:panelGrid>
+						</div>
+					</p:panel>
+
+				</h:form>
+			</f:view>
+		</ui:define>
+
+		<ui:define name="footer">
+			<ui:include src="/WEB-INF/facelets/footer.jspx" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

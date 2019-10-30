@@ -1,0 +1,118 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7D5CE3B2-DD17-00C8-6504-F65F7190A20A" name="PSY_MAPA_ESTRATEGICO">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:08:31 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MAES_CODIGO" id="2522B3AC-9AB0-49A3-5F56-B0E6EE1E970F">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:11:03 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PEST_CODIGO" id="89E3C5EF-9B30-E353-CCF9-26929B45C42B">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:11:14 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A6D3EEFF-2CE2-8DB7-1FDC-FF5143FB851D" referredColumn="19997DFD-83AF-9363-CD39-14023390B25C"/>
+</associations>
+</Column>
+<Column name="FECHA_INICIO" id="8D56B04C-4282-2D38-9C35-59ACC2F15359">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:18:24 UTC</createdTime>
+<comment>FECHA DE INICIO DEL MAPA ESTRATEGICO</comment>
+<commentInRDBMS>FECHA DE INICIO DEL MAPA ESTRATEGICO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FECHA_FIN" id="586FB266-5A35-B9F0-1154-979898B4D0CC">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:18:24 UTC</createdTime>
+<comment>FECHA EN QUE SE GENERA EL MAPA ESTRATEGICO DEFINITIVO</comment>
+<commentInRDBMS>FECHA EN QUE SE GENERA EL MAPA ESTRATEGICO DEFINITIVO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_MAPA_ESTRATEGICO" id="283AC65F-5057-500B-63CD-BA20032C89C8">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:18:24 UTC</createdTime>
+<comment>ESTADOS POR LOS CUALES PUEDE PASAR EL MAPA ESTRATEGICO</comment>
+<commentInRDBMS>ESTADOS POR LOS CUALES PUEDE PASAR EL MAPA ESTRATEGICO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="06CD12D1-82D2-27A3-6A29-2DDBC73A7FF1">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:18:24 UTC</createdTime>
+<comment>A-ACTIVO, I-INACTIVO</comment>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="02F09C7D-771E-B391-D11E-3F31DA36FCAA" name="PSY_MAPA_ESTRATEGICO_PK">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:11:03 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2522B3AC-9AB0-49A3-5F56-B0E6EE1E970F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2DBDE3AB-2640-FE42-94E0-F933C4D62AD5" name="PEST_MAES_FK">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:11:14 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="89E3C5EF-9B30-E353-CCF9-26929B45C42B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

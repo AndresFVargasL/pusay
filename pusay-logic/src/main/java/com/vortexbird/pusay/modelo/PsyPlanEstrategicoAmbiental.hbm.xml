@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-may-2015 13:11:57 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyPlanEstrategicoAmbiental" table="psy_plan_estrategico_ambiental" schema="public">
+        <id name="codigo" type="java.lang.Long">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="psyPlanEstrategico" class="com.vortexbird.pusay.modelo.PsyPlanEstrategico" fetch="select">
+            <column name="pest_codigo" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="java.lang.String">
+            <column name="nombre" not-null="true" />
+        </property>
+        <property name="fechaInico" type="java.util.Date">
+            <column name="fecha_inico" length="13" not-null="true" />
+        </property>
+        <property name="fechaFin" type="java.util.Date">
+            <column name="fecha_fin" length="13" />
+        </property>
+        <property name="estadoPlan" type="java.lang.String">
+            <column name="estado_plan" length="1" not-null="true" />
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true" />
+        </property>
+        <set name="psyEvaluacionPeaObjetivos" table="psy_evaluacion_pea_objetivo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pea_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyEvaluacionPeaObjetivo" />
+        </set>
+    </class>
+</hibernate-mapping>

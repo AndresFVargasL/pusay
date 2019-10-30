@@ -1,0 +1,519 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-mar-2015 0:14:02 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+   <sql-query name="llenar_tabla_erida">
+   <return-scalar column="deerCodigo" type="java.lang.Long" />
+  <return-scalar column="imamCodigo" type="java.lang.Long" />
+  <return-scalar column="impactoAmbiental" type="java.lang.String" />
+  <return-scalar column="peso" type="java.lang.Double" />
+  <return-scalar column="calificacion" type="java.lang.Long" />
+  <return-scalar column="valoracion" type="java.lang.Double" />
+
+
+  
+  <![CDATA[ 
+  select 0 deerCodigo,ia.imam_codigo imamCodigo,ia.nombre impactoAmbiental,0 peso,0 calificacion,0 valoracion  from psy_impacto_ambiental ia
+
+  ]]>
+ </sql-query>
+ 
+ 
+ <sql-query name="consulta_tabla_erida">
+   <return-scalar column="deerCodigo" type="java.lang.Long" />
+  <return-scalar column="imamCodigo" type="java.lang.Long" />
+  <return-scalar column="impactoAmbiental" type="java.lang.String" />
+  <return-scalar column="peso" type="java.lang.Double" />
+  <return-scalar column="calificacion" type="java.lang.Long" />
+  <return-scalar column="valoracion" type="java.lang.Double" />
+
+
+  
+  <![CDATA[ 
+  select de.deer_codigo deerCodigo,ia.imam_codigo imamCodigo,ia.nombre impactoAmbiental,de.peso,de.calificacion,de.valoracion  from psy_detalle_erida de ,psy_impacto_ambiental ia where ia.imam_codigo=de.imam_codigo and maer_codigo=:mearCodigo and asam_codigo=:asamCodigo ORDER BY de.imam_codigo
+
+  ]]>
+ </sql-query>
+ 
+ 
+ 
+ 
+ 
+ <sql-query name="consulta_priorizacion_asunto_ambienta">
+  
+  <return-scalar column="asamCodigo" type="java.lang.Long" />
+  <return-scalar column="nombre" type="java.lang.String" />
+  
+  <return-scalar column="valoracion" type="java.lang.Double" />
+
+
+  
+  <![CDATA[ 
+  select res.asam_codigo asamCodigo ,aa.nombre,res.valoracion from(
+  select asam_codigo ,sum(valoracion) valoracion from psy_detalle_erida where maer_codigo=:mearCodigo GROUP BY asam_codigo )res,psy_asunto_ambiental aa
+  where res.asam_codigo=aa.asam_codigo ORDER BY valoracion DESC
+  ]]>
+ </sql-query>
+ 
+ 
+  <sql-query name="consulta_priorizaciono_impactos_ambientale">
+  
+  <return-scalar column="imamCodigo" type="java.lang.Long" />
+  <return-scalar column="nombre" type="java.lang.String" />  
+  <return-scalar column="valoracion" type="java.lang.Double" />
+
+  
+  <![CDATA[ 
+  select res.imam_codigo imamCodigo,ip.nombre,res.valoracion from(
+  select de.imam_codigo,sum(de.valoracion) valoracion from psy_detalle_erida de where de.maer_codigo=:mearCodigo   GROUP BY de.imam_codigo )res,psy_impacto_ambiental ip
+  where res.imam_codigo=ip.imam_codigo ORDER BY res.valoracion DESC
+  ]]>
+ </sql-query>
+ 
+ <sql-query name="consulta_asuntos_ambientales_faltantes">
+  
+  <return-scalar column="asamCodigo" type="java.lang.Long" />
+  <return-scalar column="nombre" type="java.lang.String" />  
+  <return-scalar column="descripcion" type="java.lang.String" />
+  <return-scalar column="estadoRegistro" type="java.lang.String" /> 
+
+  
+  <![CDATA[ 
+  select asam_codigo asamCodigo,nombre,descripcion,estado_registro estadoRegistro  from psy_asunto_ambiental where  asam_codigo not in(select de.asam_codigo from psy_detalle_erida de where maer_codigo=:mearCodigo group by de.asam_codigo)
+  ]]>
+ </sql-query>
+ 
+ 
+  <sql-query name="consulta_ipu">  
+		  <return-scalar column="ipuCodigo" type="java.lang.Long" />
+		  <return-scalar column="placCodigo_PsyPlanAccion" type="java.lang.Long" />  
+		  <return-scalar column="periodo" type="java.lang.String" />
+		  <return-scalar column="estadoIpu" type="java.lang.String" />
+		  <return-scalar column="avancePresupuestado" type="java.lang.Double" />
+    	  <return-scalar column="avanceReal" type="java.lang.Double" />    	
+    	  <return-scalar column="causasDesviacion" type="java.lang.String" />
+		  <return-scalar column="accionesPropuestas" type="java.lang.String" />
+		  <return-scalar column="logrosAlcanzados" type="java.lang.String" />
+		  <return-scalar column="logrosNoAlcanzados" type="java.lang.String" />
+		  <return-scalar column="variacion" type="java.lang.Double" /> 
+			  <![CDATA[ 
+			  
+			SELECT ipu.ipu_codigo ipuCodigo,
+						ipu.plac_codigo placCodigo_PsyPlanAccion,
+						ipu.periodo periodo,
+						ipu.estado_ipu estadoIpu,
+						ipu.avance_presupuestado avancePresupuestado,
+						ipu.avance_real avanceReal,
+						ipu.causas_desviacion causasDesviacion,
+						ipu.acciones_propuestas accionesPropuestas,
+						ipu.logros_alcanzados logrosAlcanzados,
+						ipu.logros_no_alcanzados logrosNoAlcanzados,
+						(ipu.avance_real-ipu.avance_presupuestado) variacion
+						from psy_ipu ipu
+						where ipu.plac_codigo = :pPlanCodigo
+						and ipu.estado_registro = :pEstadoRegistro
+						and ipu.tipo_ipu = :pTipoIpu
+						order by ipu.periodo asc
+
+			  ]]>
+ </sql-query>
+ 
+ <sql-query name="consulta_ipu_pesupuesto">  
+		  <return-scalar column="ipuCodigo" type="java.lang.Long" />
+		  <return-scalar column="placCodigo_PsyPlanAccion" type="java.lang.Long" />  
+		  <return-scalar column="periodo" type="java.lang.String" />
+		  <return-scalar column="estadoIpu" type="java.lang.String" />
+		  <return-scalar column="avancePresupuestado" type="java.lang.Double" />
+    	  <return-scalar column="avanceReal" type="java.lang.Double" />    	
+    	  <return-scalar column="causasDesviacion" type="java.lang.String" />
+		  <return-scalar column="accionesPropuestas" type="java.lang.String" />
+		  <return-scalar column="logrosAlcanzados" type="java.lang.String" />
+		  <return-scalar column="logrosNoAlcanzados" type="java.lang.String" />
+		  <return-scalar column="variacion" type="java.lang.Double" /> 
+			  <![CDATA[ 
+			  
+			SELECT ipu.ipu_codigo ipuCodigo,
+						ipu.plac_codigo placCodigo_PsyPlanAccion,
+						ipu.periodo periodo,
+						ipu.estado_ipu estadoIpu,
+						ipu.avance_presupuestado avancePresupuestado,
+						ipu.avance_real avanceReal,
+						ipu.causas_desviacion causasDesviacion,
+						ipu.acciones_propuestas accionesPropuestas,
+						ipu.logros_alcanzados logrosAlcanzados,
+						ipu.logros_no_alcanzados logrosNoAlcanzados,
+						(ipu.avance_presupuestado - ipu.avance_real) variacion
+						from psy_ipu ipu
+						where ipu.plac_codigo = :pPlanCodigo
+						and ipu.estado_registro = :pEstadoRegistro
+						and ipu.tipo_ipu = :pTipoIpu
+						order by ipu.periodo asc
+
+			  ]]>
+ </sql-query>
+ 
+ 
+<sql-query name="consulta_planes_accion">  
+		  <return alias="plac"
+			class="com.vortexbird.pusay.modelo.PsyPlanAccion"></return>
+			  <![CDATA[ 
+			  
+			select plac.* from psy_mapa_estrategico maes
+				inner join psy_detalle_mapa_estrategico dmae on dmae.maes_codigo = maes.maes_codigo
+				inner join psy_plan_estrategia ples on ples.dmae_codigo = dmae.dmae_codigo
+				inner join psy_programa prog on prog.prog_codigo = ples.prog_codigo
+				inner join psy_plan_accion plac on plac.prog_codigo = prog.prog_codigo
+				where maes.pest_codigo = :pPestCodigo
+				and maes.estado_registro = 'A'
+				and plac.estado_registro = 'A'
+				and (plac.estado_plan_accion = :pEstadoIniciado OR plac.estado_plan_accion = :pEstadoPresupuestado)
+
+			  ]]>
+ </sql-query>
+
+  <sql-query name="consulta_estrategias_detalle">  
+  		  <return-scalar column="dmaeCodigo" type="java.lang.Long" />
+		  <return-scalar column="macoCodigo" type="java.lang.Long" />
+		  <return-scalar column="maesCodigo" type="java.lang.Long" />
+		  <return-scalar column="tipo" type="java.lang.String" />  
+		  <return-scalar column="estadoRegistro" type="java.lang.String" />
+		  <return-scalar column="esamCodigo" type="java.lang.Long" />
+		  <return-scalar column="esamNombre" type="java.lang.String" />
+		  <return-scalar column="obesNombre" type="java.lang.String" />
+		  <return-scalar column="imamNombre" type="java.lang.String" />
+			
+			  <![CDATA[ 
+			  
+			  	SELECT me.dmae_codigo dmaeCodigo,
+				me.maco_codigo macoCodigo, 
+				me.maes_codigo maesCodigo, 
+				me.tipo tipo,
+				me.estado_registro estadoRegistro,
+				esam.esam_codigo esamCodigo,
+				esam.nombre esamNombre,
+				obes.nombre obesNombre,
+				imam.nombre imamNombre   
+				FROM psy_detalle_mapa_estrategico me, psy_empresa empr, psy_plan_estrategico pest, 
+				psy_mapa_estrategico maes, psy_estrategia_ambiental esam, psy_matriz_correlacion maco,
+				psy_objetivo_estrategico obes, psy_impacto_ambiental imam  
+				WHERE me.maes_codigo=maes.maes_codigo
+				and me.maco_codigo=maco.maco_codigo
+				and me.tipo='T'
+				and maco.esam_codigo=esam.esam_codigo
+				and maco.imam_codigo=imam.imam_codigo
+				and maco.obes_codigo=obes.obes_codigo
+				and maes.pest_codigo=pest.pest_codigo
+				and pest.estado_plan!='A' 
+				and pest.estado_plan!='C' 
+				and pest.empr_codigo=empr.empr_codigo
+				and empr.empr_codigo=:pCodigoEmpresa
+			  	order by me.dmae_codigo
+					
+
+			  ]]>
+ </sql-query>
+ 
+ <sql-query name="consulta_estrategias_detalle_depurada">  
+  		  <return-scalar column="dmaeCodigo" type="java.lang.Long" />
+		  <return-scalar column="macoCodigo" type="java.lang.Long" />
+		  <return-scalar column="maesCodigo" type="java.lang.Long" />
+		  <return-scalar column="tipo" type="java.lang.String" />  
+		  <return-scalar column="estadoRegistro" type="java.lang.String" />
+		  <return-scalar column="esamCodigo" type="java.lang.Long" />
+		  <return-scalar column="esamNombre" type="java.lang.String" />
+		  <return-scalar column="obesNombre" type="java.lang.String" />
+		  <return-scalar column="imamNombre" type="java.lang.String" />
+			
+			  <![CDATA[ 
+			  
+				SELECT me.dmae_codigo dmaeCodigo,
+				me.maco_codigo macoCodigo, 
+				me.maes_codigo maesCodigo, 
+				me.tipo tipo,
+				me.estado_registro estadoRegistro,
+				esam.esam_codigo esamCodigo,
+				esam.nombre esamNombre,
+				obes.nombre obesNombre,
+				imam.nombre imamNombre   
+				FROM psy_detalle_mapa_estrategico me, psy_empresa empr, psy_plan_estrategico pest, 
+				psy_mapa_estrategico maes, psy_estrategia_ambiental esam, psy_matriz_correlacion maco,
+				psy_objetivo_estrategico obes, psy_impacto_ambiental imam  
+				WHERE me.maes_codigo=maes.maes_codigo
+				and me.maco_codigo=maco.maco_codigo
+				and me.tipo='T'
+				and maco.esam_codigo=esam.esam_codigo
+				and maco.imam_codigo=imam.imam_codigo
+				and maco.obes_codigo=obes.obes_codigo
+				and maes.pest_codigo=pest.pest_codigo
+				and pest.estado_plan!='A' 
+				and pest.estado_plan!='C' 
+				and pest.empr_codigo=empr.empr_codigo
+				and empr.empr_codigo=:pCodigoEmpresa
+				and me.dmae_codigo NOT IN (SELECT me.dmae_codigo  
+							FROM psy_detalle_mapa_estrategico me, psy_empresa empr, psy_plan_estrategico pest, 
+							psy_mapa_estrategico maes, psy_estrategia_ambiental esam, psy_matriz_correlacion maco,
+							psy_objetivo_estrategico obes, psy_impacto_ambiental imam, psy_plan_estrategia ples  
+							WHERE me.maes_codigo=maes.maes_codigo
+							and me.dmae_codigo=ples.dmae_codigo
+							and me.maco_codigo=maco.maco_codigo
+							and maco.esam_codigo=esam.esam_codigo
+							and maco.imam_codigo=imam.imam_codigo
+							and maco.obes_codigo=obes.obes_codigo
+							and maes.pest_codigo=pest.pest_codigo
+							and pest.estado_plan!='A' 
+							and pest.estado_plan!='C' 
+							and pest.empr_codigo=empr.empr_codigo
+							and empr.empr_codigo=:pCodigoEmpresa)
+				order by me.dmae_codigo
+
+			  ]]>
+ </sql-query>
+ 
+ <sql-query name="consulta_data_psy_programa"> 
+  
+  		  <return-scalar column="progCodigo" type="java.lang.Long" />
+  		  <return-scalar column="nombre" type="java.lang.String" />
+  		  <return-scalar column="estadoRegistro" type="java.lang.String" />
+		  <return-scalar column="dmaeCodigo" type="java.lang.Long" />
+		  <return-scalar column="macoCodigo" type="java.lang.Long" />
+		  <return-scalar column="maesCodigo" type="java.lang.Long" />
+		  <return-scalar column="tipo" type="java.lang.String" />
+		  <return-scalar column="dmaeEstadoRegistro" type="java.lang.String" />
+			
+			  <![CDATA[ 
+			  
+				SELECT prog.prog_codigo progCodigo,
+				prog.nombre nombre,
+				prog.estado_registro estadoRegistro,
+				me.dmae_codigo dmaeCodigo,
+				me.maco_codigo macoCodigo,
+				me.maes_codigo maesCodigo,
+				me.tipo tipo,
+				me.estado_registro dmaeEstadoRegistro
+				FROM psy_programa prog, psy_plan_estrategia ples, psy_detalle_mapa_estrategico me,
+				psy_empresa empr, psy_plan_estrategico pest, psy_mapa_estrategico maes 
+				WHERE prog.prog_codigo=ples.prog_codigo 
+				and ples.dmae_codigo=me.dmae_codigo 
+				and me.maes_codigo=maes.maes_codigo 
+				and maes.pest_codigo=pest.pest_codigo
+				and pest.estado_plan!='A' and pest.estado_plan!='C' 
+				and pest.empr_codigo=empr.empr_codigo
+				and empr.empr_codigo=:pCodigoEmpresa
+
+			  ]]>
+ </sql-query>
+ 
+ <sql-query name="consulta_validacion_presupuesto">  
+		  <return alias="pres"
+			class="com.vortexbird.pusay.modelo.PsyPresupuesto"></return>
+			  <![CDATA[ 
+			  
+			SELECT pres.* 
+			FROM psy_empresa empr
+			inner join psy_plan_estrategico pest on pest.empr_codigo = empr.empr_codigo
+			inner join psy_mapa_estrategico maes on maes.pest_codigo = pest.pest_codigo
+			inner join psy_detalle_mapa_estrategico dmae on dmae.maes_codigo = maes.maes_codigo
+			inner join psy_plan_estrategia ples on ples.dmae_codigo = dmae.dmae_codigo
+			inner join psy_programa prog on prog.prog_codigo = ples.prog_codigo
+			inner join psy_plan_accion plac on plac.prog_codigo = prog.prog_codigo
+			inner join psy_presupuesto pres on pres.plac_codigo = plac.plac_codigo
+			WHERE empr.empr_codigo = :pCodigoEmpresa
+			and pest.estado_plan!='A' 
+			and pest.estado_plan!='C'
+			and plac.estado_plan_accion != 'C'
+			and pres.estado_presupuesto != 'C'
+			and pres.estado_registro = 'A'
+			order by pres.pres_codigo
+
+			  ]]>
+ </sql-query>
+ 
+  <sql-query name="consulta_data_indicadores"> 
+  
+  		  <return-scalar column="indiCodigo" type="java.lang.Long" />
+  		  <return-scalar column="obamCodigo" type="java.lang.Long" />
+  		  <return-scalar column="obamDescripcion" type="java.lang.String" />
+  		  <return-scalar column="subteCodigo" type="java.lang.Long" />
+  		  <return-scalar column="subTemaDescripcion" type="java.lang.String" />
+  		  <return-scalar column="temaDescripcion" type="java.lang.String" />
+  		  <return-scalar column="indiDescripcion" type="java.lang.String" />
+  		  <return-scalar column="indiUnidadMedida" type="java.lang.String" />
+  		  <return-scalar column="tipoIndicador" type="java.lang.String" />
+  		  <return-scalar column="indiEstadoRegistro" type="java.lang.String" />
+  		  <return-scalar column="evaCodigo" type="java.lang.Long" />
+  		  <return-scalar column="evaIndiCodigo" type="java.lang.Long" />
+  		  <return-scalar column="peaCodigo" type="java.lang.Long" />
+  		  <return-scalar column="multiple" type="java.lang.String" />
+  		  <return-scalar column="periodo" type="java.lang.Long" />
+  		  <return-scalar column="resultado" type="java.lang.Double" />
+  		  <return-scalar column="meta" type="java.lang.Double" />
+  		  <return-scalar column="historial" type="java.lang.Double" />
+  		  <return-scalar column="norma" type="java.lang.Double" />
+  		  <return-scalar column="sectorial" type="java.lang.Double" />
+  		  <return-scalar column="evaEstadoRegistro" type="java.lang.String" />
+  		  
+  		  
+  		  
+  		  
+			
+			  <![CDATA[ 
+			  
+				SELECT DISTINCT indi.codigo indiCodigo,
+				indi.obam_codigo obamCodigo,
+				obam.descripcion obamDescripcion,
+				indi.subte_codigo subteCodigo,
+				subtema.descripcion subTemaDescripcion,
+				tema.descripcion temaDescripcion,
+				indi.descripcion indiDescripcion,
+				indi.unidad_medida indiUnidadMedida,
+				indi.tipo_indicador tipoIndicador,
+				indi.estado_registro indiEstadoRegistro,
+				eva.codigo evaCodigo,
+				eva.indi_codigo evaIndiCodigo,
+				eva.pea_codigo peaCodigo,
+				eva.multiple multiple,
+				eva.periodo periodo,
+				eva.resultado resultado,
+				eva.meta meta,
+				eva.historial historial,
+				eva.norma norma,
+				eva.sectorial sectorial,
+				eva.estado_registro evaEstadoRegistro
+				FROM psy_empresa empr
+				inner join psy_plan_estrategico pest on pest.empr_codigo = empr.empr_codigo
+				inner join psy_mapa_estrategico maes on maes.pest_codigo = pest.pest_codigo
+				inner join psy_detalle_mapa_estrategico dmae on dmae.maes_codigo = maes.maes_codigo
+				inner join psy_matriz_correlacion maco on maco.maco_codigo = dmae.maco_codigo
+				inner join psy_impacto_ambiental imam on imam.imam_codigo = maco.imam_codigo
+				inner join psy_tema tema on tema.imam_codigo = imam.imam_codigo
+				inner join psy_subtema subtema on subtema.tema_codigo = tema.codigo
+				inner join psy_indicador indi on indi.subte_codigo = subtema.codigo
+				left join psy_evaluacion_pea_indicador eva on eva.indi_codigo = indi.codigo
+				inner join psy_objetivo_ambiental obam on indi.obam_codigo = obam.codigo
+				WHERE
+				empr.empr_codigo = :pCodigoEmpresa
+				and pest.estado_plan!='A' 
+				and pest.estado_plan!='C' 
+				and (eva.pea_codigo = :pPeaCodigo or eva.pea_codigo is null)
+				and imam.imam_codigo = :pImamCodigo
+				order by indi.codigo
+
+
+			  ]]>
+ </sql-query>
+ 
+ <sql-query name="consulta_impacto_objetivo">  
+	  <return-scalar column="imobCodigo" type="java.lang.Long" />
+	  <return-scalar column="imamCodigo" type="java.lang.Long" />
+  	  <return-scalar column="imamNombre" type="java.lang.String" />
+  	  <return-scalar column="obamCodigo" type="java.lang.Long" />
+  	  <return-scalar column="obamDescripcion" type="java.lang.String" />
+  	  
+			  <![CDATA[ 
+			  
+			SELECT imob.imob_codigo imobCodigo,
+			imob.imam_codigo imamCodigo,
+			imam.nombre imamNombre,
+			imob.obam_codigo obamCodigo,
+			obam.descripcion obamDescripcion
+			FROM psy_impacto_objetivo imob,
+			psy_impacto_ambiental imam,
+			psy_objetivo_ambiental obam
+			WHERE imam.imam_codigo=imob.imam_codigo
+			and obam.codigo=imob.obam_codigo
+			and imam.imam_codigo IN ( SELECT DISTINCT imam.imam_codigo
+			FROM psy_impacto_ambiental imam,
+			psy_matriz_correlacion m,
+			psy_detalle_mapa_estrategico me,
+			psy_empresa empr,
+			psy_plan_estrategico pest,
+			psy_mapa_estrategico maes
+			WHERE me.maco_codigo=m.maco_codigo 
+			and m.imam_codigo=imam.imam_codigo
+			and me.maes_codigo=maes.maes_codigo 
+			and maes.pest_codigo=pest.pest_codigo
+			and pest.estado_plan!='A' 
+			and pest.estado_plan!='C' 
+			and pest.empr_codigo=empr.empr_codigo
+			and empr.empr_codigo=:pCodigoEmpresa )
+
+			  ]]>
+			  
+ </sql-query>
+ 
+   <sql-query name="consulta_data_indicadores_objetivo"> 
+  
+  		  <return-scalar column="indiCodigo" type="java.lang.Long" />
+  		  <return-scalar column="obamCodigo" type="java.lang.Long" />
+  		  <return-scalar column="obamDescripcion" type="java.lang.String" />
+  		  <return-scalar column="subteCodigo" type="java.lang.Long" />
+  		  <return-scalar column="subTemaDescripcion" type="java.lang.String" />
+  		  <return-scalar column="temaDescripcion" type="java.lang.String" />
+  		  <return-scalar column="indiDescripcion" type="java.lang.String" />
+  		  <return-scalar column="indiUnidadMedida" type="java.lang.String" />
+  		  <return-scalar column="tipoIndicador" type="java.lang.String" />
+  		  <return-scalar column="indiEstadoRegistro" type="java.lang.String" />
+  		  <return-scalar column="evaCodigo" type="java.lang.Long" />
+  		  <return-scalar column="evaIndiCodigo" type="java.lang.Long" />
+  		  <return-scalar column="peaCodigo" type="java.lang.Long" />
+  		  <return-scalar column="multiple" type="java.lang.String" />
+  		  <return-scalar column="periodo" type="java.lang.Long" />
+  		  <return-scalar column="resultado" type="java.lang.Double" />
+  		  <return-scalar column="meta" type="java.lang.Double" />
+  		  <return-scalar column="historial" type="java.lang.Double" />
+  		  <return-scalar column="norma" type="java.lang.Double" />
+  		  <return-scalar column="sectorial" type="java.lang.Double" />
+  		  <return-scalar column="evaEstadoRegistro" type="java.lang.String" />
+  		  
+  		  
+  		  
+  		  
+			
+			  <![CDATA[ 
+			  
+				SELECT DISTINCT indi.codigo indiCodigo,
+				indi.obam_codigo obamCodigo,
+				obam.descripcion obamDescripcion,
+				indi.subte_codigo subteCodigo,
+				subtema.descripcion subTemaDescripcion,
+				tema.descripcion temaDescripcion,
+				indi.descripcion indiDescripcion,
+				indi.unidad_medida indiUnidadMedida,
+				indi.tipo_indicador tipoIndicador,
+				indi.estado_registro indiEstadoRegistro,
+				eva.codigo evaCodigo,
+				eva.indi_codigo evaIndiCodigo,
+				eva.pea_codigo peaCodigo,
+				eva.multiple multiple,
+				eva.periodo periodo,
+				eva.resultado resultado,
+				eva.meta meta,
+				eva.historial historial,
+				eva.norma norma,
+				eva.sectorial sectorial,
+				eva.estado_registro evaEstadoRegistro
+				FROM psy_empresa empr
+				inner join psy_plan_estrategico pest on pest.empr_codigo = empr.empr_codigo
+				inner join psy_mapa_estrategico maes on maes.pest_codigo = pest.pest_codigo
+				inner join psy_detalle_mapa_estrategico dmae on dmae.maes_codigo = maes.maes_codigo
+				inner join psy_matriz_correlacion maco on maco.maco_codigo = dmae.maco_codigo
+				inner join psy_impacto_ambiental imam on imam.imam_codigo = maco.imam_codigo
+				inner join psy_tema tema on tema.imam_codigo = imam.imam_codigo
+				inner join psy_subtema subtema on subtema.tema_codigo = tema.codigo
+				inner join psy_indicador indi on indi.subte_codigo = subtema.codigo
+				left join psy_evaluacion_pea_indicador eva on eva.indi_codigo = indi.codigo
+				inner join psy_objetivo_ambiental obam on indi.obam_codigo = obam.codigo
+				WHERE
+				empr.empr_codigo = :pCodigoEmpresa
+				and pest.estado_plan!='A' 
+				and pest.estado_plan!='C' 
+				and eva.pea_codigo = :pPeaCodigo
+				and obam.codigo = :pObamCodigo
+				order by indi.codigo
+
+
+			  ]]>
+ </sql-query>
+ 
+</hibernate-mapping>

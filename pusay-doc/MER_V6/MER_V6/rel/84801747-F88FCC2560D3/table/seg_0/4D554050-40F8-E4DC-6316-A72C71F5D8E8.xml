@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4D554050-40F8-E4DC-6316-A72C71F5D8E8" name="PSY_IMPACTO_AMBIENTAL">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 15:37:35 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>IMAM</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IMAM_CODIGO" id="DC9E1638-C728-28D6-7CE6-C74BEAE62851">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 15:38:02 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOMBRE" id="D01470F4-4AB0-F74F-EEE9-DE1AFC77668D">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 19:47:13 UTC</createdTime>
+<comment>NOMBRE DEL IMPACTO AMBIENTAL</comment>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESCRIPCION" id="DF22A076-C4ED-9E60-E9F1-B33A401E1244">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 19:47:13 UTC</createdTime>
+<comment>DESCRIPCION DEL IMPACTO AMBIENTAL</comment>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000</dataTypeSize>
+<ownDataTypeParameters>2000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="9029D231-4A0A-E86B-2255-FA122AEACF15">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 19:47:13 UTC</createdTime>
+<comment>A-ACTIVO, I- INACTIVO</comment>
+<commentInRDBMS>A-ACTIVO, I- INACTIVO</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="AB99A205-63FB-797E-ACAB-7C7EF158F349" name="PSY_IMPACTO_AMBIENTAL_PK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 15:38:02 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DC9E1638-C728-28D6-7CE6-C74BEAE62851"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css"
+		href="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/xmlhttp/css/rime/rime.css" />
+	<link rel="stylesheet" type="text/css"
+		href="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/css/style.css" />
+</h:head>
+
+<h:body>
+	<div id="wrapper">
+		<ui:insert name="header">Header</ui:insert>
+
+		<h:form>
+			<p:menubar model="#{menuBar.model}" id="menuBarTemplate"
+				autoDisplay="true"/>
+		</h:form>
+
+		<div id="body">
+				<ui:insert name="body">Body</ui:insert>
+			<ui:insert name="footer">Footer</ui:insert>
+		</div>
+		<!-- end body -->
+	</div>
+</h:body>
+</html>

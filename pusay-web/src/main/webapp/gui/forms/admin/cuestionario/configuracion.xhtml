@@ -1,0 +1,337 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+		
+			<link href="/javax.faces.resource/theme.css.jspx?ln=primefaces-aristo"
+		rel="stylesheet" type="text/css" />
+		<link href="/javax.faces.resource/primefaces.css.jspx?ln=primefaces"
+			rel="stylesheet" type="text/css" />
+		<link
+			href="/javax.faces.resource/colorpicker/colorpicker.css.jspx?ln=primefaces"
+			rel="stylesheet" type="text/css" />
+		<script src="/javax.faces.resource/jquery/jquery.js.jspx?ln=primefaces"
+			type="text/javascript" />
+		<script src="/javax.faces.resource/primefaces.js.jspx?ln=primefaces"
+			type="text/javascript" />
+		<script
+			src="/javax.faces.resource/colorpicker/colorpicker.js.jspx?ln=primefaces"
+			type="text/javascript" />
+		<script
+			src="/javax.faces.resource/jquery/jquery-plugins.js.jspx?ln=primefaces"
+			type="text/javascript" />
+	
+		<h:outputScript name="jquery/jquery-plugins.js" library="primefaces" />
+
+			<f:loadBundle basename="i18n.msj_configuracion" var="msg" />
+			<f:loadBundle basename="i18n.msj_general" var="msgGen" />
+
+			<f:view>
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+					draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form id="form">
+					<br />
+					<p:panel id="msgProjectConfiguracionTitle"
+						header="#{msg.lbl_tabsConfiguracion_confGeneral}">
+						<p:messages id="msg" showDetail="true" />
+						<p:growl id="men" />
+						<h:panelGrid columns="3" id="panel" border="0"
+							style="width: 80%; ">
+
+							<h:outputText id="msgEnunciado"
+								value="#{msg.lbl_configuracion_nombre}" />
+							<p:inputText id="txtEnunciado" disabled="false"
+								value="#{configuracionUI.configuracion.enunciado}" />
+							<h:outputText value="" />
+
+							<h:outputText id="msgPuntajeMaxConfig"
+								value="#{msg.lbl_configuracion_puntajeMax}" />
+							<p:inputText id="txtPuntajeMaxConfig" disabled="false"
+								value="#{configuracionUI.configuracion.puntajeMax}" />
+							<h:panelGroup>
+								<h:outputText value="" />
+								<p:slider for="txtPuntajeMaxConfig" style="width: 20%; " />
+							</h:panelGroup>
+
+							<h:outputText id="msgAbiertoConfig"
+								title="#{msg.lbl_configuracion_abierto_ayuda}"
+								value="#{msg.lbl_configuracion_abierto}" />
+							<h:panelGroup>
+								<p:selectOneRadio id="optionsAbierto" disabled="true"
+									value="#{configuracionUI.configuracion.abierto}">
+									<f:selectItem itemLabel="#{msgGen.lbl_general_si}"
+										itemValue="1" />
+									<f:selectItem itemLabel="#{msgGen.lbl_general_no}"
+										itemValue="0" />
+								</p:selectOneRadio>
+							</h:panelGroup>
+							<h:outputText value="" />
+
+							<h:outputText id="msgColorTablaConfig"
+								title="#{msg.lbl_configuracion_colorTabla_ayuda}"
+								value="#{msg.lbl_configuracion_colorTabla}" />
+							<h:panelGroup>
+								<p:inputText id="txtColorTablaConfig" rendered="false"
+									style="background-color:\##{configuracionUI.color}"
+									value="#{configuracionUI.configuracion.colorTabla}" />
+								<p:colorPicker id="popupCP" immediate="true"
+									value="#{configuracionUI.configuracion.colorTabla}" />
+							</h:panelGroup>
+							<h:outputText value="" />
+
+							<h:outputText id="msgHeaderConfig"
+								title="#{msg.lbl_configuracion_header_ayuda}"
+								value="#{msg.lbl_configuracion_header}" />
+							<p:inputText id="txtHeaderConfig" disabled="true"
+								value="#{configuracionUI.configuracion.header}" />
+							<h:outputText id="msgHeaderConfigAyuda"
+								value="#{msg.lbl_configuracion_header_ayuda}" />
+
+						</h:panelGrid>
+						<br />
+
+						<p:panel id="msgProjectConfiguracionRespEquipoTitle"
+							header="#{msg.lbl_tabsConfiguracion_respEquipo}">
+							<h:panelGrid columns="2" id="panelRespuestaEquipo"
+								style="width: 30%;" border="0">
+
+								<h:outputText id="msgMultipleRespuestaConfig"
+									value="#{msg.lbl_configuracion_multipleRespuesta}" />
+								<p:selectOneRadio id="optionsMulRespuesta" disabled="true"
+									value="#{configuracionUI.configuracion.multipleRespuesta}">
+									<p:ajax update=":form:panelRespuestaEquipo"
+										listener="#{configuracionUI.listenerMultipleRespuesta}"
+										partialSubmit="true" />
+
+									<f:selectItem itemLabel="#{msgGen.lbl_general_si}"
+										itemValue="1" />
+									<f:selectItem itemLabel="#{msgGen.lbl_general_no}"
+										itemValue="0" />
+								</p:selectOneRadio>
+
+								<h:outputText id="msgMultipleRespuestaMsjConfig"
+									rendered="#{configuracionUI.renderInputTextMsjMultRespuesta}"
+									value="#{msg.lbl_configuracion_multipleRespuestaMsj}" />
+								<p:inputText id="txtMultipleRespuestaConfig"
+									value="#{configuracionUI.configuracion.multipleRespuestaMsj}"
+									rendered="#{configuracionUI.renderInputTextMsjMultRespuesta}" />
+							</h:panelGrid>
+							<h:panelGrid columns="2" id="panelRespuestaEquipoPart2"
+								style="width: 29%;" border="0">
+								<h:outputText id="msgRetomarCuestionarioConfig"
+									value="#{msg.lbl_configuracion_retomarCuestionario}" />
+								<p:selectOneRadio id="optionsRetCuestionario"
+									value="#{configuracionUI.configuracion.retomarCuestionario}">
+									<f:selectItem itemLabel="#{msgGen.lbl_general_si}"
+										itemValue="1" />
+									<f:selectItem itemLabel="#{msgGen.lbl_general_no}"
+										itemValue="0" />
+								</p:selectOneRadio>
+							</h:panelGrid>
+						</p:panel>
+
+						<p:panel id="msgProjectConfigOpcionesFinalizaTitle"
+							header="#{msg.lbl_tabsConfiguracion_opcFinalizacion}">
+							<h:panelGrid columns="2" id="panelOpcionesFinaliza"
+								style="width: 29%;" border="0">
+								<p:selectOneRadio id="optionsRedirigeFinaliza" disabled="true"
+									value="#{configuracionUI.componentOpcionFinalizacion}">
+									<p:ajax update=":form:panelOpcionesFinaliza"
+										listener="#{configuracionUI.listenerOpcionFinalizacion}"
+										partialSubmit="true" />
+									<f:selectItem
+										itemLabel="#{msg.lbl_configuracion_redirigirCerrar}"
+										itemValue="0" />
+									<f:selectItem
+										itemLabel="#{msg.lbl_configuracion_redirigirInforme}"
+										itemValue="1" />
+									<f:selectItem itemLabel="#{msg.lbl_configuracion_redirigirUrl}"
+										itemValue="2" />
+								</p:selectOneRadio>
+								<p:inputText id="txtRedirigeURL"
+									value="#{configuracionUI.configuracion.redirigirUrl}"
+									rendered="#{configuracionUI.renderOpcionRedirigeURL}" />
+							</h:panelGrid>
+						</p:panel>
+
+						<p:panel id="msgProjectConfigClaveAccesoTitle"
+							header="#{msg.lbl_tabsConfiguracion_clave}">
+							<h:panelGrid columns="2" id="panelClaveAcceso"
+								style="width: 40%;" border="0">
+								<h:outputText id="msgClaveAccesoConfig"
+									value="#{msg.lbl_configuracion_clave_accesso}" />
+								<p:selectOneRadio id="optionsClaveAcceso" disabled="true"
+									value="#{configuracionUI.componentClaveAcceso}">
+									<p:ajax update=":form:panelClaveAcceso"
+										listener="#{configuracionUI.listenerClaveAcceso}"
+										partialSubmit="true" />
+									<f:selectItem itemLabel="#{msgGen.lbl_general_si}"
+										itemValue="1" />
+									<f:selectItem itemLabel="#{msgGen.lbl_general_no}"
+										itemValue="0" />
+								</p:selectOneRadio>
+
+								<h:outputText id="msgClaveConfig"
+									value="#{msg.lbl_tabsConfiguracion_clave}"
+									rendered="#{configuracionUI.renderClaveAcceso}" />
+								<p:inputText id="txtClaveAcceso"
+									value="#{configuracionUI.configuracion.claveAcceso}"
+									rendered="#{configuracionUI.renderClaveAcceso}" />
+							</h:panelGrid>
+						</p:panel>
+
+						<p:panel id="msgProjectConfigCierreProgTitle"
+							header="#{msg.lbl_tabsConfiguracion_cierre}">
+							<h:panelGrid columns="2" id="panelCierreProgramado"
+								style="width: 29%;" border="0">
+								<h:outputText id="msgVigenciaInicioConfig"
+									value="#{msg.lbl_configuracion_vigenciaInicio}" />
+								<p:calendar showOn="button" navigator="true" locale="en"
+									value="#{configuracionUI.configuracion.vigenciaInicio}">
+									<p:ajax event="dateSelect"
+										listener="#{configuracionUI.listenerVigenciaFecha}"
+										update=":form:men" />
+								</p:calendar>
+								<h:outputText id="msgVigenciaFinConfig"
+									value="#{msg.lbl_configuracion_vigenciaFin}" />
+								<p:calendar showOn="button" navigator="true" locale="en"
+									value="#{configuracionUI.configuracion.vigenciaFin}">
+									<p:ajax event="dateSelect"
+										listener="#{configuracionUI.listenerVigenciaFecha}"
+										update=":form:men" />
+								</p:calendar>
+							</h:panelGrid>
+						</p:panel>
+
+						<p:panel id="msgProjectConfigMensajeSistemaTitle"
+							header="#{msg.lbl_tabsConfiguracion_mensajesSistema}">
+							<h:panelGrid columns="2" id="panelMensajeSistema"
+								style="width: 40%;" border="0">
+								<h:outputText id="msgMensajeCierreConfig"
+									value="#{msg.lbl_configuracion_mensajeCierre}" />
+								<p:inputText id="txtMensajeCierreConfig" disabled="true"
+									value="#{configuracionUI.configuracion.mensajeCierre}" />
+
+								<h:outputText id="msgMensajeClaveIncorrectaConfig"
+									value="#{msg.lbl_configuracion_mensajeClaveIncorrecta}" />
+								<p:inputText id="txtMensajeClaveIncorrectaConfig" disabled="true"
+									value="#{configuracionUI.configuracion.mensajeClaveIncorrecta}" />
+
+								<h:outputText id="msgMensajeCuestionarioFinalizadConfig"
+									value="#{msg.lbl_configuracion_mensajeCuestionarioFinalizad}" />
+								<p:inputText id="txtMensajeCuestionarioFinalizadConfig" disabled="true"
+									value="#{configuracionUI.configuracion.mensajeCuestionarioFinalizad}" />
+
+								<h:outputText id="msgMensajeFechaLimiteConfig"
+									value="#{msg.lbl_configuracion_mensajeFechaLimite}" />
+								<p:inputText id="txtMensajeFechaLimiteConfig" disabled="true"
+									value="#{configuracionUI.configuracion.mensajeFechaLimite}" />
+
+								<h:outputText id="msgMensajeMaximoRespuestasConfig"
+									value="#{msg.lbl_configuracion_mensajeMaximoRespuestas}" />
+								<p:inputText id="txtMensajeMaximoRespuestasConfig" disabled="true"
+									value="#{configuracionUI.configuracion.mensajeMaximoRespuestas}" />
+
+								<h:outputText id="msgMensajeRedireccionalConfig"
+									value="#{msg.lbl_configuracion_mensajeRedireccional}" />
+								<p:inputText id="txtMensajeRedireccionalConfig" disabled="true"
+									value="#{configuracionUI.configuracion.mensajeRedireccional}" />
+							</h:panelGrid>
+						</p:panel>
+						<br />
+						<div align="center">
+							<h:panelGrid id="panelBotones" columns="4">
+								<p:commandButton id="btnSave"
+									disabled="#{configuracionUI.disableButtonSave}"
+									value="#{msgGen.btn_general_save}"
+									action="#{configuracionUI.actionSave}"
+									update="msg,panel,panelBotones,tableConfiguracion,panelRespuestaEquipo,panelRespuestaEquipoPart2,panelOpcionesFinaliza,panelClaveAcceso,panelMensajeSistema,panelCierreProgramado" />
+								<p:commandButton id="btnModify"
+									disabled="#{configuracionUI.disableButtonModify}"
+									value="#{msgGen.btn_general_modify}"
+									action="#{configuracionUI.actionModify}"
+									update="msg,panel,panelBotones,tableConfiguracion,panelRespuestaEquipo,panelRespuestaEquipoPart2,panelOpcionesFinaliza,panelClaveAcceso,panelMensajeSistema,panelCierreProgramado" />
+								<p:commandButton id="btnDelete"
+									disabled="#{configuracionUI.disableButtonDelete}"
+									value="#{msgGen.btn_general_delete}"
+									action="#{configuracionUI.actionDelete}"
+									update="msg,panel,panelBotones,tableConfiguracion,panelRespuestaEquipo,panelRespuestaEquipoPart2,panelOpcionesFinaliza,panelClaveAcceso,panelMensajeSistema,panelCierreProgramado"
+									onclick="return confirm('#{msgGen.lbl_general_confirm}')" />
+								<p:commandButton id="btnClear"
+									value="#{msgGen.btn_general_clear}"
+									action="#{configuracionUI.actionClear}"
+									update="msg,panel,panelBotones,panelRespuestaEquipo,panelRespuestaEquipoPart2,panelOpcionesFinaliza,panelClaveAcceso,panelMensajeSistema,panelCierreProgramado" />
+							</h:panelGrid>
+						</div>
+						<br />
+
+						<p:dataTable value="#{configuracionUI.data}"
+							id="tableConfiguracion" var="cueConfiguracion" paginator="true"
+							rows="5">
+
+							<p:column filterBy="#{cueConfiguracion.enunciado}"
+								sortBy="#{cueConfiguracion.enunciado}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_configuracion_nombre}" />
+								</f:facet>
+								<h:outputText value="#{cueConfiguracion.enunciado}" />
+							</p:column>
+
+							<p:column filterBy="#{cueConfiguracion.puntajeMax}"
+								sortBy="#{cueConfiguracion.puntajeMax}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_configuracion_puntajeMax}" />
+								</f:facet>
+								<h:outputText value="#{cueConfiguracion.puntajeMax}" />
+							</p:column>
+
+							<p:column filterBy="#{cueConfiguracion.abierto}"
+								sortBy="#{cueConfiguracion.abierto}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_configuracion_abierto}" />
+								</f:facet>
+								<div align="center">
+									<h:outputText
+										value="#{cueConfiguracion.abierto eq 1 ? 'SI' : 'NO'}" />
+								</div>
+							</p:column>
+
+							<p:column filterBy="#{cueConfiguracion.colorTabla}"
+								sortBy="#{cueConfiguracion.colorTabla}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_configuracion_colorTabla}" />
+								</f:facet>
+								<div align="center">
+									<h:outputText id="txtColorTablaConfig" disabled="true"
+										style="background-color:\##{cueConfiguracion.colorTabla}"
+										value="#{cueConfiguracion.colorTabla}" />
+								</div>
+							</p:column>
+							
+							<p:column style="width:4%">
+								<p:commandButton id="selectButton"
+									update=":form:panel,:form:panelBotones,:form:panelRespuestaEquipo,:form:panelRespuestaEquipoPart2,:form:panelOpcionesFinaliza,:form:panelClaveAcceso,:form:panelMensajeSistema,:form:panelCierreProgramado"
+									action="#{configuracionUI.actionLoadEntity}"
+									icon="ui-icon-search">
+									<f:setPropertyActionListener value="#{cueConfiguracion}"
+										target="#{configuracionUI.selectedConfiguracion}" />
+								</p:commandButton>
+							</p:column>
+							
+						 </p:dataTable>
+					</p:panel>
+				</h:form>
+		</f:view>
+		</ui:define>
+
+</ui:composition>

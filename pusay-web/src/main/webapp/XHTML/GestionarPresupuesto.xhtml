@@ -1,0 +1,184 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+		<f:view>
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
+			<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+				draggable="false" closable="false">
+				<p:graphicImage
+					value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+			</p:dialog>
+
+			<!-- Expired session -->
+			<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();"
+				timeout="#{session.maxInactiveInterval * 1000}" />
+			<p:dialog modal="true" widgetVar="sessionTimeOutDialog"
+				header="Sesión Expirada" draggable="false" closable="false">
+				<h:outputText value="La sesión ha finalizado" />
+				<input id="confirmBackToLogin" type="button" value="Iniciar Sesión"
+					onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />
+			</p:dialog>
+
+			<h:form id="frm">
+
+				<p:panel id="panelDataTablePsyPresupuesto"
+					header="Gestionar Presupuestos">
+					<p:growl id="men" autoUpdate="true" showDetail="false" />
+					<p:dataTable value="#{psyPresupuestoView.data}" emptyMessage="No se han encontrado presupuestos para su empresa"
+						var="psyPresupuesto" paginator="true" rows="5">
+
+						<p:column filterBy="#{psyPresupuesto.nombrePlanAccion}"
+							sortBy="#{psyPresupuesto.nombrePlanAccion}">
+							<f:facet name="header">
+								<h:outputText value="Proyecto" />
+							</f:facet>
+							<h:outputText value="#{psyPresupuesto.nombrePlanAccion}" />
+						</p:column>
+
+						<p:column filterBy="#{psyPresupuesto.fechaInicio}"
+							sortBy="#{psyPresupuesto.fechaInicio}">
+							<f:facet name="header">
+								<h:outputText value="Fecha de Inicio" />
+							</f:facet>
+							<h:outputText value="#{psyPresupuesto.fechaInicio}">
+								<f:convertDateTime pattern="yyyy/MM/dd" />
+							</h:outputText>
+						</p:column>
+
+						<p:column filterBy="#{psyPresupuesto.fechaFin}"
+							sortBy="#{psyPresupuesto.fechaFin}">
+							<f:facet name="header">
+								<h:outputText value="Fecha Fin" />
+							</f:facet>
+							<h:outputText value="#{psyPresupuesto.fechaFin}">
+								<f:convertDateTime pattern="yyyy/MM/dd" />
+							</h:outputText>
+						</p:column>
+
+						<p:column filterBy="#{psyPresupuesto.abrevMoneda}"
+							sortBy="#{psyPresupuesto.abrevMoneda}">
+							<f:facet name="header">
+								<h:outputText value="Moneda" />
+							</f:facet>
+							<h:outputText value="#{psyPresupuesto.abrevMoneda}" />
+						</p:column>
+
+						<p:column filterBy="#{psyPresupuesto.estadoPresupuestoInterpretado}"
+							sortBy="#{psyPresupuesto.estadoPresupuestoInterpretado}">
+							<f:facet name="header">
+								<h:outputText value="Estado Presupuesto" />
+							</f:facet>
+							<h:outputText value="#{psyPresupuesto.estadoPresupuestoInterpretado}" />
+						</p:column>
+
+						<p:column headerText="Opciones">
+							<p:commandButton id="btnEdit" icon="ui-icon-pencil"
+								update=":dialogPsyPresupuesto" title="Editar"
+								actionListener="#{psyPresupuestoView.action_edit}">
+								<f:attribute name="selectedPsyPresupuesto"
+									value="#{psyPresupuesto}" />
+							</p:commandButton>
+							<p:commandButton id="btnClose" title="Cerrar Presupuesto"
+								actionListener="#{psyPresupuestoView.cerrarPresupuesto}"
+								onclick="if(!confirm('Esta seguro de que desea cerrar este presupuesto?')){return false;}"
+								icon="ui-icon-power" update="@form">
+								<f:attribute name="selectedPsyPresupuesto"
+									value="#{psyPresupuesto}" />
+							</p:commandButton>
+							
+							<p:commandButton id="btnGenerarPresupuestoDefinitivo" icon="ui-icon-check" disabled="#{psyPresupuesto.btnGenerarPresupuestoDefinitivo}"
+								update=":dialogPsyPresupuesto :frm:panelDataTablePsyPresupuesto" title="Generar Presupuesto Definitivo"
+								actionListener="#{psyPresupuestoView.generarPresupuestoDefinitivo}">
+								<f:attribute name="selectedPsyPresupuesto"
+									value="#{psyPresupuesto}" />
+									<p:confirm header="Confirmation" message="Esta seguro de Generar el Presupuesto Definitivo ?" icon="ui-icon-alert" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+				<p:panel id="panelBoton">
+					<div align="center">
+						<p:commandButton id="btnNew" value="Abrir Presupuesto"
+							action="#{psyPresupuestoView.action_new()}"
+							update=":dialogPsyPresupuesto" />
+					</div>
+				</p:panel>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
+			</h:form>
+			<p:dialog id="dialogPsyPresupuesto" appendTo="@(body)"
+				draggable="true" closable="false"
+				visible="#{psyPresupuestoView.showDialog}" resizable="false"
+				modal="true" width="500">
+				<h:form id="formDialog">
+					<p:growl id="msg" autoUpdate="true" showDetail="false"/>
+					<p:panel id="panelPsyPresupuesto" header="Presupuesto">
+						<h:panelGrid columns="2" id="panelGrid">
+							<h:outputText id="msgMoneCodigo_PsyMoneda" value=" Moneda *" />	
+							<h:panelGrid columns="2" id="panelGridMoneda">
+							<p:inputText id="txtAbreviatura" style="width: 40px;" disabled="true"
+								binding="#{psyPresupuestoView.txtAbreviatura}" />
+							<p:selectOneMenu id="somMoneda" filter="true" binding="#{psyPresupuestoView.selectOneMenuMoneda}"
+								value="#{psyPresupuestoView.somMoneda}" style="width: 223px;">
+								<f:selectItems value="#{psyPresupuestoView.losTiposDeMoneda}"
+									var="moneda">
+								</f:selectItems>
+								<p:ajax listener="#{psyPresupuestoView.listener_txtAbreviatura()}" update="@([id$=txtAbreviatura])" />
+							</p:selectOneMenu>
+							</h:panelGrid>
+							<h:outputText id="msgPlacCodigo_PsyPlanAccion"
+								value=" Plan de Accion *" />
+							<p:selectOneMenu id="somPlanAccion"  binding="#{psyPresupuestoView.selectOneMenuPlanAccion}"
+								value="#{psyPresupuestoView.somPlanAccion}" style="width: 137px;">
+								<f:selectItems value="#{psyPresupuestoView.losPlanes}" var="plan"
+									itemLabel="#{plan.nombre}" />
+							</p:selectOneMenu>
+
+							<h:outputText id="msgFechaInicio" value=" Fecha de Inicio *" />
+							<p:calendar showOn="button" navigator="true" locale="en"
+								binding="#{psyPresupuestoView.txtFechaInicio}"
+								pattern="dd-MM-yyyy" mask="true" converterMessage="Fecha incorrecta">
+								<p:ajax event="dateSelect"
+									listener="#{psyPresupuestoView.listener_txtFechaInicio}" />
+							</p:calendar>
+							<h:outputText id="msgFechaFin" value=" Fecha Fin" />
+							<p:calendar showOn="button" navigator="true" locale="en"
+								binding="#{psyPresupuestoView.txtFechaFin}"
+								pattern="dd-MM-yyyy" mask="true" converterMessage="Fecha incorrecta">
+								<p:ajax event="dateSelect"
+									listener="#{psyPresupuestoView.listener_txtFechaFin}" />
+							</p:calendar>
+
+							<h:outputText id="msgEstadoPresupuesto"
+								value=" Estado del Presupuesto *" />
+							<p:inputText id="txtEstadoPresupuesto" disabled="true"
+								binding="#{psyPresupuestoView.txtEstadoPresupuesto}" />
+						</h:panelGrid>
+					</p:panel>
+					<p:panel id="panelBotones">
+						<div align="center">
+							<p:commandButton id="btnSave"
+								binding="#{psyPresupuestoView.btnSave}" value="Guardar"
+								action="#{psyPresupuestoView.action_save()}"
+								update=":dialogPsyPresupuesto :frm:panelDataTablePsyPresupuesto" />
+							<p:commandButton id="btnClear" value="Limpiar"
+								action="#{psyPresupuestoView.action_clear()}"
+								update=":dialogPsyPresupuesto" />
+							<p:commandButton id="btnExit" value="Salir"
+								action="#{psyPresupuestoView.action_closeDialog()}"
+								update=":dialogPsyPresupuesto" />
+						</div>
+					</p:panel>
+				</h:form>
+			</p:dialog>
+		</f:view>
+	</ui:define>
+
+</ui:composition>

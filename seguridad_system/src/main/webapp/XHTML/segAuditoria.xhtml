@@ -1,0 +1,102 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/WEB-INF/facelets/templateMenu.xhtml">
+		<ui:define name="header">
+			<ui:include src="/WEB-INF/facelets/header.jspx" />
+		</ui:define>
+		<br />
+		<br />
+
+		<ui:define name="body">
+			<f:view>
+			
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog"
+					header="Cargando informacion" draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+				
+				<h:form>
+					<br />
+					<p:panel id="msgProjectSegAuditoriaTitle" header="Auditoria">
+
+						<p:messages id="msg" showDetail="true" />
+
+						<div align="center">
+							<h:panelGrid id="panelAuditoria">
+
+								<p:dataTable value="#{segAuditoriaView.data}" var="segAuditoria"
+									paginator="true" rows="10">
+
+									<p:column filterBy="#{segAuditoria.autCodigo}"
+										sortBy="#{segAuditoria.autCodigo}" headerText="Codigo">
+										<h:outputText value="#{segAuditoria.autCodigo}" />
+									</p:column>
+
+									<p:column filterBy="#{segAuditoria.codRegistro}"
+										sortBy="#{segAuditoria.codRegistro}"
+										headerText="Codigo Registro">
+										<h:outputText value="#{segAuditoria.codRegistro}" />
+									</p:column>
+
+									<p:column filterBy="#{segAuditoria.campo}"
+										sortBy="#{segAuditoria.campo}" headerText="Campo">
+										<h:outputText value="#{segAuditoria.campo}" />
+									</p:column>
+
+									<p:column filterBy="#{segAuditoria.fecha}"
+										sortBy="#{segAuditoria.fecha}" headerText="Fecha">
+										<h:outputText value="#{segAuditoria.fecha}" />
+									</p:column>
+
+									<p:column filterBy="#{segAuditoria.tabla}"
+										sortBy="#{segAuditoria.tabla}" headerText="Tabla">
+										<h:outputText value="#{segAuditoria.tabla}" />
+									</p:column>
+
+									<p:column filterBy="#{segAuditoria.tipo}"
+										sortBy="#{segAuditoria.tipo}" headerText="Tipo">
+										<h:outputText value="#{segAuditoria.tipo}" />
+									</p:column>
+
+									<p:column filterBy="#{segAuditoria.valorAnterior}"
+										sortBy="#{segAuditoria.valorAnterior}"
+										headerText="Valor Anterior">
+										<h:outputText value="#{segAuditoria.valorAnterior}" />
+									</p:column>
+
+									<p:column filterBy="#{segAuditoria.valorNuevo}"
+										sortBy="#{segAuditoria.valorNuevo}" headerText="Valor Nuevo">
+										<h:outputText value="#{segAuditoria.valorNuevo}" />
+									</p:column>
+
+									<p:column filterBy="#{segAuditoria.usuCodigo_SegUsuario}"
+										sortBy="#{segAuditoria.usuCodigo_SegUsuario}"
+										headerText="Usuario Modifica">
+										<h:outputText value="#{segAuditoria.usuCodigo_SegUsuario}" />
+									</p:column>
+								</p:dataTable>
+							</h:panelGrid>
+						</div>
+					</p:panel>
+				</h:form>
+			</f:view>
+		</ui:define>
+
+		<ui:define name="footer">
+			<ui:include src="/WEB-INF/facelets/footer.jspx" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

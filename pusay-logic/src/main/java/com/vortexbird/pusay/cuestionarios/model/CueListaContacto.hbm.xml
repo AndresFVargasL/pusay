@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-jun-2013 19:14:26 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.cuestionarios.model.CueListaContacto" table="CUE_LISTA_CONTACTO">
+        <id name="consecutivo" type="java.lang.Long">
+            <column name="CONSECUTIVO" precision="10" scale="0" />
+            <generator class="native">
+				<param name="sequence">SEQ_CUE_LISTA_CONTACTO</param>
+			</generator>
+        </id>
+        <many-to-one name="cueLista" class="com.vortexbird.pusay.cuestionarios.model.CueLista" fetch="select">
+            <column name="LISTA" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cueContacto" class="com.vortexbird.pusay.cuestionarios.model.CueContacto" fetch="select">
+            <column name="CONTACTO" precision="17" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="fechaHoraAsignacion" type="java.util.Date">
+            <column name="FECHA_HORA_ASIGNACION" length="11" not-null="true" />
+        </property>
+        <property name="fechaHoraFinalizacion" type="java.util.Date">
+            <column name="FECHA_HORA_FINALIZACION" length="11" not-null="true" />
+        </property>
+        <property name="puntajeTotal" type="java.lang.Long">
+            <column name="PUNTAJE_TOTAL" precision="10" scale="0" />
+        </property>
+        <property name="duracion" type="java.lang.Long">
+            <column name="DURACION" precision="3" scale="0" not-null="true" />
+        </property>
+        <property name="pestCodigo" type="java.lang.Long">
+            <column name="pest_codigo" />
+        </property>
+        <property name="estado" type="java.lang.Long">
+            <column name="ESTADO" precision="10" scale="0" not-null="true" />
+        </property>
+        <set name="cueRespuestas" inverse="true" lazy="true" table="CUE_RESPUESTA" fetch="select">
+            <key>
+                <column name="LISTA_CONTACTO" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.cuestionarios.model.CueRespuesta" />
+        </set>
+    </class>
+</hibernate-mapping>

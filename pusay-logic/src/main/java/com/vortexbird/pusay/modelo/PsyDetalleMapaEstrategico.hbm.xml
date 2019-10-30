@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 20, 2015 10:23:26 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyDetalleMapaEstrategico" table="psy_detalle_mapa_estrategico" schema="public">
+        <id name="dmaeCodigo" type="java.lang.Long">
+            <column name="dmae_codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="psyMapaEstrategico" class="com.vortexbird.pusay.modelo.PsyMapaEstrategico" fetch="select">
+            <column name="maes_codigo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="psyMatrizCorrelacion" class="com.vortexbird.pusay.modelo.PsyMatrizCorrelacion" fetch="select">
+            <column name="maco_codigo" not-null="true" />
+        </many-to-one>
+        <property name="tipo" type="java.lang.String">
+            <column name="tipo" length="1">
+                <comment>-- S:SELECCIONADA - T:TRABAJAR</comment>
+            </column>
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true">
+                <comment>A-ACTIVO, I-INACTIVO</comment>
+            </column>
+        </property>
+        <set name="psyPlanEstrategias" table="psy_plan_estrategia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="dmae_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyPlanEstrategia" />
+        </set>
+    </class>
+</hibernate-mapping>

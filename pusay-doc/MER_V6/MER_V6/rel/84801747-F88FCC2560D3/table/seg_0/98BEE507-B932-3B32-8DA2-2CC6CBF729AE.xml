@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="98BEE507-B932-3B32-8DA2-2CC6CBF729AE" name="PSY_PAIS">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:31:04 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>PAIS</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PAIS_CODIGO" id="52635E51-4A8C-A53D-4CBF-BDC36BDF4163">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:35:21 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOMBRE" id="209E4AD6-304C-20EE-4C25-BC66F6B227E3">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:35:21 UTC</createdTime>
+<comment>NOMBRE DEL PAIS</comment>
+<commentInRDBMS>NOMBRE DEL PAIS</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="58315F34-C045-5C82-49DE-AA2FFE500B26">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:35:21 UTC</createdTime>
+<comment>A.ACTIVO, I-INACTIVO</comment>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="195D509B-892E-C62B-F992-426E40DEB32B" name="PSY_PAIS_PK">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:35:21 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="52635E51-4A8C-A53D-4CBF-BDC36BDF4163"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

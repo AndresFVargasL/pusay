@@ -1,0 +1,108 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<p:panel id="msgProjectcategoriaUITitle" toggleable="true"
+		collapsed="true" visible="#{!cuestionarioUI.disableButtonModify}"
+		header="#{msgCat.lbl_categoria_titulo}">
+		<h:panelGrid columns="4" id="panelCategoria">
+
+			<h:outputText id="msgConsecutivo_CueCuestionarioCategoria"
+				rendered="false" value="#{msgCat.lbl_categoria_cueCuestionario}" />
+			<p:inputText id="txtConsecutivo_CueCuestionario" rendered="false"
+				value="#{categoriaUI.cueCategoria.cueCuestionario.consecutivo}" />
+
+			<h:outputText id="msgNombreCategoria"
+				value="#{msgCat.lbl_categoria_nombre}" />
+			<p:inputText id="txtNombre"
+				value="#{categoriaUI.cueCategoria.nombre}" />
+
+			<h:outputText id="msgDescripcionCategoria"
+				value="#{msgCat.lbl_categoria_descripcion}" />
+			<p:inputText id="txtDescripcionCategoria"
+				value="#{categoriaUI.cueCategoria.descripcion}" />
+			<h:outputText id="msgEstadoCategoria"
+				value="#{msgCat.lbl_categoria_estado}" />
+
+			<p:selectOneRadio id="txtEstado"
+				value="#{categoriaUI.cueCategoria.estado}">
+				<f:selectItem itemLabel="#{msgGen.lbl_general_activo}" itemValue="1" />
+				<f:selectItem itemLabel="#{msgGen.lbl_general_inactivo}"
+					itemValue="0" />
+			</p:selectOneRadio>
+		</h:panelGrid>
+		<br />
+		<h:panelGrid id="panelBotonesCategoria" columns="4">
+
+			<p:commandButton id="btnSaveCategoria"
+				value="#{msgGen.btn_general_save}"
+				action="#{categoriaUI.action_save}"
+				update="msg,panelCategoria,panelCategoria,:form:tableCategorias"
+				disabled="#{categoriaUI.disableButtonSave}" />
+			<p:commandButton id="btnModifyCategoria"
+				value="#{msgGen.btn_general_modify}"
+				action="#{categoriaUI.action_modify}"
+				update="msg,panelCategoria,panelCategoria,:form:tableCategorias"
+				disabled="#{categoriaUI.disableButtonModify}" />
+			<p:commandButton id="btnDeleteCategoria"
+				value="#{msgGen.btn_general_delete}"
+				action="#{categoriaUI.action_delete}"
+				update="msg,panelCategoria,panelCategoria,:form:tableCategorias"
+				disabled="#{categoriaUI.disableButtonDelete}"
+				onclick="return confirm('#{msgGen.lbl_general_confirm}')" />
+			<p:commandButton id="btnClearCategoria"
+				value="#{msgGen.btn_general_clear}"
+				action="#{categoriaUI.action_clear}"
+				update="msg,panelCategoria,panelCategoria, :form:msgProjectPregunta"
+				disabled="false" />
+
+		</h:panelGrid>
+		<br />
+
+		<p:dataTable value="#{categoriaUI.data}" var="categoria"
+			id="tableCategorias" paginator="true" rows="5">
+
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgCat.lbl_categoria_nombre}" />
+				</f:facet>
+				<h:outputText value="#{categoria.nombre}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgCat.lbl_categoria_descripcion}" />
+				</f:facet>
+				<h:outputText value="#{categoria.descripcion}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgCat.lbl_categoria_estado}" />
+				</f:facet>
+				<h:outputText
+					value="#{categoria.estado eq 1 ? 'Activo' : 'Inactivo'}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="" />
+				</f:facet>
+				<p:commandButton id="selectButton"
+					action="#{categoriaUI.action_load_entity}"
+					update=":form:msg,:form:panelCategoria,:form:panelBotonesCategoria, :form:msgProjectPregunta"
+					icon="ui-icon-search">
+					<f:setPropertyActionListener
+						target="#{categoriaUI.selectedCueCategoria}" value="#{categoria}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+	</p:panel>
+</h:body>
+</html>

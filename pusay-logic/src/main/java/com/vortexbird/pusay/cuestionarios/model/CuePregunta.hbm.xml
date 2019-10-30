@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-jun-2013 19:14:26 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+	<class name="com.vortexbird.pusay.cuestionarios.model.CuePregunta" table="CUE_PREGUNTA">
+		<id name="consecutivo" type="java.lang.Long">
+			<column name="CONSECUTIVO" precision="10" scale="0" />
+			<generator class="native">
+				<param name="sequence">SEQ_CUE_PREGUNTA</param>
+			</generator>
+		</id>
+		<many-to-one name="cueCategoria" lazy="false"
+			class="com.vortexbird.pusay.cuestionarios.model.CueCategoria" fetch="select">
+			<column name="CATEGORIA" precision="10" scale="0" not-null="true" />
+		</many-to-one>
+		<property name="enunciado" type="java.lang.String">
+			<column name="ENUNCIADO" length="512" not-null="true" />
+		</property>
+		<property name="condicion" type="java.lang.String">
+			<column name="CONDICION" length="512" not-null="true" />
+		</property>
+		<property name="orden" type="java.lang.Long">
+			<column name="ORDEN" precision="10" scale="0" not-null="true" />
+		</property>
+		<property name="puntaje" type="java.lang.Long">
+			<column name="PUNTAJE" precision="3" scale="0" />
+		</property>
+		<property name="labelAmpliacion" type="java.lang.String">
+			<column name="LABEL_AMPLIACION" length="512" />
+		</property>
+		<property name="nroRespuestas" type="java.lang.Long">
+			<column name="NRO_RESPUESTAS" precision="3" scale="0"
+				not-null="true" />
+		</property>
+		<property name="estado" type="java.lang.Long">
+			<column name="ESTADO" precision="10" scale="0" not-null="true" />
+		</property>
+		<set name="cueNavegacionsForPreguntaDestino" inverse="true" lazy="true"
+			table="CUE_NAVEGACION" fetch="select">
+			<key>
+				<column name="PREGUNTA_DESTINO" precision="10" scale="0"
+					not-null="true" />
+			</key>
+			<one-to-many class="com.vortexbird.pusay.cuestionarios.model.CueNavegacion" />
+		</set>
+		<set name="cueNavegacionsForPreguntaOrigen" inverse="true" lazy="true"
+			table="CUE_NAVEGACION" fetch="select">
+			<key>
+				<column name="PREGUNTA_ORIGEN" precision="10" scale="0"
+					not-null="true" />
+			</key>
+			<one-to-many class="com.vortexbird.pusay.cuestionarios.model.CueNavegacion" />
+		</set>
+		<set name="cueOpcions" inverse="true" lazy="true" table="CUE_OPCION"
+			fetch="select">
+			<key>
+				<column name="PREGUNTA" precision="10" scale="0" not-null="true" />
+			</key>
+			<one-to-many class="com.vortexbird.pusay.cuestionarios.model.CueOpcion" />
+		</set>
+	</class>
+</hibernate-mapping>

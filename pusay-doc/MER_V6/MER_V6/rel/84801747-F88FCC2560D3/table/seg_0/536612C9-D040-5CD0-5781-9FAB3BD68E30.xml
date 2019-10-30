@@ -1,0 +1,119 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="536612C9-D040-5CD0-5781-9FAB3BD68E30" name="PSY_OBJETIVO_PLAN">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 20:53:10 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="OBPL_CODIGO" id="06DDA0D6-9334-72D7-10E9-AEE649512BDE">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 20:55:27 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PEST_CODIGO" id="939F8DD7-4F9A-E992-CB09-D83AEBED3D08">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 20:56:32 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1838613D-ED82-6DFA-49DB-46EF6CE450BA" referredColumn="19997DFD-83AF-9363-CD39-14023390B25C"/>
+</associations>
+</Column>
+<Column name="FECHA_INICIO" id="20B36CE3-F717-CE99-70D2-4078AF4AA270">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:05:19 UTC</createdTime>
+<comment>FECHA DE INICIO DEL OBJETIVO PLAN</comment>
+<commentInRDBMS>FECHA DE INICIO DEL OBJETIVO PLAN</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FECHA_FIN" id="C1B53773-49B9-FCDB-6452-779FB45EA6CC">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:05:19 UTC</createdTime>
+<comment>FECHA EN QUE SE GENERA EL PLAN ESTRATEGICO DEFINITIVO</comment>
+<commentInRDBMS>FECHA EN QUE SE GENERA EL PLAN ESTRATEGICO DEFINITIVO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_OBJETIVO_PLAN" id="E51541FF-8758-AF39-E7EF-47DD9D577B1D">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:05:19 UTC</createdTime>
+<comment>ESTADOS POR LO QUE PUEDE PASAR LA DEFINICION DE LOS OBJETIVOS CORPORATIVOS</comment>
+<commentInRDBMS>ESTADOS POR LO QUE PUEDE PASAR LA DEFINICION DE LOS OBJETIVOS CORPORATIVOS</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="DD13BF46-98B3-3EFE-7B0B-0E5E24F3A12F">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 21:05:19 UTC</createdTime>
+<comment>A-ACTIVO, I-INACTIVO</comment>
+<commentInRDBMS>A-ACTIVO, I-INACTIVO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F652C53C-2073-F8E3-3AB1-7EE2F254C72E" name="PSY_OBJETIVO_PLAN_PK">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 20:55:27 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="06DDA0D6-9334-72D7-10E9-AEE649512BDE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0F7AAC74-F2EA-93F2-54B2-47BC8302C5C3" name="PEST_OBPL_FK">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 20:56:32 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="939F8DD7-4F9A-E992-CB09-D83AEBED3D08"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

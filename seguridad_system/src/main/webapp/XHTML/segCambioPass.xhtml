@@ -1,0 +1,73 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	</h:head>		
+	
+	<h:body>
+		  <ui:composition template="/XHTML/CommonColumnsContent.xhtml">
+			<ui:define name="header">
+				<ui:include src="/WEB-INF/facelets/header.jspx" />
+			</ui:define>
+        	<br/>
+        	<br/> 	
+		 
+		 <ui:define name="body">	
+			<f:view>
+		 
+		  <h:form>
+			<div align="center">
+               <h:link id="cmdBack" outcome="goInitialMenu" value="Back" style="color:blue;" />
+			 </div>
+			 <br />
+			<p:panel id="msgProjectSegCambioPassTitle" header="SegCambioPass" >
+			   <p:messages id="msg" showDetail="true"/>
+			   <p:growl id="men"/>
+			       <h:panelGrid columns="2" id="panel" >
+												 <h:outputText id="msgCapCodigo" value="CapCodigo"/>
+						 <p:inputText id="txtCapCodigo" binding="#{segCambioPassView.txtCapCodigo}">
+						 <p:ajax update="panel,msg,panelBotones" listener="#{segCambioPassView.listener_txtId}"/>
+						 </p:inputText>	
+																		
+												<h:outputText id="msgCapEstado" value=" CapEstado"/>
+						<p:inputText id="txtCapEstado" disabled="true" binding="#{segCambioPassView.txtCapEstado}"/>
+												<h:outputText id="msgCapToken" value=" CapToken"/>
+						<p:inputText id="txtCapToken" disabled="true" binding="#{segCambioPassView.txtCapToken}"/>
+												<h:outputText id="msgUsuCodigo_SegUsuario" value=" UsuCodigo_SegUsuario"/>
+						<p:inputText id="txtUsuCodigo_SegUsuario" disabled="true" binding="#{segCambioPassView.txtUsuCodigo_SegUsuario}"/>
+												
+																				<h:outputText id="msgCapFechaFin" value=" CapFechaFin"/>
+														<p:calendar showOn="button" navigator="true" locale="en" onSelectUpdate="men"
+							binding="#{segCambioPassView.txtCapFechaFin}" selectListener="#{segCambioPassView.listener_txtCapFechaFin}"/>
+														<h:outputText id="msgCapFechaIni" value=" CapFechaIni"/>
+														<p:calendar showOn="button" navigator="true" locale="en" onSelectUpdate="men"
+							binding="#{segCambioPassView.txtCapFechaIni}" selectListener="#{segCambioPassView.listener_txtCapFechaIni}"/>
+																			
+				   </h:panelGrid>
+				   
+				   <h:panelGrid id="panelBotones" columns="4">
+					
+						<p:commandButton id="btnSave" disabled="true" value="Save" action="#{segCambioPassView.action_save}" update="msg,panel,panelBotones"          binding="#{segCambioPassView.btnSave}" />
+						<p:commandButton id="btnModify" disabled="true" value="Modify" action="#{segCambioPassView.action_modify}" update="msg,panel,panelBotones"    binding="#{segCambioPassView.btnModify}" />
+						<p:commandButton id="btnDelete" disabled="true" value="Delete" action="#{segCambioPassView.action_delete}" update="msg,panel,panelBotones"    binding="#{segCambioPassView.btnDelete}"  />
+						<p:commandButton id="btnClear" disabled="false" value="Clear" action="#{segCambioPassView.action_clear}" update="msg,panel,panelBotones"      binding="#{segCambioPassView.btnClear}" />
+				   
+				   </h:panelGrid>
+					
+			</p:panel>
+			
+		</h:form>	
+		  </f:view>
+	 </ui:define>	  
+	
+	  <ui:define name="footer">
+		 <ui:include src="/WEB-INF/facelets/footer.jspx" />
+	   </ui:define>	
+	</ui:composition>
+	</h:body>	
+
+</html>	

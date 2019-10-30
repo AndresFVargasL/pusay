@@ -1,0 +1,90 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	</h:head>
+
+	<h:body>
+	    <ui:composition template="/XHTML/CommonColumnsContent.xhtml">
+			<ui:define name="header">
+				<ui:include src="/WEB-INF/facelets/header.jspx" />
+			</ui:define>
+        <br/>
+        <br/> 	
+	   <ui:define name="body">	
+		 <f:view>
+	   <h:form>
+			<div align="center">
+               <h:link id="cmdBack" outcome="goInitialMenu" value="Back" style="color:blue;" />
+			 </div>
+			 <br />
+			 
+			<p:panel id="msgProjectClientesTitle" header="SegCambioPassData">
+				
+				<p:dataTable value="#{segCambioPassView.data}" var="segCambioPass"
+					paginator="true" rows="5">
+																	<p:column filterBy="#{segCambioPass.capCodigo}" sortBy="#{segCambioPass.capCodigo}" >
+							 <f:facet name="header">
+							<h:outputText value="capCodigo"/>
+							</f:facet>
+							 <h:outputText value="#{segCambioPass.capCodigo}"/>
+							 </p:column>
+                    																
+							<p:column filterBy="#{segCambioPass.capEstado}" sortBy="#{segCambioPass.capEstado}" >
+							 <f:facet name="header">
+							<h:outputText value="CapEstado"/>
+							</f:facet>
+							 <h:outputText value="#{segCambioPass.capEstado}"/>
+							</p:column>   
+                    						
+							<p:column filterBy="#{segCambioPass.capFechaFin}" sortBy="#{segCambioPass.capFechaFin}" >
+							 <f:facet name="header">
+							<h:outputText value="CapFechaFin"/>
+							</f:facet>
+							 <h:outputText value="#{segCambioPass.capFechaFin}"/>
+							</p:column>   
+                    						
+							<p:column filterBy="#{segCambioPass.capFechaIni}" sortBy="#{segCambioPass.capFechaIni}" >
+							 <f:facet name="header">
+							<h:outputText value="CapFechaIni"/>
+							</f:facet>
+							 <h:outputText value="#{segCambioPass.capFechaIni}"/>
+							</p:column>   
+                    						
+							<p:column filterBy="#{segCambioPass.capToken}" sortBy="#{segCambioPass.capToken}" >
+							 <f:facet name="header">
+							<h:outputText value="CapToken"/>
+							</f:facet>
+							 <h:outputText value="#{segCambioPass.capToken}"/>
+							</p:column>   
+                    						
+							<p:column filterBy="#{segCambioPass.usuCodigo_SegUsuario}" sortBy="#{segCambioPass.usuCodigo_SegUsuario}" >
+							 <f:facet name="header">
+							<h:outputText value="UsuCodigo_SegUsuario"/>
+							</f:facet>
+							 <h:outputText value="#{segCambioPass.usuCodigo_SegUsuario}"/>
+							</p:column>   
+                    						
+					
+				
+				</p:dataTable>	
+					
+				
+			</p:panel>
+				
+	   </h:form>
+	     </f:view>
+	 </ui:define>
+	 
+	 <ui:define name="footer">
+		 <ui:include src="/WEB-INF/facelets/footer.jspx" />
+	 </ui:define>	
+</ui:composition> 
+   	 
+	</h:body>	
+	
+</html>	

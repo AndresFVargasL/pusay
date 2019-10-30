@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05-ago-2015 11:08:40 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyObjetivoAmbiental" table="psy_objetivo_ambiental" schema="public">
+        <id name="codigo" type="java.lang.Long">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="descripcion" type="java.lang.String">
+            <column name="descripcion" length="100" not-null="true" />
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true" />
+        </property>
+        <set name="psyImpactoObjetivos" table="psy_impacto_objetivo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="obam_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyImpactoObjetivo" />
+        </set>
+        <set name="psyEvaluacionPeaObjetivos" table="psy_evaluacion_pea_objetivo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="obam_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyEvaluacionPeaObjetivo" />
+        </set>
+        <set name="psyIndicadors" table="psy_indicador" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="obam_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyIndicador" />
+        </set>
+    </class>
+</hibernate-mapping>

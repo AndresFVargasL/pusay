@@ -1,0 +1,197 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FEE12AE7-B9E7-E635-6A67-9AE505185F7F" name="PSY_TAREA">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:00:00 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>TARE</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TARE_CODIGO" id="950750BB-D302-2959-3226-5FE28F56C677">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:00:21 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PLAC_CODIGO" id="C6BC7801-AC94-92B9-581C-211E387362CE">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:03:19 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="05B29E5C-A67E-0E40-6E10-F9ADD5F25B0C" referredColumn="316951A5-8146-69EE-7FA1-6D4E5040446F"/>
+</associations>
+</Column>
+<Column name="RESP_CODIGO" id="DC364962-6E58-94F2-7029-4DAA3D25F09D">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:07:37 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8756CA60-9A3C-917A-47A2-8D6F2EA1A7B7" referredColumn="E3B56AE9-CE0A-D101-0CE6-CAFAA9230451"/>
+</associations>
+</Column>
+<Column name="DESCRIPCION" id="31DDFC37-0A2A-FF1B-46FB-56BD95545F09">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:21:09 UTC</createdTime>
+<comment>DESCRIPCION DE LA TAREA</comment>
+<commentInRDBMS>DESCRIPCION DE LA TAREA</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000</dataTypeSize>
+<ownDataTypeParameters>2000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FECHA_INICIO" id="3905E0AD-8073-C402-EF43-CB56017BD253">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:21:09 UTC</createdTime>
+<comment>FECHA INICIO DE LA TAREA</comment>
+<commentInRDBMS>FECHA INICIO DE LA TAREA</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FECHA_FIN_PLANEADA" id="55068E47-7910-19AA-32C0-05005B939EA7">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:21:09 UTC</createdTime>
+<comment>FECHA EN QUE SE PLANEA TERMINAR LA TAREA</comment>
+<commentInRDBMS>FECHA EN QUE SE PLANEA TERMINAR LA TAREA</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FECHA_FIN_REAL" id="AD5AB3A5-722E-F66F-0611-ECB5AA9CD7D3">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:21:09 UTC</createdTime>
+<comment>FECHA REAL EN QUE SE TERMINA LA TAREA</comment>
+<commentInRDBMS>FECHA REAL EN QUE SE TERMINA LA TAREA</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SEMANA_FIN_PLANEADA" id="4B5B5DF3-15A1-24BE-962A-0EED12265499">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:21:09 UTC</createdTime>
+<comment>NUMERO DE LA SEMANA EN QUE SE PLANEA TERMINAR LA TAREA</comment>
+<commentInRDBMS>NUMERO DE LA SEMANA EN QUE SE PLANEA TERMINAR LA TAREA</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SEMANA_FIN_REAL" id="C40048B4-EC51-6BAB-248F-F561AD587826">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:21:09 UTC</createdTime>
+<comment>SEMANA REAL DE FINALIZACION DE LA TAREA</comment>
+<commentInRDBMS>SEMANA REAL DE FINALIZACION DE LA TAREA</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_TAREA" id="62AB27EB-1093-01A4-2261-D30B55205D3A">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:21:09 UTC</createdTime>
+<comment>ESTADOS POR LOS CUALES PUEDE PASAR LA TAREA</comment>
+<commentInRDBMS>ESTADOS POR LOS CUALES PUEDE PASAR LA TAREA</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="97D56003-6DD9-67B9-16E4-B7718764F900">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:21:09 UTC</createdTime>
+<comment>A-ACTIVO,I-INACTIVO</comment>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E6940860-A458-1D15-40FB-D89949F8A7BD" name="PSY_TAREA_PK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:00:21 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="950750BB-D302-2959-3226-5FE28F56C677"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="23E877F3-DDA9-AAD1-0571-B07ECD59DE03" name="TARE_PLAC_FK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:03:19 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C6BC7801-AC94-92B9-581C-211E387362CE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="679762A9-E047-F5AB-C2BC-721B5C114A08" name="TARE_RESP_FK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:07:37 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DC364962-6E58-94F2-7029-4DAA3D25F09D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

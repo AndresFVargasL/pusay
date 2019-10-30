@@ -1,0 +1,107 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+			<script type="text/javascript">
+			function goTop() {
+				window.scrollTo(0, 0);
+			}
+		</script>
+			<f:loadBundle basename="i18n.msj_diligenciar_cuestionario" var="msg" />
+			<f:loadBundle basename="i18n.msj_general" var="msgGen" />
+
+			<f:view>
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+					draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form id="form">
+					<br />
+					<p:messages id="msg" showDetail="true" />
+					<p:growl id="men" />
+					<div align="center">
+						<p:outputLabel rendered="#{diligenciarCuestionarioUI.pintarInfoCuestionario1}" value="ENCUESTA DE DESEMPEÑO AMBIENTAL" style="color: darkgreen; font-weight:bold; font-size:large"></p:outputLabel>
+						<p:outputLabel rendered="#{diligenciarCuestionarioUI.pintarInfoCuestionario2}" value="ENCUESTA DE GRADO DE AFECTACION" style="color: darkgreen; font-weight:bold; font-size:large"></p:outputLabel>
+						<p:outputLabel rendered="#{diligenciarCuestionarioUI.pintarInfoCuestionario3}" value="ENCUESTA DE NIVEL TECNICO" style="color: darkgreen; font-weight:bold; font-size:large"></p:outputLabel>
+						<br/>
+						<br/>
+					</div>
+					<div align="left">
+						<br/>
+						<p:outputLabel
+							value="#{msg.lbl_diligenciar_bienvenido}: #{diligenciarCuestionarioUI.contacto.nombre} #{diligenciarCuestionarioUI.contacto.apellido}" />
+						<br/>
+						<br/>
+						
+						<h:outputText rendered="#{diligenciarCuestionarioUI.pintarInfoCuestionario1}" value="En la siguiente encuesta, seleccione SI o NO para responder cada pregunta" />
+						<h:outputText rendered="#{diligenciarCuestionarioUI.pintarInfoCuestionario2}" value="En la siguiente encuesta, seleccione de 1 a 5 el grado de afectacion en que la organizacion se siente afectada por lo asuntos ambientales, siendo 5 mayor afectacion y 1 menor afectacion. Considere las variables expuestas en cada pregunta." />
+						<h:outputText rendered="#{diligenciarCuestionarioUI.pintarInfoCuestionario3}" value="En la siguiente encuesta, seleccione SI o NO para responder cada pregunta" />
+					</div>
+					<br/>
+					<h:panelGrid columns="1" id="panel" width="100%"
+						rendered="#{diligenciarCuestionarioUI.renderEncuesta}"
+						header="#{msg.lbl_diligenciar_titulo}">
+
+						<p:dataGrid var="pregunta" id="listaPreguntas"
+							value="#{diligenciarCuestionarioUI.listPreguntas}" columns="1"
+							rows="12" paginator="false" rowsPerPageTemplate="9,12,15"
+							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+							<p:panel header="#{pregunta.enunciado}" id="pnlEnunciado">
+								<h:panelGrid columns="1" style="width:100%" id="panelRespuesta">
+
+									<p:selectOneRadio value="#{pregunta.selectedOpcion}"
+										immediate="true" layout="pageDirection"
+										rendered="#{pregunta.nroRespuestas eq 1}" valueChangeListener="#{diligenciarCuestionarioUI.actionListenerValidateAmpliacion}">
+										<p:ajax update="panelRespuesta"
+											partialSubmit="true" />
+										<f:selectItems value="#{pregunta.listOpciones}" var="opcion"
+											itemLabel="#{opcion.enunciado}"
+											itemValue="#{opcion.consecutivo}" />
+									</p:selectOneRadio>
+									<p:outputLabel value="#{pregunta.labelAmpliacion}"
+										rendered="#{pregunta.requiereAmpliacion}" />
+									<p:inputText value="#{pregunta.respuestaAmpliacion}" maxlength="200" style="width: 200px;"
+										rendered="#{pregunta.requiereAmpliacion}" />
+
+									<h:panelGroup rendered="#{pregunta.nroRespuestas ne 1}">
+										<p:selectManyCheckbox value="#{pregunta.selectedOptions}"
+											immediate="true" layout="pageDirection"
+											rendered="#{pregunta.nroRespuestas ne 1}">
+											<f:selectItems value="#{pregunta.listOpciones}" var="opcion"
+												itemLabel="#{opcion.enunciado}"
+												itemValue="#{opcion.consecutivo}" />
+										</p:selectManyCheckbox>
+									</h:panelGroup>
+								</h:panelGrid>
+							</p:panel>
+						</p:dataGrid>
+					</h:panelGrid>
+					<div align="center">
+						<p:commandButton id="btnSave" value="#{msgGen.btn_general_save}"
+							rendered="#{diligenciarCuestionarioUI.renderEncuesta}"
+							action="#{diligenciarCuestionarioUI.actionSave}"
+							onclick="goTop()"
+							update="msg,panel,men" />
+					</div>
+
+					<br />
+					<br />
+					<div align="center">
+						<p:outputLabel
+							value="#{diligenciarCuestionarioUI.mensajeDiligenciado}"
+							rendered="#{!diligenciarCuestionarioUI.renderEncuesta}" />
+					</div>
+				</h:form>
+			</f:view>
+		</ui:define>
+
+</ui:composition>

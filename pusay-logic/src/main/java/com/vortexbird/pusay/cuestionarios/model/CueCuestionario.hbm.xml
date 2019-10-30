@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-jun-2013 19:14:26 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.cuestionarios.model.CueCuestionario" table="CUE_CUESTIONARIO" lazy="false">
+        <id name="consecutivo" type="java.lang.Long">
+            <column name="CONSECUTIVO" precision="10" scale="0" />
+            <generator class="native">
+		    	<param name="sequence">SEQ_CUE_CUESTIONARIO</param>
+		   </generator>
+        </id>
+        <many-to-one name="cueEstado" class="com.vortexbird.pusay.cuestionarios.model.CueEstado" fetch="select">
+            <column name="ESTADO" precision="10" scale="0" />
+        </many-to-one>
+        <many-to-one name="cueConfiguracion" class="com.vortexbird.pusay.cuestionarios.model.CueConfiguracion" fetch="select">
+            <column name="CONFIGURACION" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cueResponsable" class="com.vortexbird.pusay.cuestionarios.model.CueResponsable" fetch="select">
+            <column name="IDENTIFICACION" precision="17" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cueCuestionarioTipo" class="com.vortexbird.pusay.cuestionarios.model.CueCuestionarioTipo" fetch="select">
+            <column name="TIPO" precision="10" scale="0" />
+        </many-to-one>
+        <property name="titulo" type="java.lang.String">
+            <column name="TITULO" length="128" not-null="true" />
+        </property>
+        <property name="descripcion" type="java.lang.String">
+            <column name="DESCRIPCION" length="256" not-null="true" />
+        </property>
+        <property name="terminos" type="java.lang.String">
+            <column name="TERMINOS" length="1024" />
+        </property>
+        <property name="fechaCreacion" type="java.util.Date">
+            <column name="FECHA_CREACION" length="11" not-null="true" />
+        </property>
+        <set name="cueNavegacions" inverse="true" lazy="true" table="CUE_NAVEGACION" fetch="select">
+            <key>
+                <column name="CUESTIONARIO" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.cuestionarios.model.CueNavegacion" />
+        </set>
+        <set name="cueCategorias" inverse="true" lazy="true" table="CUE_CATEGORIA" fetch="select">
+            <key>
+                <column name="CUESTIONARIO" precision="10" scale="0" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.cuestionarios.model.CueCategoria" />
+        </set>
+        <set name="cueListaCuestionarios" inverse="true" lazy="true" table="CUE_LISTA_CUESTIONARIO" fetch="select">
+            <key>
+                <column name="CUESTIONARIO" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.cuestionarios.model.CueListaCuestionario" />
+        </set>
+    </class>
+</hibernate-mapping>

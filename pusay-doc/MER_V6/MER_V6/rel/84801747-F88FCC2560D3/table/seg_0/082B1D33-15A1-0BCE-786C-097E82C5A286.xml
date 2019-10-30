@@ -1,0 +1,81 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="082B1D33-15A1-0BCE-786C-097E82C5A286" name="PSY_MONEDA">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:08:31 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>MNDA</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MONE_CODIGO" id="FD212BC1-A61B-6E85-B5CC-A56BE73F9BF1">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:15:38 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOMBRE" id="817FC016-0508-DBC2-66E5-351DC7624FB0">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:15:38 UTC</createdTime>
+<comment>NOMBRE DE LA MONEDA</comment>
+<commentInRDBMS>NOMBRE DE LA MONEDA</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ABREVIATURA" id="3A433634-96EB-AD94-CB4C-8D10D3A019E7">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:15:38 UTC</createdTime>
+<comment>ABREVIATURA DEL NOMBRE MONEDA</comment>
+<commentInRDBMS>ABREVIATURA DEL NOMBRE MONEDA</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="14C13036-1846-8E58-D57D-E60D80F77842">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:15:38 UTC</createdTime>
+<comment>A-ACTIVO, I-INACTIVO</comment>
+<commentInRDBMS>A-ACTIVO, I-INACTIVO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="80BF6D30-2CBF-5B35-7055-FD1E346AC84C" name="PSY_MONEDA_PK">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:15:38 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FD212BC1-A61B-6E85-B5CC-A56BE73F9BF1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

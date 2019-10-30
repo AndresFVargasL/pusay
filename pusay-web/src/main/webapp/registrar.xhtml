@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Pusay</title>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+	<h:outputScript name="js/layout.js" library="sentinel-layout" />
+	<h:outputStylesheet name="css/font-icon-layout.css"
+		library="sentinel-layout" />
+	<h:outputStylesheet name="css/sentinel-layout.css"
+		library="sentinel-layout" />
+	<h:outputStylesheet name="css/core-layout.css"
+		library="sentinel-layout" />
+</h:head>
+
+<h:body class="fontRegular  white-back">
+
+	<p:ajaxStatus onstart="PF('statusDialog').show()"
+		onsuccess="PF('statusDialog').hide()" />
+	<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+		draggable="false" closable="false" resizable="false">
+		<p:graphicImage
+			value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+	</p:dialog>
+
+
+
+	<div
+		class="Container80 MaxWid500 Fnone MarAuto TexAlCenter PaddingTopPercent10">
+		<a href="" id="login-logo"> <h:graphicImage
+				name="images/login.png" library="sentinel-layout" />
+		</a>
+		<div class="EmptyBox10"></div>
+	</div>
+
+	<h:form>
+	 <p:growl id="msgGrowl" autoUpdate="true" showDetail="false"/>
+		<!-- LOGIN BOX COVER START -->
+		<div class="Container80 MaxWid500 white-back Fnone MarAuto BordRad10" id="login-box">
+			<div class="Container100">
+				<div
+					class="Container100 TexAlCenter Animated05 BoxSizeBorder TabBtn left TabBtnActiveLeft"
+					role="1">
+					<div class="Container80 Fnone MarAuto FontBold">
+						<i class="icon-lock"></i> Registrar en Pusay
+					</div>
+				</div>
+
+				<div class="Container90 Fnone MarAuto TexAlCenter TabContent" id="TAB1">
+					<p:wizard id="wzdRegistrar" flowListener="#{registrarView.onFlowProcess}" backLabel="Atras" nextLabel="Siguiente">
+						<p:tab id="infoEmpresa" title="Empresa">
+							<p:panel header="Datos de la Empresa">
+								<div align="left">
+								<h:panelGrid columns="2" columnClasses="label, value "  cellpadding="10">
+								
+									<h:outputText value="NIT: *" />
+									<p:inputText id="NIT" binding="#{registrarView.txtNitEmpresa}" label="NIT" />
+
+									<h:outputText value="Nombre: *" />
+									<p:inputText id="Nombre-Empresa" binding="#{registrarView.txtNombreEmpresa}"
+										 label="Nombre" />
+
+									<h:outputText value="Direccion: *" />
+									<p:inputText id="Dirección-Empresa" binding="#{registrarView.txtDireccionEmpresa}" 
+									 label="Dirección" />
+
+									<h:outputText value="Telefono: *" />
+									<p:inputText id="Teléfono-Empresa" binding="#{registrarView.txtTelefonoEmpresa}" 
+									 label="Teléfono" />
+									
+									<h:outputText value="Pais: *" />
+									
+									<p:selectOneMenu id="somPais" style="width: 200px"
+										value="#{registrarView.somPais}">
+										<f:selectItem itemLabel="Seleccione un Pais" itemValue="0"/>
+										<f:selectItems value="#{registrarView.losPaises}"/>
+										<p:ajax
+											listener="#{registrarView.listener_SomPais()}"
+											update="@([id$=somProvincia])"/>
+									</p:selectOneMenu>
+									<h:outputText id="msgProvincia"
+										value=" Provincia: *" />
+									<p:selectOneMenu id="somProvincia" style="width: 200px"
+										value="#{registrarView.somProvincia}">
+										<f:selectItem itemLabel="Seleccione una provincia" itemValue="0"/>
+										<f:selectItems value="#{registrarView.lasProvincias}"/>
+										<p:ajax
+											listener="#{registrarView.listener_SomProvincia()}"
+											update="@([id$=somCiudad])"/>
+									</p:selectOneMenu>
+									<h:outputText value="Ciudad: *" />
+									<p:selectOneMenu id="somCiudad" style="width: 200px"
+										value="#{registrarView.somCiudad}">
+										<f:selectItem itemLabel="Seleccione una ciudad" itemValue="0"/>
+										<f:selectItems value="#{registrarView.lasCiudades}"/>
+									</p:selectOneMenu>
+									
+								</h:panelGrid>
+								</div>
+							</p:panel>
+						</p:tab>
+
+						<p:tab id="infoResopnsableAmbiental" title="Responsable Ambiental">
+							<p:panel header="Informacion Responsable Ambiental">
+								<div align="left">
+								<h:panelGrid columns="2" columnClasses="label, value" >
+									<h:outputText value="Nombres: *" />
+									<p:inputText id="Nombres" binding="#{registrarView.txtNombreResponsable}" 
+									 label="Nombres"/>
+
+									<h:outputText value="Apellidos: *" />
+									<p:inputText id="Apellidos" binding="#{registrarView.txtApellidoResponsable}" 
+									 label="Apellidos"/>
+									
+									<h:outputText value="Telefono: *" />
+									<p:inputText id="Teléfono" binding="#{registrarView.txtTelefonoResponsable}" 
+									 label="Teléfono"/>
+
+									<h:outputText value="E-Mail: *" />
+									<p:inputText id="E-Mail" binding="#{registrarView.txtEmailResponsable}" 
+									 label="E-Mail"/>
+									
+									<h:outputText value="Contraseña: *" />
+									<p:inputText id="Clave" binding="#{registrarView.txtContrasena}" 
+									 label="Clave" type="password"/>
+									
+									<h:outputText value="Confirmar Clave: *" />
+									<p:inputText id="Confirmacion-Clave" binding="#{registrarView.txtConfirmaContrasena}" 
+									 label="Confirmacion Clave" type="password"/>
+
+									
+								</h:panelGrid>
+								</div>
+							</p:panel>
+							<div align="left">
+							<p:commandButton binding="#{registrarView.btnRegistrar}" id="btnRegistrar" value="Registrar" action="#{registrarView.save()}" update="@([id$=wzdRegistrar]), @([id$=infoResopnsableAmbiental]), @([id$=infoEmpresa])" styleClass="Fs5	"/>
+							<p:commandButton binding="#{registrarView.btnLimpiar}" id="btnLimpiar" value="Limpiar" action="#{registrarView.clean()}" update="@([id$=wzdRegistrar]), @([id$=infoResopnsableAmbiental]), @([id$=infoEmpresa])" styleClass="Fs5"/>
+							</div>
+						</p:tab>
+					</p:wizard>
+					<div class="EmptyBox30"></div>
+					<div class="Container85 Fnone MarAuto softgray">
+                    <p:link href="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/login.xhtml" value="Volver al Inicio de Sesion"/>
+                	</div>
+                	<div class="EmptyBox50"></div>
+				</div>
+
+			</div>
+		</div>
+		<!-- LOGIN BOX COVER END -->
+	</h:form>
+</h:body>
+
+</html>

@@ -1,0 +1,104 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	</h:head>
+
+	<h:body>
+	    <ui:composition template="/XHTML/CommonColumnsContent.xhtml">
+			<ui:define name="header">
+				<ui:include src="/WEB-INF/facelets/header.jspx" />
+			</ui:define>
+        <br/>
+        <br/> 	
+	   <ui:define name="body">	
+		 <f:view>
+	   <h:form>
+			<div align="center">
+               <h:link id="cmdBack" outcome="goInitialMenu" value="Back" style="color:blue;" />
+			 </div>
+			 <br />
+			 
+			<p:panel id="msgProjectClientesTitle" header="SegPermisoData">
+				
+				<p:dataTable value="#{segPermisoView.data}" var="segPermiso"
+					paginator="true" rows="5">
+																	<p:column filterBy="#{segPermiso.perCodigo}" sortBy="#{segPermiso.perCodigo}" >
+							 <f:facet name="header">
+							<h:outputText value="perCodigo"/>
+							</f:facet>
+							 <h:outputText value="#{segPermiso.perCodigo}"/>
+							 </p:column>
+                    																
+							<p:column filterBy="#{segPermiso.perEstadoRegistro}" sortBy="#{segPermiso.perEstadoRegistro}" >
+							 <f:facet name="header">
+							<h:outputText value="PerEstadoRegistro"/>
+							</f:facet>
+							 <h:outputText value="#{segPermiso.perEstadoRegistro}"/>
+							</p:column>   
+                    						
+							<p:column filterBy="#{segPermiso.ciaCodigo_SegCompania}" sortBy="#{segPermiso.ciaCodigo_SegCompania}" >
+							 <f:facet name="header">
+							<h:outputText value="CiaCodigo_SegCompania"/>
+							</f:facet>
+							 <h:outputText value="#{segPermiso.ciaCodigo_SegCompania}"/>
+							</p:column>   
+                    						
+							<p:column filterBy="#{segPermiso.gruCodigo_SegGrupoOpcion}" sortBy="#{segPermiso.gruCodigo_SegGrupoOpcion}" >
+							 <f:facet name="header">
+							<h:outputText value="GruCodigo_SegGrupoOpcion"/>
+							</f:facet>
+							 <h:outputText value="#{segPermiso.gruCodigo_SegGrupoOpcion}"/>
+							</p:column>   
+                    						
+							<p:column filterBy="#{segPermiso.opcCodigo_SegOpcion}" sortBy="#{segPermiso.opcCodigo_SegOpcion}" >
+							 <f:facet name="header">
+							<h:outputText value="OpcCodigo_SegOpcion"/>
+							</f:facet>
+							 <h:outputText value="#{segPermiso.opcCodigo_SegOpcion}"/>
+							</p:column>   
+                    						
+							<p:column filterBy="#{segPermiso.rolCodigo_SegRol}" sortBy="#{segPermiso.rolCodigo_SegRol}" >
+							 <f:facet name="header">
+							<h:outputText value="RolCodigo_SegRol"/>
+							</f:facet>
+							 <h:outputText value="#{segPermiso.rolCodigo_SegRol}"/>
+							</p:column>   
+                    						
+							<p:column filterBy="#{segPermiso.sucCodigo_SegSucursal}" sortBy="#{segPermiso.sucCodigo_SegSucursal}" >
+							 <f:facet name="header">
+							<h:outputText value="SucCodigo_SegSucursal"/>
+							</f:facet>
+							 <h:outputText value="#{segPermiso.sucCodigo_SegSucursal}"/>
+							</p:column>   
+                    						
+							<p:column filterBy="#{segPermiso.usuCodigo_SegUsuario}" sortBy="#{segPermiso.usuCodigo_SegUsuario}" >
+							 <f:facet name="header">
+							<h:outputText value="UsuCodigo_SegUsuario"/>
+							</f:facet>
+							 <h:outputText value="#{segPermiso.usuCodigo_SegUsuario}"/>
+							</p:column>   
+                    						
+					
+				
+				</p:dataTable>	
+					
+				
+			</p:panel>
+				
+	   </h:form>
+	     </f:view>
+	 </ui:define>
+	 
+	 <ui:define name="footer">
+		 <ui:include src="/WEB-INF/facelets/footer.jspx" />
+	 </ui:define>	
+</ui:composition> 
+   	 
+	</h:body>	
+	
+</html>	

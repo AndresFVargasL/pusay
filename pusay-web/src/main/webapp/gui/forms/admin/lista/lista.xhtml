@@ -1,0 +1,243 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+
+			<f:loadBundle basename="i18n.msj_lista" var="msg" />
+			<f:loadBundle basename="i18n.msj_general" var="msgContactoGen" />
+			<f:loadBundle basename="i18n.msj_contacto" var="msgContacto" />
+
+
+			<f:view>
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+					draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form id="form">
+					<br />
+					<p:panel id="msgContactoProjectCueListaTitle"
+						header="#{msg.lbl_lista_titulo}">
+						<p:messages id="msgLista" showDetail="true" />
+						<p:growl id="men" />
+						<h:panelGrid columns="4" id="panel">
+
+							<h:outputText id="msgContactoNombre"
+								value="#{msg.lbl_lista_nombre}" />
+							<p:inputText id="txtNombre" value="#{listaUI.cueLista.nombre}"  maxlength="256"/>
+							<h:outputText id="msgContactoDescripcion"
+								value="#{msg.lbl_lista_descripcion}" />
+							<p:inputTextarea id="txtDescripcion" style="width: 200px; height: 80px;" maxlength="512"
+								value="#{listaUI.cueLista.descripcion}" />
+							<h:outputText id="msgContactoEstado"
+								value="#{msg.lbl_lista_estado}" />
+
+							<p:selectOneRadio id="txtEstado"
+								value="#{listaUI.cueLista.estado}">
+								<f:selectItem itemLabel="#{msgContactoGen.lbl_general_activo}"
+									itemValue="1" />
+								<f:selectItem itemLabel="#{msgContactoGen.lbl_general_inactivo}"
+									itemValue="0" />
+							</p:selectOneRadio>
+
+						</h:panelGrid>
+						<br />
+						<h:panelGrid id="panelBotones" columns="4">
+
+							<p:commandButton id="btnSave"
+								value="#{msgContactoGen.btn_general_save}"
+								action="#{listaUI.action_save}"
+								update="msgLista,panel,panelBotones,:form:tableLista"
+								disabled="#{listaUI.disableButtonSave}"></p:commandButton>
+							<p:commandButton id="btnModify"
+								value="#{msgContactoGen.btn_general_modify}"
+								action="#{listaUI.action_modify}"
+								update="msgLista,panel,panelBotones,:form:tableLista"
+								disabled="#{listaUI.disableButtonModify}"></p:commandButton>
+							<p:commandButton id="btnDelete"
+								value="#{msgContactoGen.btn_general_delete}"
+								action="#{listaUI.action_delete}"
+								update="msgLista,panel,panelBotones,:form:tableLista"
+								disabled="#{listaUI.disableButtonDelete}"
+								onclick="return confirm('#{msgContactoGen.lbl_general_confirm}')"></p:commandButton>
+							<p:commandButton id="btnClear"
+								value="#{msgContactoGen.btn_general_clear}"
+								action="#{listaUI.action_clear}"
+								update="msgLista,panel,panelBotones" disabled="false"></p:commandButton>
+
+						</h:panelGrid>
+						<br />
+
+						<p:dataTable value="#{listaUI.data}" var="cueLista"
+							paginator="true" rows="8" id="tableLista">
+
+							<p:column sortBy="#{cueLista.nombre}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_lista_nombre}" />
+								</f:facet>
+								<h:outputText value="#{cueLista.nombre}" />
+							</p:column>
+
+							<p:column sortBy="#{cueLista.descripcion}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_lista_descripcion}" />
+								</f:facet>
+								<h:outputText value="#{cueLista.descripcion}" />
+							</p:column>
+
+							<p:column sortBy="#{cueLista.estado}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_lista_estado}" />
+								</f:facet>
+								<h:outputText value="#{cueLista.estado eq 1 ? 'Activo' : 'Inactivo'}" />
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="" />
+								</f:facet>
+								<p:commandButton id="selectButton"
+									action="#{listaUI.action_load_entity}"
+									update=":form:msgContacto,:form:panel,:form:panelBotones"
+									icon="ui-icon-search">
+									<f:setPropertyActionListener
+										target="#{listaUI.selectedCueLista}" value="#{cueLista}" />
+								</p:commandButton>
+
+								<p:commandButton id="addButton"
+									action="#{listaUI.action_load_entity}"
+									update=":form:msgContacto,:form:panel,:form:panelBotones, :form:listaContacto"
+									onclick="PF('dlg2').show()" value="#{msg.lbl_lista_gestionarEncuestados}">
+									
+									<f:setPropertyActionListener
+										target="#{listaUI.selectedCueLista}" value="#{cueLista}" />
+								</p:commandButton>
+							</p:column>
+
+						</p:dataTable>
+					</p:panel>
+
+
+					<p:dialog header="#{msgContacto.lbl_contacto_tituloContatoLista} #{listaUI.cueLista.nombre}"
+						widgetVar="dlg2" showEffect="explode" hideEffect="explode" position="center"
+						modal="true" width="966px" height="426px">
+
+						<p:messages id="msgContacto" showDetail="true" />
+
+						<p:dataTable value="#{contactoUI.dataActivos}" var="cueContacto"
+							id="tableContacto" paginator="true" rows="5">
+							<p:column sortBy="#{cueContacto.identificacion}">
+								<f:facet name="header">
+									<h:outputText
+										value="#{msgContacto.lbl_contacto_identificacion}" />
+								</f:facet>
+								<h:outputText value="#{cueContacto.identificacion}" />
+							</p:column>
+
+							<p:column sortBy="#{cueContacto.apellido}">
+								<f:facet name="header">
+									<h:outputText value="#{msgContacto.lbl_contacto_apellido}" />
+								</f:facet>
+								<h:outputText value="#{cueContacto.apellido}" />
+							</p:column>
+
+							<p:column sortBy="#{cueContacto.nombre}">
+								<f:facet name="header">
+									<h:outputText value="#{msgContacto.lbl_contacto_nombre}" />
+								</f:facet>
+								<h:outputText value="#{cueContacto.nombre}" />
+							</p:column>
+
+							<p:column sortBy="#{cueContacto.email}">
+								<f:facet name="header">
+									<h:outputText value="#{msgContacto.lbl_contacto_email}" />
+								</f:facet>
+								<h:outputText value="#{cueContacto.email}" />
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="" />
+								</f:facet>
+								<p:commandButton id="addContacto"
+									action="#{listaUI.action_add_encuestado}"
+									update=":form:msgContacto,:form:panel,:form:panelBotones, :form:listaContacto"
+									icon="ui-icon-plusthick">
+									<f:setPropertyActionListener
+										target="#{listaUI.selectedCueContacto}" value="#{cueContacto}" />
+								</p:commandButton>
+							</p:column>
+
+						</p:dataTable>
+
+						<br />
+
+						<p:dataTable value="#{listaUI.dataListaContacto}"
+							id="listaContacto" var="cueListaContacto" paginator="true"
+							rows="5">
+
+							<p:column sortBy="#{cueListaContacto.cueContacto.identificacion}">
+								<f:facet name="header">
+									<h:outputText
+										value="#{msgContacto.lbl_contacto_identificacion}" />
+								</f:facet>
+								<h:outputText
+									value="#{cueListaContacto.cueContacto.identificacion}" />
+							</p:column>
+
+							<p:column sortBy="#{cueListaContacto.cueContacto.apellido}">
+								<f:facet name="header">
+									<h:outputText value="#{msgContacto.lbl_contacto_apellido}" />
+								</f:facet>
+								<h:outputText value="#{cueListaContacto.cueContacto.apellido}" />
+							</p:column>
+
+							<p:column sortBy="#{cueListaContacto.cueContacto.nombre}">
+								<f:facet name="header">
+									<h:outputText value="#{msgContacto.lbl_contacto_nombre}" />
+								</f:facet>
+								<h:outputText value="#{cueListaContacto.cueContacto.apellido}" />
+							</p:column>
+
+							<p:column sortBy="#{cueListaContacto.cueContacto.email}">
+								<f:facet name="header">
+									<h:outputText value="#{msgContacto.lbl_contacto_email}" />
+								</f:facet>
+								<h:outputText value="#{cueListaContacto.cueContacto.email}" />
+							</p:column>
+
+							<p:column sortBy="#{cueListaContacto.fechaHoraAsignacion}">
+								<f:facet name="header">
+									<h:outputText value="FechaHoraAsignacion" />
+								</f:facet>
+								<h:outputText value="#{cueListaContacto.fechaHoraAsignacion}" />
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="" />
+								</f:facet>
+								<p:commandButton id="deleteContacto"
+									action="#{listaUI.action_del_encuestado}"
+									update=":form:msgContacto,:form:panel,:form:panelBotones, :form:listaContacto"
+									icon="ui-icon-minusthick">
+									<f:setPropertyActionListener
+										target="#{listaUI.selectedListaContacto}" value="#{cueListaContacto}" />
+								</p:commandButton>
+							</p:column>
+
+						</p:dataTable>
+					</p:dialog>
+
+				</h:form>
+		</f:view>
+		</ui:define>
+
+</ui:composition>

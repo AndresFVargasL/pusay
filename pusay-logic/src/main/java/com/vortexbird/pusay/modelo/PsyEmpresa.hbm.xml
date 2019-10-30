@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 20, 2015 10:23:26 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyEmpresa" table="psy_empresa" schema="public">
+        <id name="emprCodigo" type="java.lang.Long">
+            <column name="empr_codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="psyPersona" class="com.vortexbird.pusay.modelo.PsyPersona" fetch="select">
+            <column name="pers_codigo" not-null="false" />
+        </many-to-one>
+        <many-to-one name="psyCiudad" class="com.vortexbird.pusay.modelo.PsyCiudad" fetch="select">
+            <column name="ciud_codigo" not-null="true" />
+        </many-to-one>
+        <property name="nit" type="java.lang.String">
+            <column name="nit" length="20" not-null="true">
+                <comment>NIT DE LA EMPRESA REGISTRADA</comment>
+            </column>
+        </property>
+        <property name="nombre" type="java.lang.String">
+            <column name="nombre" not-null="true">
+                <comment>NOMBRE DE LA EMPRESA REGISTRADA</comment>
+            </column>
+        </property>
+        <property name="direccionPrincipal" type="java.lang.String">
+            <column name="direccion_principal" length="100">
+                <comment>DIRECCION DE LA EMPRESA</comment>
+            </column>
+        </property>
+        <property name="telefonoPrincipal" type="java.lang.Long">
+            <column name="telefono_principal" precision="15" scale="0" not-null="true">
+                <comment>TELEFONO DE LA EMPRESA</comment>
+            </column>
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true" />
+        </property>
+        <set name="psyResponsables" table="psy_responsable" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empr_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyResponsable" />
+        </set>
+        <set name="psyPlanEstrategicos" table="psy_plan_estrategico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empr_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyPlanEstrategico" />
+        </set>
+        <set name="psyPersonas" table="psy_persona" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empr_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyPersona" />
+        </set>
+    </class>
+</hibernate-mapping>

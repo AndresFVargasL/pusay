@@ -1,0 +1,214 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">	
+		<f:view>
+			<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>               
+			<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"  draggable="false" closable="false">  
+   				<p:graphicImage value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />   
+			</p:dialog>
+			
+			<!-- Expired session -->
+					<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();" timeout="#{session.maxInactiveInterval * 1000}" />
+					<p:dialog modal="true" widgetVar="sessionTimeOutDialog" header="Sesión Expirada"  draggable="false" closable="false">  
+	   					<h:outputText value="La sesión ha finalizado" />
+	                 	<input id="confirmBackToLogin" 
+	                 		type="button" 
+	                 		value="Iniciar Sesión"
+	                    	onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />   
+					</p:dialog>
+			
+			
+			<h:form id="formDialog">				
+				<p:growl id="men" autoUpdate="true" showDetail="false"/>
+				
+				<div align="center">
+						<h2>
+						INFORME PLAN DE ACCIÓN
+						</h2>		
+						</div>	 
+					
+						<div align="center">
+						<h:panelGrid columns="1">
+						<p:outputLabel rendered="#{generarInformeProyectoView.mostrarMensaje}" value="#{generarInformeProyectoView.mensaje}" style="color: darkgreen; font-weight:bold; font-size:large"></p:outputLabel>
+						<p:outputLabel rendered="#{generarInformeProyectoView.mostrarMensaje}" value="POR FAVOR VERIFIQUE QUE EXISTA UN PLAN ESTRATÉGICO EN ESTADO INICIADO Y  PLANES DE ACCIÓN EN ESTADO PRESUPUESTADO "></p:outputLabel>
+						</h:panelGrid>
+						</div>
+				
+				
+				<p:panel id="panelPsyIpu" header="INFORME PLAN" rendered="#{generarInformeProyectoView.mostrar}">							
+						<p:spacer height="10"></p:spacer>
+					<div align="center">
+					<h:panelGrid columns="2">	
+					
+					<p:outputLabel value="Seleccione el plan de acción: "></p:outputLabel>
+					<p:selectOneMenu id="planesAccion"
+								value="#{generarInformeProyectoView.planAccionSeleccionadoItem}">
+								<f:selectItem itemLabel="Seleccione un plan" itemValue="-1"/>
+								<f:selectItems value="#{generarInformeProyectoView.lstPlanAccionItem}"
+									var="p" itemLabel="#{p.nombre}">
+								</f:selectItems>
+								<p:ajax
+									listener="#{generarInformeProyectoView.listener_plan_accion}"
+									update="@([id$=panelPsyIpu]), @([id$=panelControl]), @([id$=panelTiempo])" />
+					</p:selectOneMenu>	
+					
+									<p:outputLabel value="Seleccione el periodo hasta donde desea consultar: "></p:outputLabel>
+				
+					
+							
+							 <p:selectOneMenu value="#{generarInformeProyectoView.periodoSeleccionado}" filter="true" filterMatchMode="startsWith">
+					            <f:selectItem itemLabel="Seleccione un periodo" itemValue="-1" />
+					            <f:selectItems value="#{generarInformeProyectoView.lstPeriodos}" />
+					        </p:selectOneMenu>
+													
+					</h:panelGrid>
+					</div>	
+					
+					<p:spacer width="10"></p:spacer>		
+					<div align="center">
+					<p:commandButton action="#{generarInformeProyectoView.action_consultar}"  value="Consultar" update=":formDialog" />
+					</div>
+												
+				</p:panel>
+				
+				<p:panel id="panelControl" header="Control de tiempo" rendered="#{generarInformeProyectoView.mostrar}">
+				
+				<p:dataTable var="periodo" value="#{generarInformeProyectoView.lstIpu}">
+				    <p:column headerText="Semana">
+				    <div align="center">
+				        <h:outputText value="#{periodo.periodo}" />
+				        </div>
+				    </p:column>
+				 
+				    <p:column headerText="% Avance Pptado">
+				    <div align="center">
+				        <h:outputText value="#{periodo.avancePresupuestado}" >
+				        <f:convertNumber maxFractionDigits="2" minFractionDigits="2" type="percent"  ></f:convertNumber>
+				        </h:outputText>
+				        </div>
+				    </p:column>
+				 
+				    <p:column headerText="% Avance Real">
+				    <div align="center">
+				        <h:outputText value="#{periodo.avanceReal}" >
+				        <f:convertNumber maxFractionDigits="2" minFractionDigits="2" type="percent"></f:convertNumber>
+				        </h:outputText>
+				        </div>
+				    </p:column>
+				 
+				    <p:column headerText="Variación">
+				    <div align="center">
+				        <h:outputText value="#{periodo.variacion}">
+				        <f:convertNumber maxFractionDigits="2" minFractionDigits="2" type="percent"></f:convertNumber>
+				        </h:outputText>
+				        </div>
+				    </p:column>
+				    <p:column headerText="Ver">
+				    <div align="center">
+				       <p:commandButton icon="ui-icon-circle-search"
+								action="#{generarInformeProyectoView.seleccionarPeriodo}"
+								update=":formDialog" oncomplete="PF('guardarIpuDialog').show()">
+								<f:setPropertyActionListener value="#{periodo}"
+									target="#{generarInformeProyectoView.ipuSeleccionado}" />
+							</p:commandButton>
+							</div>
+				    </p:column>
+				</p:dataTable>
+	   					</p:panel>
+	   					
+	   					<p:spacer height="15"></p:spacer>
+	   					<p:panel id="panelTiempo" header="Control de tiempo" rendered="#{generarInformeProyectoView.mostrar}">
+	   					<p:dataTable var="periodoPresupuesto" value="#{generarInformeProyectoView.lstIpuPresupuesto}">
+				    <p:column headerText="Semana">
+				    <div align="center">
+				        <h:outputText value="#{periodoPresupuesto.periodo}" />
+				        </div>
+				    </p:column>
+				 
+				    <p:column headerText="Valor Pptado">
+				    <div align="center">
+				        <h:outputText value="#{periodoPresupuesto.avancePresupuestado}" >
+				        <f:convertNumber maxFractionDigits="2" minFractionDigits="2" type="currency"  currencySymbol="$"></f:convertNumber>
+				        </h:outputText>
+				        </div>
+				    </p:column>
+				 
+				    <p:column headerText="Valor Real">
+				    <div align="center">
+				        <h:outputText value="#{periodoPresupuesto.avanceReal}" >
+				        <f:convertNumber maxFractionDigits="2" minFractionDigits="2" type="currency"  currencySymbol="$"></f:convertNumber>
+				        </h:outputText>
+				        </div>
+				    </p:column>
+				 
+				    <p:column headerText="Variación">
+				    <div align="center">
+				        <h:outputText value="#{periodoPresupuesto.variacion}">
+				        <f:convertNumber maxFractionDigits="2" minFractionDigits="2" type="currency"  currencySymbol="$"></f:convertNumber>
+				        </h:outputText>
+				        </div>
+				    </p:column>
+				    <p:column headerText="Ver">
+				    <div align="center">
+				       <p:commandButton icon="ui-icon-circle-search"
+								action="#{generarInformeProyectoView.seleccionarPeriodo}"
+								update=":formDialog" oncomplete="PF('guardarIpuDialog').show()">
+								<f:setPropertyActionListener value="#{periodoPresupuesto}"
+									target="#{ipuPresupuestoView.ipuSeleccionado}" />
+							</p:commandButton>
+							</div>
+				    </p:column>
+				</p:dataTable>
+	   					</p:panel>
+	   					
+	   					
+	   				<p:dialog id="dialog" header="GUARDAR IPU"
+						widgetVar="guardarIpuDialog" modal="true"
+						showEffect="fade" hideEffect="fade" resizable="false" height="60%">
+
+					<p:panel  header="LOGROS SIGNIFICATIVOS DEL PERIODO" style="text-align:center">
+					
+					<p:inputTextarea rows="4" cols="100" value="#{generarInformeProyectoView.logrosSignificativos}" readonly="#{generarInformeProyectoView.soloLectura}"></p:inputTextarea>
+					
+					</p:panel>
+					
+					<p:spacer height="20"></p:spacer>
+					
+					<p:panel  header="LOGROS NO ALCANZADOS" style="text-align:center">
+					
+					<p:inputTextarea rows="4" cols="100" value="#{generarInformeProyectoView.logrosNoAlcanzados}" readonly="#{generarInformeProyectoView.soloLectura}">
+					</p:inputTextarea>
+					
+					<div align="center">
+					<h:panelGrid columns="2">
+					
+					<p:outputLabel value="Causas de desviación"></p:outputLabel>
+					
+					<p:outputLabel value="Acciones Propuestas"></p:outputLabel>
+					
+					
+					<p:inputTextarea rows="4" cols="30" value="#{generarInformeProyectoView.causasDesviacion}" readonly="#{generarInformeProyectoView.soloLectura}"/>
+										
+					<p:inputTextarea rows="4" cols="30" value="#{generarInformeProyectoView.accionesPropuestas}" readonly="#{generarInformeProyectoView.soloLectura}"/>
+									
+					
+					</h:panelGrid>
+					</div>
+					</p:panel>
+					
+					
+					</p:dialog>
+	   					
+	   					
+			</h:form>
+			
+			
+		</f:view>
+		</ui:define>
+
+</ui:composition>

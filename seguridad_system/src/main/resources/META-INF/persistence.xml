@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="sis_seguridadPU" transaction-type="RESOURCE_LOCAL">
+    	
+    	<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+		<class>com.vortexbird.seguridad.modelo.SegAuditoria</class>
+		<class>com.vortexbird.seguridad.modelo.SegCambioPass</class>
+		<class>com.vortexbird.seguridad.modelo.SegCompania</class>
+		<class>com.vortexbird.seguridad.modelo.SegGrupoOpcion</class>
+		<class>com.vortexbird.seguridad.modelo.SegHistorialConstrasena</class>
+		<class>com.vortexbird.seguridad.modelo.SegOpcion</class>
+		<class>com.vortexbird.seguridad.modelo.SegParametro</class>
+		<class>com.vortexbird.seguridad.modelo.SegPermiso</class>
+		<class>com.vortexbird.seguridad.modelo.SegRol</class>
+		<class>com.vortexbird.seguridad.modelo.SegRolUsuario</class>
+		<class>com.vortexbird.seguridad.modelo.SegSistema</class>
+		<class>com.vortexbird.seguridad.modelo.SegSistemaCia</class>
+		<class>com.vortexbird.seguridad.modelo.SegSucursal</class>
+		<class>com.vortexbird.seguridad.modelo.SegUsuario</class>
+	
+	 <properties>
+	 		<property name="cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/> 
+			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+			<property name="hibernate.connection.url" value="jdbc:postgresql://127.0.0.1:5432/pusay" />
+			<property name="hibernate.connection.username" value="postgres" />
+			<property name="hibernate.connection.password" value="postgres" />
+	</properties>	
+	
+	</persistence-unit>
+</persistence>

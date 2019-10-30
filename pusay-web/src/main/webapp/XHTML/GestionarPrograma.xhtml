@@ -1,0 +1,106 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+		<f:view>
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
+			<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+				draggable="false" closable="false">
+				<p:graphicImage
+					value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+			</p:dialog>
+
+			<!-- Expired session -->
+			<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();"
+				timeout="#{session.maxInactiveInterval * 1000}" />
+			<p:dialog modal="true" widgetVar="sessionTimeOutDialog"
+				header="Sesion Expirada" draggable="false" closable="false">
+				<h:outputText value="La sesion ha finalizado" />
+				<input id="confirmBackToLogin" type="button" value="Iniciar Sesion"
+					onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />
+			</p:dialog>
+
+			<h:form id="frm">
+
+				<p:panel id="panelDataTablePsyPrograma" header="Gestionar Programa">
+					<p:growl id="men" autoUpdate="true" showDetail="false"/>
+					<p:dataTable value="#{psyProgramaView.data}" var="psyPrograma" emptyMessage="No hay programas relacionados con su empresa"
+						paginator="true" rows="5">
+
+						<p:column filterBy="#{psyPrograma.nombre}"
+							sortBy="#{psyPrograma.nombre}">
+							<f:facet name="header">
+								<h:outputText value="Nombre" />
+							</f:facet>
+							<h:outputText value="#{psyPrograma.nombre}" />
+						</p:column>
+
+						<p:column headerText="Opciones">
+							<p:commandButton id="btnEdit" icon="ui-icon-pencil"
+								update=":dialogPsyPrograma" title="Editar"
+								actionListener="#{psyProgramaView.action_edit}">
+								<f:attribute name="selectedPsyPrograma" value="#{psyPrograma}" />
+							</p:commandButton>
+							<p:commandButton id="btnDelete" title="Eliminar"
+								actionListener="#{psyProgramaView.action_delete_datatable}"
+								onclick="if(!confirm('¿Realmente desea eliminar este programa?')){return false;}"
+								icon="ui-icon-trash" update="@form">
+								<f:attribute name="selectedPsyPrograma" value="#{psyPrograma}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+				<p:panel id="panelBoton">
+					<div align="center">
+						<p:commandButton id="btnNew" value="Abrir Nuevo Programa"
+							action="#{psyProgramaView.action_new()}"
+							update=":dialogPsyPrograma" />
+					</div>
+				</p:panel>
+			</h:form>
+			<p:dialog id="dialogPsyPrograma" appendTo="@(body)" draggable="true"
+				closable="false" visible="#{psyProgramaView.showDialog}"
+				resizable="false" modal="true" width="700">
+				<h:form id="formDialog">
+					<p:growl id="msg" autoUpdate="true" showDetail="false"/>
+					<p:panel id="panelPsyPrograma" header="Gestion de Programas">
+						<h:panelGrid columns="2" id="panelGrid">
+							<h:outputText id="msgNombre" value=" Nombre" />
+							<p:inputText id="txtNombre" disabled="false"
+								binding="#{psyProgramaView.txtNombre}" />
+							<h:outputText id="msgSeleccionEstrategias" value=" Estrategia" />
+							
+							<p:selectOneMenu id="somEstrategia" value="#{psyProgramaView.somEstrategia}" style="width: 500px">
+								<f:selectItem itemLabel="Seleccione una estrategia" itemValue="0"/>
+								<f:selectItems value="#{psyProgramaView.lasEstrategias}"/>
+							</p:selectOneMenu>
+							
+							<h:outputText id="msgEstadoRegistro" value=" Estado Registro" />
+							<p:inputText id="txtEstadoRegistro" disabled="true"
+								binding="#{psyProgramaView.txtEstadoRegistro}" />
+						</h:panelGrid>
+					</p:panel>
+					<p:panel id="panelBotones">
+						<div align="center">
+							<p:commandButton id="btnSave"
+								binding="#{psyProgramaView.btnSave}" value="Guardar"
+								action="#{psyProgramaView.action_save()}"
+								update=":dialogPsyPrograma :frm:panelDataTablePsyPrograma" />
+							<p:commandButton id="btnClear" value="Limpiar"
+								action="#{psyProgramaView.action_clear()}"
+								update=":dialogPsyPrograma" />
+							<p:commandButton id="btnExit" value="Salir"
+								action="#{psyProgramaView.action_closeDialog()}"
+								update=":dialogPsyPrograma" />
+						</div>
+					</p:panel>
+				</h:form>
+			</p:dialog>
+		</f:view>
+	</ui:define>
+
+</ui:composition>

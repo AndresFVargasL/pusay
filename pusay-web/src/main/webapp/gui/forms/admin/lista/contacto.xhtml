@@ -1,0 +1,159 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+
+			<f:loadBundle basename="i18n.msj_contacto" var="msg" />
+			<f:loadBundle basename="i18n.msj_general" var="msgGen" />
+			<f:view>
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+					draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form id="form">
+
+					<br />
+					<p:panel id="msgProjectCueContactoTitle"
+						header="#{msg.lbl_contacto_titulo}">
+						<p:messages id="msg" showDetail="true" />
+						<p:growl id="men" />
+						<h:panelGrid columns="4" id="panel">
+							<h:outputText id="msgIdentificacion"
+								value="#{msg.lbl_contacto_identificacion}" />
+							<p:inputText id="txtIdentificacion"
+								value="#{contactoUI.cueContacto.identificacion}">
+								<p:ajax update="panel,msg,panelBotones"
+									listener="#{contactoUI.listener_identificacion}" />
+							</p:inputText>
+
+							<h:outputText id="msgApellido"
+								value="#{msg.lbl_contacto_apellido}" />
+							<p:inputText id="txtApellido" disabled="false"
+								value="#{contactoUI.cueContacto.apellido}" />
+							<h:outputText id="msgNombre" value="#{msg.lbl_contacto_nombre}" />
+							<p:inputText id="txtNombre" disabled="false"
+								value="#{contactoUI.cueContacto.nombre}" />
+							<h:outputText id="msgEmail" value="#{msg.lbl_contacto_email}" />
+							<p:inputText id="txtEmail" disabled="false"
+								value="#{contactoUI.cueContacto.email}" />
+							<h:outputText id="msgCelular" value="#{msg.lbl_contacto_celular}" />
+							<p:inputText id="txtCelular" disabled="false"
+								value="#{contactoUI.cueContacto.celular}" />
+
+							<h:outputText id="msgEmpresa" value="#{msg.lbl_contacto_empresa}" />
+							<p:inputText id="txtEmpresa" disabled="false"
+								value="#{contactoUI.cueContacto.empresa}" />
+							
+							<h:outputText id="msgEstado" value="#{msg.lbl_contacto_estado}" />
+							<p:selectOneRadio id="txtEstado"
+								value="#{contactoUI.cueContacto.estado}">
+								<f:selectItem itemLabel="#{msgGen.lbl_general_activo}"
+									itemValue="1" />
+								<f:selectItem itemLabel="#{msgGen.lbl_general_inactivo}"
+									itemValue="0" />
+							</p:selectOneRadio>
+
+
+
+						</h:panelGrid>
+						<br />
+						<h:panelGrid id="panelBotones" columns="4">
+
+							<p:commandButton id="btnSave" value="#{msgGen.btn_general_save}"
+								action="#{contactoUI.action_save}"
+								update="msg,panel,panelBotones,:form:tableContacto"
+								disabled="#{contactoUI.disableButtonSave}"></p:commandButton>
+							<p:commandButton id="btnModify"
+								value="#{msgGen.btn_general_modify}"
+								action="#{contactoUI.action_modify}"
+								update="msg,panel,panelBotones,:form:tableContacto"
+								disabled="#{contactoUI.disableButtonModify}"></p:commandButton>
+							<p:commandButton id="btnDelete"
+								value="#{msgGen.btn_general_delete}"
+								action="#{contactoUI.action_delete}"
+								update="msg,panel,panelBotones,:form:tableContacto"
+								disabled="#{contactoUI.disableButtonDelete}"
+								onclick="return confirm('#{msgGen.lbl_general_confirm}')"></p:commandButton>
+							<p:commandButton id="btnClear"
+								value="#{msgGen.btn_general_clear}"
+								action="#{contactoUI.action_clear}"
+								update="msg,panel,panelBotones" disabled="false"></p:commandButton>
+
+						</h:panelGrid>
+						<br />
+
+						<p:dataTable value="#{contactoUI.data}" var="cueContacto"
+							id="tableContacto" paginator="true" rows="5">
+							<p:column filterBy="#{cueContacto.identificacion}"
+								sortBy="#{cueContacto.identificacion}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_contacto_identificacion}" />
+								</f:facet>
+								<h:outputText value="#{cueContacto.identificacion}" />
+							</p:column>
+
+							<p:column filterBy="#{cueContacto.apellido}"
+								sortBy="#{cueContacto.apellido}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_contacto_apellido}" />
+								</f:facet>
+								<h:outputText value="#{cueContacto.apellido}" />
+							</p:column>
+
+							<p:column filterBy="#{cueContacto.nombre}"
+								sortBy="#{cueContacto.nombre}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_contacto_nombre}" />
+								</f:facet>
+								<h:outputText value="#{cueContacto.nombre}" />
+							</p:column>
+
+							<p:column filterBy="#{cueContacto.email}"
+								sortBy="#{cueContacto.email}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_contacto_email}" />
+								</f:facet>
+								<h:outputText value="#{cueContacto.email}" />
+							</p:column>
+
+
+
+							<p:column filterBy="#{cueContacto.estado}"
+								sortBy="#{cueContacto.estado}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_contacto_estado}" />
+								</f:facet>
+								<h:outputText value="#{cueContacto.estado eq 1 ? 'Activo' : 'Inactivo'}" />
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="" />
+								</f:facet>
+								<p:commandButton id="selectButton"
+									action="#{contactoUI.action_load_entity}"
+									update=":form:msg,:form:panel,:form:panelBotones"
+									icon="ui-icon-search">
+									<f:setPropertyActionListener
+										target="#{contactoUI.selectedCueContacto}"
+										value="#{cueContacto}" />
+								</p:commandButton>
+							</p:column>
+
+
+						</p:dataTable>
+					</p:panel>
+
+				</h:form>
+		</f:view>
+		</ui:define>
+
+</ui:composition>

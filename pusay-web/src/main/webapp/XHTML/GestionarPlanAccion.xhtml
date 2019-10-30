@@ -1,0 +1,219 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+		<f:view>
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
+			<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+				draggable="false" closable="false">
+				<p:graphicImage
+					value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+			</p:dialog>
+
+			<!-- Expired session -->
+			<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();"
+				timeout="#{session.maxInactiveInterval * 1000}" />
+			<p:dialog modal="true" widgetVar="sessionTimeOutDialog"
+				header="Sesión Expirada" draggable="false" closable="false">
+				<h:outputText value="La sesión ha finalizado" />
+				<input id="confirmBackToLogin" type="button" value="Iniciar Sesión"
+					onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />
+			</p:dialog>
+			
+			<h:form id="frm">
+				<p:growl id="men" showDetail="false" autoUpdate="true"/>
+				<p:panel id="panelDataTablePsyPlanAccion" header="Gestionar Proyectos">
+					<p:dataTable value="#{psyPlanAccionView.data}" var="psyPlanAccion"
+						emptyMessage="No se encontraron planes de accion" paginator="true"
+						rows="5">
+						<p:column filterBy="#{psyPlanAccion.nombre}"
+							sortBy="#{psyPlanAccion.nombre}">
+							<f:facet name="header">
+								<h:outputText value="Nombre" />
+							</f:facet>
+							<h:outputText value="#{psyPlanAccion.nombre}" />
+						</p:column>
+						<p:column filterBy="#{psyPlanAccion.descripcion}"
+							sortBy="#{psyPlanAccion.descripcion}">
+							<f:facet name="header">
+								<h:outputText value="Descripcion" />
+							</f:facet>
+							<h:outputText value="#{psyPlanAccion.descripcion}" />
+						</p:column>
+
+						<p:column filterBy="#{psyPlanAccion.fechaInicio}"
+							sortBy="#{psyPlanAccion.fechaInicio}">
+							<f:facet name="header">
+								<h:outputText value="Fecha de Inicio" />
+							</f:facet>
+							<h:outputText value="#{psyPlanAccion.fechaInicio}">
+								<f:convertDateTime pattern="yyyy/MM/dd" />
+							</h:outputText>
+						</p:column>
+
+
+						<p:column filterBy="#{psyPlanAccion.fechaFinPlaneada}"
+							sortBy="#{psyPlanAccion.fechaFinPlaneada}">
+							<f:facet name="header">
+								<h:outputText value="Fecha Final Planeada" />
+							</f:facet>
+							<h:outputText value="#{psyPlanAccion.fechaFinPlaneada}">
+								<f:convertDateTime pattern="yyyy/MM/dd" />
+							</h:outputText>
+						</p:column>
+
+						<p:column filterBy="#{psyPlanAccion.fechaFinReal}"
+							sortBy="#{psyPlanAccion.fechaFinReal}">
+							<f:facet name="header">
+								<h:outputText value="Fecha Final Real" />
+							</f:facet>
+							<h:outputText value="#{psyPlanAccion.fechaFinReal}">
+								<f:convertDateTime pattern="yyyy/MM/dd" />
+							</h:outputText>
+						</p:column>
+
+						<p:column filterBy="#{psyPlanAccion.estadoPlanAccion}"
+							sortBy="#{psyPlanAccion.estadoPlanAccion}">
+							<f:facet name="header">
+								<h:outputText value="Estado del Plan" />
+							</f:facet>
+							<h:outputText value="#{psyPlanAccion.estadoPlanAccion}" />
+						</p:column>
+
+						<p:column headerText="Opciones">
+							<p:commandButton id="btnEdit" icon="ui-icon-pencil"
+								update=":dialogPsyPlanAccion"
+								actionListener="#{psyPlanAccionView.action_edit}">
+								<f:attribute name="selectedPsyPlanAccion"
+									value="#{psyPlanAccion}" />
+							</p:commandButton>
+							<p:commandButton id="btnClose" title="Cerrar Plan"
+								actionListener="#{psyPlanAccionView.cerrarPlan}"
+								onclick="if(!confirm('Realmente desea cerrar este proyecto?')){return false;}"
+								icon="ui-icon-power" update="@form">
+								<f:attribute name="selectedPsyPlanAccion"
+									value="#{psyPlanAccion}" />
+							</p:commandButton>
+
+							<p:commandButton id="btnPlanAccionDefinitivo"
+								icon="ui-icon-check"
+								disabled="#{psyPlanAccion.btnPlanAccionDefinitivo}"
+								update=":dialogPsyPlanAccion :frm:panelDataTablePsyPlanAccion"
+								title="Generar Plan de Acción Definitivo"
+								actionListener="#{psyPlanAccionView.generarPlanAccionDifinitivo}">
+								<f:attribute name="selectedPsyPlanAccion"
+									value="#{psyPlanAccion}" />
+								<p:confirm header="Confirmation"
+									message="Esta seguro de Generar el Proyecto Definitivo ?"
+									icon="ui-icon-alert" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+				<p:panel id="panelBoton">
+					<div align="center">
+						<p:commandButton id="btnNew" value="Abrir Proyecto"
+							action="#{psyPlanAccionView.action_new()}"
+							update=":dialogPsyPlanAccion" />
+					</div>
+				</p:panel>
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Si" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="No" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+			</h:form>
+			<p:dialog id="dialogPsyPlanAccion" draggable="true" closable="false"
+				visible="#{psyPlanAccionView.showDialog}" resizable="false"
+				modal="true" style="width: 500px;left: 201px;top: 70px">
+				<p:scrollPanel mode="native" style="height:400px;">
+				<h:form id="formDialog">
+					<p:growl id="msg" autoUpdate="true" showDetail="false"/>
+						
+						<p:panel id="panelPsyPlanAccion" header="Gestion de Proyectos">
+							<h:panelGrid columns="2" id="panelGrid" >
+								<h:outputText id="msgPlanEstrategico" 
+									value=" Plan Estrategico: " />
+								<p:inputText id="txtPlanEstrategico" disabled="true" style="width: 200px"
+									binding="#{psyPlanAccionView.txtPlanEstrategico}" />
+								<h:outputText id="msgPrograma" value=" Programa: *" />
+								<p:selectOneMenu id="somPrograma" style="width: 168px;"
+									value="#{psyPlanAccionView.somPrograma}">
+									<f:selectItem itemLabel="Seleccione un Programa" itemValue="0" />
+									<f:selectItems value="#{psyPlanAccionView.losProgramas}" />
+								</p:selectOneMenu>	
+								<h:outputText id="msgNombre" value=" Nombre: *" />
+								<p:inputText id="txtNombre" disabled="false"
+									placeholder="Nombre del proyecto" style="width: 200px"
+									binding="#{psyPlanAccionView.txtNombre}" />
+								<h:outputText id="msgDescripcion" value=" Descripcion: " />	
+								<h:panelGrid columns="2" id="panelTxtArea">
+									<p:inputTextarea id="txtDescripcion" disabled="false"
+										autoResize="false" maxlength="2000" counter="contador"
+										counterTemplate="{0} caracteres restantes."
+										style="width: 500px"
+										placeholder="Descripcion acerca del proyecto"
+										binding="#{psyPlanAccionView.txtDescripcion}" />
+									<h:outputText/>
+								<h:outputText id="contador" />	
+								</h:panelGrid>	
+								<h:outputText id="msgFechaInicio" value=" Fecha de Inicio *" />
+								<p:calendar showOn="button" navigator="true" locale="en"
+									size="30" placeholder="Fecha de inico del plan" pattern="dd-MM-yyyy" mask="true" converterMessage="Fecha incorrecta"
+									binding="#{psyPlanAccionView.txtFechaInicio}">
+									<p:ajax event="dateSelect" 
+										listener="#{psyPlanAccionView.listener_txtFechaInicio}" />
+								</p:calendar>
+								<h:outputText id="msgFechaFinPlaneada"
+									value=" Fecha Final Planeada *" />
+								<p:calendar showOn="button" navigator="true" locale="en"
+									size="30" placeholder="Fecha planeada para terminar" pattern="dd-MM-yyyy" mask="true" converterMessage="Fecha incorrecta"
+									binding="#{psyPlanAccionView.txtFechaFinPlaneada}">
+									<p:ajax event="dateSelect" 
+										listener="#{psyPlanAccionView.listener_txtFechaFinPlaneada}" />
+								</p:calendar>
+								<h:outputText id="msgFechaFinReal" value=" Fecha Final Real *" rendered="#{psyPlanAccionView.renderFechaFinal}"/>
+								<p:calendar showOn="button" navigator="true" locale="en" rendered="#{psyPlanAccionView.renderFechaFinal}"
+									size="30" placeholder="Fecha real final" pattern="dd-MM-yyyy" mask="true" converterMessage="Fecha incorrecta"
+									binding="#{psyPlanAccionView.txtFechaFinReal}">
+									<p:ajax event="dateSelect"
+										listener="#{psyPlanAccionView.listener_txtFechaFinReal}" />
+								</p:calendar>
+								<h:outputText id="msgEstadoPlanAccion" value=" Estado del Plan *" />
+								<p:inputText id="txtEstadoPlanAccion" disabled="true"
+									binding="#{psyPlanAccionView.txtEstadoPlanAccion}" />
+							</h:panelGrid>
+							
+							
+						</p:panel>
+						
+						
+						
+						<p:panel id="panelBotones">
+							<div align="center">
+								<p:commandButton id="btnSave"
+									binding="#{psyPlanAccionView.btnSave}" value="Guardar"
+									action="#{psyPlanAccionView.action_save()}"
+									update=":dialogPsyPlanAccion :frm:panelDataTablePsyPlanAccion" />
+								<p:commandButton id="btnClear" value="Limpiar"
+									action="#{psyPlanAccionView.action_clear()}"
+									update=":dialogPsyPlanAccion" />
+								<p:commandButton id="btnExit" value="Salir"
+									action="#{psyPlanAccionView.action_closeDialog()}"
+									update=":dialogPsyPlanAccion" />
+							</div>
+						</p:panel>
+					
+				</h:form>
+				</p:scrollPanel>
+			</p:dialog>
+		</f:view>
+	</ui:define>
+
+</ui:composition>

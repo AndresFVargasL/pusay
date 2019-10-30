@@ -1,0 +1,141 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6FF18FB1-D46C-36B4-F24C-9B50039C1275" name="PSY_INDICADOR">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 21:26:10 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>INDI</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="CODIGO" id="3862D58F-017F-F839-7C23-91DEE88229C9">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 21:26:54 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="OBAM_CODIGO" id="314FD157-3BC3-D0A1-E06E-9158790B236A">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 21:39:58 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B8C520C8-C991-12F1-45DE-090212035AD1" referredColumn="4E0D52A2-4A10-A081-E297-35899162FE3C"/>
+</associations>
+</Column>
+<Column name="SUBTE_CODIGO" id="08D902DC-2944-5E47-BE55-D9EDC1FF5A01">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 21:43:11 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="40347F68-752D-BA8D-2CA9-B3184F2207DE" referredColumn="7665A090-2D4A-6883-CADD-B1BBD56DC064"/>
+</associations>
+</Column>
+<Column name="DESCRIPCION" id="B41A5B68-ACC8-4FFE-8C16-8C17B4BD8FB6">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 21:29:56 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UNIDAD_MEDIDA" id="B44E7DB8-C78D-50A6-0163-15B2D7DAC8B1">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 21:31:02 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TIPO_INDICADOR" id="4D93967F-5635-CB14-DCB3-A9C730DBDC6B">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 21:32:08 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="B57D7646-F588-61A3-49EE-9AB1A2C854F8">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 21:32:29 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="92A6D9F1-61A0-C89C-96CF-BC7D19E5036B" name="PSY_INDICADOR_PK">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 21:26:54 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3862D58F-017F-F839-7C23-91DEE88229C9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="695B2998-8947-21B9-3AE4-2AD61D044AC7" name="INDI_OBAM_FK">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 21:39:58 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="314FD157-3BC3-D0A1-E06E-9158790B236A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="32569A50-75ED-69DB-811A-3B62CD2DA053" name="INDI_SUBTE_FK">
+<createdBy>AndresFelipe</createdBy>
+<createdTime>2015-04-16 21:43:11 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="08D902DC-2944-5E47-BE55-D9EDC1FF5A01"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

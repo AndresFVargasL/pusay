@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-ago-2015 9:18:22 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyParametro" table="psy_parametro" schema="public">
+        <id name="paramCodigo" type="java.lang.Long">
+            <column name="param_codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="llave" type="java.lang.String">
+            <column name="llave" length="2000" not-null="true" />
+        </property>
+        <property name="valor" type="java.lang.String">
+            <column name="valor" length="2000" not-null="true" />
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-jun-2013 19:14:26 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.cuestionarios.model.CueListaCuestionario" table="CUE_LISTA_CUESTIONARIO">
+        <id name="consecutivo" type="java.lang.Long">
+            <column name="CONSECUTIVO" precision="10" scale="0" />
+            <generator class="native">
+		    	<param name="sequence">SEQ_CUE_LISTA_CUESTIONARIO</param>
+		   </generator>
+        </id>
+        <many-to-one name="cueLista" class="com.vortexbird.pusay.cuestionarios.model.CueLista" fetch="select">
+            <column name="LISTA" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cueCuestionario" class="com.vortexbird.pusay.cuestionarios.model.CueCuestionario" fetch="select">
+            <column name="CUESTIONARIO" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="fechaHoraAsignacion" type="java.util.Date">
+            <column name="FECHA_HORA_ASIGNACION" length="11" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

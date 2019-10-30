@@ -1,0 +1,33 @@
+<jsp:root jsfc="f:view" xmlns:jsp="http://java.sun.com/JSP/Page"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ice="http://www.icesoft.com/icefaces/component"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <ice:outputDeclaration doctypeRoot="html"
+        doctypePublic="-//W3C//DTD XHTML 1.0 Transitional//EN"
+        doctypeSystem="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" />
+        <html>
+            <body>
+                <f:view>
+                    <ui:composition>
+                        <div id="header">
+                            <div class="tr">
+                                <div class="br">
+                                	 <img src="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/login.png"   />
+                               			 <div class="bl">
+	                                        <h1>
+	                                             <h:outputLabel  value="Sistema de Seguridad"  />
+	                                        </h1>                                       
+                                    	</div>
+                                </div>
+                            </div>
+                            <!-- end .corners -->
+                        </div>
+                        <!-- end header -->
+                    </ui:composition>
+                </f:view>
+            </body>
+        </html>
+</jsp:root>

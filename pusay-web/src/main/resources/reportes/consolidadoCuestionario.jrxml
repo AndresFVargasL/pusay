@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="consolidadoPregunta" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2d0af580-a5de-4a0c-b2ed-d2e843d1399f">
+	<property name="ireport.zoom" value="1.100000000000001"/>
+	<property name="ireport.x" value="150"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="SansSerif" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="SansSerif" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="SansSerif" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#F2F2F2"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT    CUE.CONSECUTIVO,
+          RESP.IP,
+          CUE.TITULO,
+          CONT.IDENTIFICACION,
+          (CONT.NOMBRE || ' ' || CONT.APELLIDO) NOMBRE_CONTACTO,
+          LISTC.FECHA_HORA_FINALIZACION,
+          LISTC.PUNTAJE_TOTAL
+FROM      CUE_PREGUNTA PREG,
+          CUE_CATEGORIA CAT,
+          CUE_CUESTIONARIO CUE,
+          CUE_OPCION OPC,
+          CUE_RESPUESTA RESP,
+          CUE_LISTA_CONTACTO LISTC,
+          CUE_CONTACTO CONT
+WHERE     PREG.CATEGORIA = CAT.CONSECUTIVO
+AND       CAT.CUESTIONARIO = CUE.CONSECUTIVO
+AND       OPC.PREGUNTA = PREG.CONSECUTIVO
+AND       RESP.OPCION = OPC.CONSECUTIVO
+AND       RESP.LISTA_CONTACTO = LISTC.CONSECUTIVO
+AND       LISTC.CONTACTO = CONT.IDENTIFICACION
+GROUP BY  CUE.CONSECUTIVO, RESP.IP, CUE.TITULO, CONT.IDENTIFICACION, (CONT.NOMBRE || ' ' || CONT.APELLIDO), LISTC.FECHA_HORA_FINALIZACION, LISTC.PUNTAJE_TOTAL
+ORDER BY  LISTC.PUNTAJE_TOTAL DESC]]>
+	</queryString>
+	<field name="CONSECUTIVO" class="java.math.BigDecimal"/>
+	<field name="IP" class="java.lang.String"/>
+	<field name="TITULO" class="java.lang.String"/>
+	<field name="IDENTIFICACION" class="java.math.BigDecimal"/>
+	<field name="NOMBRE_CONTACTO" class="java.lang.String"/>
+	<field name="FECHA_HORA_FINALIZACION" class="java.sql.Timestamp"/>
+	<field name="PUNTAJE_TOTAL" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image hAlign="Center" vAlign="Middle" onErrorType="Icon">
+				<reportElement x="0" y="8" width="295" height="71" uuid="9ed37c49-516e-4b67-89c0-748b4cac8a15"/>
+				<imageExpression><![CDATA["reportes/LogoCoomevaMP.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="35" width="802" height="20" uuid="2eaf2a10-5e72-426e-846f-e1821d439a1b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONSOLIDADO DE PUNTAJE TOTAL POR CUESTIONARIO]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<rectangle>
+				<reportElement x="315" y="0" width="134" height="31" uuid="f0ab5fe4-a0dd-4e83-8e9b-e37a08e3f63f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="152" y="0" width="160" height="31" uuid="37b851db-e77b-457e-b371-75bad3b721d4"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="81" y="0" width="70" height="31" uuid="5e0793ce-b115-4a4f-aba5-844138921b98"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="71" height="31" uuid="d4aba6b5-d9be-4a80-8833-9d39f5c0c278"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="0" width="70" height="31" forecolor="#FFFFFF" backcolor="#008852" uuid="0f627c33-56f3-4fcb-86e7-689eaec8994c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cuestionario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="72" y="0" width="79" height="31" forecolor="#FFFFFF" backcolor="#008852" uuid="b333a558-8172-43d7-ac95-a5071dc048f5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dirección IP]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="448" y="0" width="214" height="31" uuid="ed0c2e94-69fc-4d9f-bd56-5f72871706f9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="663" y="0" width="86" height="31" uuid="37168f6d-54d3-4f06-ad90-f0421715944a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="750" y="0" width="52" height="31" uuid="f8f0c7ba-f911-4f09-ad5d-aa6196985a57"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Opaque" x="750" y="0" width="52" height="31" forecolor="#FFFFFF" backcolor="#008852" uuid="d5c2af20-61ea-40f2-9f75-96fbee636776"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Puntaje Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="449" y="0" width="213" height="31" forecolor="#FFFFFF" backcolor="#008852" uuid="26fc99b4-6b67-4117-a737-f6342d4f556e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="152" y="0" width="160" height="31" forecolor="#FFFFFF" backcolor="#008852" uuid="0efed7c3-3045-4e1c-ac10-c65795f8068a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Titulo Cuestionatio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="313" y="0" width="135" height="31" forecolor="#FFFFFF" backcolor="#008852" uuid="9bf3b146-7dbc-459c-b91d-ecdbd9279312"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Identificación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="663" y="0" width="86" height="31" forecolor="#FFFFFF" backcolor="#008852" uuid="b634bf3a-8875-4c1f-8b5b-6fb08d1bed01"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Finalización]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="312" y="0" width="137" height="20" uuid="e1e06bb3-5289-4e04-a528-c3042f0e75bc"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="71" height="20" uuid="d1911b6e-b146-4107-ba95-9647df7f5bd6"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="71" y="0" width="80" height="20" uuid="b24feea5-cc0c-4f5d-acc7-3b66e2c22d7c"/>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="0" width="71" height="20" uuid="2e066a6f-bc57-4b64-bc3b-ba431a4f8be4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CONSECUTIVO}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="151" y="0" width="162" height="20" uuid="63fad053-d475-430c-8723-db8327a09f7e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="449" y="0" width="214" height="20" uuid="3ff14069-7b71-4e75-bcb3-6910aef73216"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="663" y="0" width="87" height="20" uuid="95695f83-0528-449a-8569-11da723cfe6c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="750" y="0" width="52" height="20" uuid="f5caf6ee-ac27-471a-8ff9-5a199cdc5ade"/>
+			</rectangle>
+			<textField>
+				<reportElement x="71" y="0" width="79" height="20" uuid="312e3ffe-62ab-4e0a-971e-3a639c3bb11b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="0" width="162" height="20" uuid="12fa7599-89df-425f-8056-56d63ccfceb6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TITULO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="0" width="213" height="20" uuid="096bf8d0-27cd-4482-89b1-c61c680bd3a7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMBRE_CONTACTO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyy h:mm:ss a">
+				<reportElement x="663" y="0" width="87" height="20" uuid="354f0c40-70c2-40b4-b66d-a28a8db3e66d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECHA_HORA_FINALIZACION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="749" y="0" width="52" height="20" uuid="93631dbe-ae0f-4159-a40f-4e78e1f30fd3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PUNTAJE_TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="314" y="0" width="134" height="20" uuid="72c1c8ef-75b4-4ef2-b87b-5a7b2101bfcb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IDENTIFICACION}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

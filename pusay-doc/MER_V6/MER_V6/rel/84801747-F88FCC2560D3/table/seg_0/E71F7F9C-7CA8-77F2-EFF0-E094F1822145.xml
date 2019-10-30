@@ -1,0 +1,93 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E71F7F9C-7CA8-77F2-EFF0-E094F1822145" name="PSY_PROVINCIA">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:27:20 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>PROV</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PROV_CODIGO" id="CF65277F-4BA7-D2A8-2016-E76A70FA0603">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:30:57 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PAIS_CODIGO" id="80D746AD-4EF1-3528-725A-995E2C83E56A">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:37:50 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E4011000-4E8B-B642-D695-26E4E2EE9F95" referredColumn="52635E51-4A8C-A53D-4CBF-BDC36BDF4163"/>
+</associations>
+</Column>
+<Column name="NOMBRE" id="862E8117-C428-2314-E64B-1A201462658D">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:30:57 UTC</createdTime>
+<comment>NOMBRE DE LA PROVINCIA, DEPARTAMENTO O ESTADO</comment>
+<commentInRDBMS>NOMBRE DE LA PROVINCIA, DEPARTAMENTO O ESTADO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="811D5349-0A9C-E8A1-DDE0-8A81656BE7B7">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:30:57 UTC</createdTime>
+<commentInRDBMS>A-ACTIVO, I-INACTIVO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="17403A25-AFFE-F07B-A614-9AE122693FFB" name="PSY_PROVINCIA_PK">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:30:57 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CF65277F-4BA7-D2A8-2016-E76A70FA0603"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2AFEFC3B-C6C8-E2C1-361A-FE72E5F37FDD" name="PROVINCIA_PAIS_FK">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-12 00:37:50 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="80D746AD-4EF1-3528-725A-995E2C83E56A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

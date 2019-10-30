@@ -1,0 +1,327 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+
+			<f:loadBundle basename="i18n.msj_cuestionario" var="msg" />
+			<f:loadBundle basename="i18n.msj_general" var="msgGen" />
+			<f:loadBundle basename="i18n.msj_lista" var="msgLista" />
+
+			<f:view>
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+					draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form id="form">
+
+					<br />
+
+					<p:panel id="msgProjectCueCuestionarioTitle"
+						header="#{msg.lbl_cuestionario_titulo}">
+						<p:messages id="msg" showDetail="true" />
+						<p:growl id="men" />
+
+						<h:panelGrid columns="4" id="panel">
+							<h:outputText id="msgTitulo"
+								value="#{msg.lbl_cuestionario_tituloCuestionario}" />
+							<p:inputText id="txtTitulo"
+								value="#{cuestionarioUI.cuestionario.titulo}" />
+							<h:outputText id="msgIdentificacion_CueResponsable"
+								value="#{msg.lbl_cuestionario_responsable}" />
+							<p:selectOneMenu id="selIdentificacion_CueResponsable"
+								value="#{cuestionarioUI.cuestionario.cueResponsable.identificacion}">
+								<f:selectItems value="#{cuestionarioUI.listResponsable}" />
+							</p:selectOneMenu>
+
+							<h:outputText id="msgDescripcion"
+								value="#{msg.lbl_cuestionario_descripcion}" />
+							<p:inputText id="txtDescripcion"
+								value="#{cuestionarioUI.cuestionario.descripcion}" />
+							<h:outputText id="msgConsecutivo_CueCuestionarioTipo"
+								value="#{msg.lbl_cuestionario_cueCuestionarioTipo}" />
+							<p:selectOneMenu id="selConsecutivo_CueCuestionarioTipo"
+								value="#{cuestionarioUI.cuestionario.cueCuestionarioTipo.consecutivo}">
+								<f:selectItems value="#{cuestionarioUI.listCuestionarioTipo}" />
+							</p:selectOneMenu>
+
+							<h:outputText id="msgTerminos"
+								value="#{msg.lbl_cuestionario_terminos}" />
+							<p:inputTextarea id="txtTerminos" 
+								value="#{cuestionarioUI.cuestionario.terminos}" />
+							<h:outputText id="msgConsecutivo_CueConfiguracion"
+								value="#{msg.lbl_cuestionario_cueConfiguracion}" />
+							<h:panelGrid id="panelConfiguracion" columns="2">
+								<p:inputText id="txtConsecutivo_CueConfiguracion"
+									value="#{cuestionarioUI.cuestionario.cueConfiguracion.consecutivo}" />
+								<p:commandButton id="modalDialogButton" value="#{msg.lbl_cuestionario_configuracion}"
+									onclick="PF('dlg2').show()" type="button" />
+							</h:panelGrid>
+
+							<h:outputText id="msgConsecutivo_CueEstado"
+								value="#{msg.lbl_cuestionario_cueEstado}" />
+							<p:selectOneMenu id="consecutivo_CueEstado"
+								value="#{cuestionarioUI.cuestionario.cueEstado.consecutivo}">
+								<f:selectItems value="#{cuestionarioUI.listEstados}" />
+							</p:selectOneMenu>
+
+						</h:panelGrid>
+
+						<br />
+						<div align="center">
+							<h:panelGrid id="panelBotones" columns="4">
+								<p:commandButton id="btnSave" 
+									disabled="#{cuestionarioUI.disableButtonSave}"
+									value="#{msgGen.btn_general_save}"
+									action="#{cuestionarioUI.actionSave}"
+									update="msg,panel,panelBotones,tableCuestionario,textAreaURL" />
+								<p:commandButton id="btnModify" 
+									disabled="#{cuestionarioUI.disableButtonModify}"
+									value="#{msgGen.btn_general_modify}"
+									action="#{cuestionarioUI.actionModify}"
+									update="msg,panel,panelBotones,tableCuestionario,textAreaURL" />
+								<p:commandButton id="btnDelete"
+									disabled="#{cuestionarioUI.disableButtonDelete}"
+									value="#{msgGen.btn_general_delete}"
+									action="#{cuestionarioUI.actionDelete}"
+									update="msg,panel,panelBotones,tableCuestionario,textAreaURL"
+									onclick="return confirm('#{msgGen.lbl_general_confirm}')" />
+								<p:commandButton id="btnClear"
+									value="#{msgGen.btn_general_clear}"
+									action="#{cuestionarioUI.actionClear}"
+									update="msg,panel,panelBotones, :form:listadoCuestionario,textAreaURL" />
+							</h:panelGrid>
+						</div>
+						<br />
+
+						<p:dataTable value="#{cuestionarioUI.data}" id="tableCuestionario"
+							var="cueCuestionario" paginator="true" rows="5">
+							<p:column filterBy="#{cueCuestionario.titulo}"
+								sortBy="#{cueCuestionario.titulo}">
+								<f:facet name="header">
+									<h:outputText
+										value="#{msg.lbl_cuestionario_tituloCuestionario}" />
+								</f:facet>
+								<h:outputText value="#{cueCuestionario.titulo}" />
+							</p:column>
+
+						<!-- 	<p:column filterBy="#{cueCuestionario.descripcion}"
+								sortBy="#{cueCuestionario.descripcion}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_cuestionario_descripcion}" />
+								</f:facet>
+								<div align="center">
+									<h:outputText value="#{cueCuestionario.descripcion}" />
+								</div>
+							</p:column>  -->
+							
+							<p:column
+								filterBy="#{cueCuestionario.cueCuestionarioTipo.nombre}"
+								sortBy="#{cueCuestionario.cueCuestionarioTipo.nombre}">
+								<f:facet name="header">
+									<h:outputText
+										value="#{msg.lbl_cuestionario_cueCuestionarioTipo}" />
+								</f:facet>
+								<h:outputText
+									value="#{cueCuestionario.cueCuestionarioTipo.nombre}" />
+							</p:column>
+
+							<p:column filterBy="#{cueCuestionario.cueResponsable.nombre}"
+								sortBy="#{cueCuestionario.cueResponsable.nombre}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_cuestionario_responsable}" />
+								</f:facet>
+								<h:outputText value="#{cueCuestionario.cueResponsable.nombre}" />
+							</p:column>
+							
+							<p:column filterBy="#{cueCuestionario.cueEstado.consecutivo}"
+								sortBy="#{cueCuestionario.cueEstado.consecutivo}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_cuestionario_cueEstado}" />
+								</f:facet>
+								<h:outputText value="#{cueCuestionario.cueEstado.consecutivo eq 1 ? 'Activo' : cueCuestionario.cueEstado.consecutivo eq 2 ? 'Inactivo' : cueCuestionario.cueEstado.consecutivo eq 3 ? 'Anulada' : 'Error'}" />
+							</p:column>
+
+							<p:column style="width:4%">
+								<p:commandButton id="selectButtonTable"
+									update=":form:panel,:form:panelConfiguracion,:form:panelBotones, :form:listadoCuestionario"
+									action="#{cuestionarioUI.actionLoadEntity}"
+									icon="ui-icon-search">
+									<f:setPropertyActionListener value="#{cueCuestionario}"
+										target="#{listaCuestionarioUI.selectedCuestionario}" />
+									<f:setPropertyActionListener value="#{cueCuestionario}"
+										target="#{cuestionarioUI.selectedCuestionario}" />
+								</p:commandButton>
+							</p:column>
+							
+							<p:column style="width:4%">
+								<p:commandButton id="selectURL" icon="ui-icon-contact" onclick="PF('dlgURL').show()" update=":form:textAreaURL">
+									<f:setPropertyActionListener value="#{cueCuestionario}"
+										target="#{cuestionarioUI.selectedCuestionarioUrl}" />
+								</p:commandButton>
+							</p:column>
+
+							
+						 </p:dataTable>
+						<br />
+						<h:panelGrid columns="1" id="panelLista" style="width: 100%;">
+
+							<p:dataTable value="#{listaUI.dataActivos}" var="cueLista"
+								paginator="true" rows="8" id="tableLista">
+
+								<f:facet name="header">
+									<h:outputText value="#{msgLista.lbl_lista_lista}" />
+								</f:facet>
+
+								<p:column sortBy="#{cueLista.nombre}">
+									<f:facet name="header">
+										<h:outputText value="#{msgLista.lbl_lista_nombre}" />
+									</f:facet>
+									<h:outputText value="#{cueLista.nombre}" />
+								</p:column>
+
+								<p:column sortBy="#{cueLista.descripcion}">
+									<f:facet name="header">
+										<h:outputText value="#{msgLista.lbl_lista_descripcion}" />
+									</f:facet>
+									<h:outputText value="#{cueLista.descripcion}" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="" />
+									</f:facet>
+									<p:commandButton id="selectButton"
+										action="#{listaCuestionarioUI.action_agregar_lista}"
+										update=":form:msg, :form:listadoCuestionario" icon="ui-icon-plusthick">
+										<f:setPropertyActionListener
+											target="#{listaCuestionarioUI.cueListaCuestionario.cueLista}"
+											value="#{cueLista}" />
+									</p:commandButton>
+								</p:column>
+
+							</p:dataTable>
+
+							<br />
+
+							<p:dataTable value="#{listaCuestionarioUI.data}"
+								id="listadoCuestionario" var="cueListaCuestionario"
+								paginator="true" rows="5">
+
+								<f:facet name="header">
+									<h:outputText value="#{msgLista.lbl_lista_listaCuestionario}" />
+								</f:facet>
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="FechaHoraAsignacion" />
+									</f:facet>
+									<h:outputText
+										value="#{cueListaCuestionario.fechaHoraAsignacion}" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="Consecutivo_CueLista" />
+									</f:facet>
+									<h:outputText value="#{cueListaCuestionario.cueLista.nombre}" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="" />
+									</f:facet>
+									<p:commandButton id="selectButton"
+										action="#{listaCuestionarioUI.action_eliminar_lista}"
+										update=":form:msg, :form:listadoCuestionario" icon="ui-icon-minusthick">
+										<f:setPropertyActionListener
+											target="#{listaCuestionarioUI.selectedListaCuestionario}"
+											value="#{cueListaCuestionario}" />
+									</p:commandButton>
+								</p:column>
+
+							</p:dataTable>
+
+						</h:panelGrid>
+					</p:panel>
+
+					<p:dialog header="#{msg.lbl_cuestionario_configuracion2}" widgetVar="dlg2" showEffect="explode"
+						hideEffect="explode" modal="true" width="850" position="center center">
+						<p:dataTable value="#{cuestionarioUI.dataConfiguracion}"
+							id="tableConfiguracion" var="cueConfiguracion" paginator="true"
+							rows="5">
+							<p:column filterBy="#{cueConfiguracion.enunciado}"
+								sortBy="#{cueConfiguracion.enunciado}">
+								<f:facet name="header">
+									<h:outputText value="#{msgConf.lbl_configuracion_nombre}" />
+								</f:facet>
+								<h:outputText value="#{cueConfiguracion.enunciado}" />
+							</p:column>
+
+							<p:column filterBy="#{cueConfiguracion.puntajeMax}"
+								sortBy="#{cueConfiguracion.puntajeMax}">
+								<f:facet name="header">
+									<h:outputText value="#{msgConf.lbl_configuracion_puntajeMax}" />
+								</f:facet>
+								<h:outputText value="#{cueConfiguracion.puntajeMax}" />
+							</p:column>
+
+							<p:column filterBy="#{cueConfiguracion.abierto}"
+								sortBy="#{cueConfiguracion.abierto}">
+								<f:facet name="header">
+									<h:outputText value="#{msgConf.lbl_configuracion_abierto}" />
+								</f:facet>
+								<div align="center">
+									<h:outputText
+										value="#{cueConfiguracion.abierto eq 1 ? 'SI' : 'NO'}" />
+								</div>
+							</p:column>
+
+							<p:column filterBy="#{cueConfiguracion.colorTabla}"
+								sortBy="#{cueConfiguracion.colorTabla}">
+								<f:facet name="header">
+									<h:outputText value="#{msgConf.lbl_configuracion_colorTabla}" />
+								</f:facet>
+								<div align="center">
+									<h:outputText id="txtColorTablaConfig" disabled="true"
+										style="background-color:\##{cueConfiguracion.colorTabla}"
+										value="#{cueConfiguracion.colorTabla}" />
+								</div>
+							</p:column>
+
+							<p:column style="width:4%">
+								<p:commandButton id="selectButton" update=":form:panel,:form:textAreaURL"
+									icon="ui-icon-search" onclick="dlg2.close()">
+									<f:setPropertyActionListener value="#{cueConfiguracion}"
+										target="#{cuestionarioUI.selectedConfiguracion}" />
+								</p:commandButton>
+							</p:column>
+							
+						 </p:dataTable>
+					</p:dialog>
+					
+					<p:dialog header="URL" widgetVar="dlgURL" showEffect="explode" hideEffect="explode" 
+						width="450" height="170" id="dialogURL" modal="true" position="center center">
+						<h:panelGrid columns="1">
+							<div align="center">
+							    <p:inputTextarea id="textAreaURL" value="#{cuestionarioUI.urlToUse}" style="width:400px; height: 100px;" readonly="true"/> 
+							
+							</div>
+							<div align="center">
+								 <p:commandButton id="btnVerUrl" value="#{msgGen.btn_general_ver}"
+									action="#{cuestionarioUI.actionGenerarURL}"
+									update="msg,panel,panelBotones,tableCuestionario,textAreaURL" />
+							</div>
+						</h:panelGrid>
+					</p:dialog>  
+				</h:form>
+					</f:view>
+		</ui:define>
+
+</ui:composition>

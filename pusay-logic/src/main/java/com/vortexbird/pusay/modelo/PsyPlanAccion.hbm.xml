@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-jul-2015 10:11:09 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyPlanAccion" table="psy_plan_accion" schema="public">
+        <id name="placCodigo" type="java.lang.Long">
+            <column name="plac_codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="psyPrograma" class="com.vortexbird.pusay.modelo.PsyPrograma" fetch="select">
+            <column name="prog_codigo" not-null="true" />
+        </many-to-one>
+        <property name="fechaInicio" type="java.util.Date">
+            <column name="fecha_inicio" length="13" not-null="true">
+                <comment>FECHA DE INICIO PARA EL PLAN DE ACCION</comment>
+            </column>
+        </property>
+        <property name="fechaFinPlaneada" type="java.util.Date">
+            <column name="fecha_fin_planeada" length="13" not-null="true">
+                <comment>FECHA EN LA QUE SE ESPERA FINALIZAR EL PLAN DE ACCION</comment>
+            </column>
+        </property>
+        <property name="fechaFinReal" type="java.util.Date">
+            <column name="fecha_fin_real" length="13">
+                <comment>FECHA REAL EN QUE SE CIERRA EL PLAN DE ACCION</comment>
+            </column>
+        </property>
+        <property name="nombre" type="java.lang.String">
+            <column name="nombre" not-null="true">
+                <comment>NOMBRE DEL PLAN DE ACCION</comment>
+            </column>
+        </property>
+        <property name="descripcion" type="java.lang.String">
+            <column name="descripcion" length="2000">
+                <comment>DESCRIPCION DEL PLAN DE ACCION</comment>
+            </column>
+        </property>
+        <property name="estadoPlanAccion" type="java.lang.String">
+            <column name="estado_plan_accion" length="1" not-null="true">
+                <comment>ESTADOS POR LOS QUE PASA EL PLAN DE ACCION</comment>
+            </column>
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true">
+                <comment>A-ACTIVO, I-INACTIVO</comment>
+            </column>
+        </property>
+        <set name="psyTareas" table="psy_tarea" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="plac_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyTarea" />
+        </set>
+        <set name="psyPresupuestos" table="psy_presupuesto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="plac_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyPresupuesto" />
+        </set>
+        <set name="psyIpus" table="psy_ipu" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="plac_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyIpu" />
+        </set>
+    </class>
+</hibernate-mapping>

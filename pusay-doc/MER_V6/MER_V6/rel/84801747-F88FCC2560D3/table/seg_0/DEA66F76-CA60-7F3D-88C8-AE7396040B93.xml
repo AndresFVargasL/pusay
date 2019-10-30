@@ -1,0 +1,104 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DEA66F76-CA60-7F3D-88C8-AE7396040B93" name="PSY_RESPONSABLE">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:05:55 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>RESP</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="RESP_CODIGO" id="E3B56AE9-CE0A-D101-0CE6-CAFAA9230451">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:06:24 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EMPR_CODIGO" id="780B43EC-E751-3092-38E8-A11EC85728C6">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:06:30 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="FC18256B-44BD-E2EA-20EC-22BBE66CDF9A" referredColumn="0D0A7C25-2199-55BE-9FFB-1E673D5FC29A"/>
+</associations>
+</Column>
+<Column name="NOMBRE" id="64652280-2997-261C-EDB1-DD94E37DCD2C">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 23:18:47 UTC</createdTime>
+<comment>NOMBRE DEL RESPONSABLE AMBIENTAL</comment>
+<commentInRDBMS>NOMBRE DEL RESPONSABLE AMBIENTAL</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EMAIL" id="E6DC4879-42F5-3FB1-6DAB-05D232B9EA88">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 23:18:47 UTC</createdTime>
+<comment>EMAIL DEL RESPONSABLE</comment>
+<commentInRDBMS>EMAIL DEL RESPONSABLE</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="8893A80C-D96C-D0B0-23AD-D757BAFCE0D4">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 23:18:47 UTC</createdTime>
+<comment>A-ACTIVO, I-INACTIVO</comment>
+<commentInRDBMS>A-ACTIVO, I-INACTIVO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="925C4BF9-99AD-B8D4-E9AB-4F01A266979B" name="PSY_RESPONSABLE_PK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:06:24 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E3B56AE9-CE0A-D101-0CE6-CAFAA9230451"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E3987F68-16FC-C0A8-77F4-BD2AE5DF1CA0" name="RESP_EMPR_FK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:06:30 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="780B43EC-E751-3092-38E8-A11EC85728C6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

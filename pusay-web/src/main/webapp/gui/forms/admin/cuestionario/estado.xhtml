@@ -1,0 +1,110 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+
+			<f:loadBundle basename="i18n.msj_estado" var="msg" />
+			<f:loadBundle basename="i18n.msj_general" var="msgGen" />
+
+			<f:view>
+				<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+					draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form id="form">
+					<br />
+					<p:panel id="msgProjectCueEstadoTitle" header="#{msg.lbl_estado_titulo}">
+						<p:messages id="msg" showDetail="true" />
+						<p:growl id="men" />
+						
+						<h:panelGrid columns="4" id="panel">
+							<h:outputText id="msgNombre" value="#{msg.lbl_estado_nombre}" />
+							<p:inputText id="txtNombre" disabled="false"
+								value="#{estadoUI.estado.nombre}" />
+							<h:outputText id="msgDescripcion" value="#{msg.lbl_estado_descripcion}" />
+							<p:inputTextarea id="txtDescripcion" disabled="false" style="width: 200px; height: 80px;"
+								value="#{estadoUI.estado.descripcion}" />
+							<h:outputText id="msgEstado" value="#{msg.lbl_estado_estado}" />
+							<p:selectOneRadio id="optionsRetCuestionario" value="#{estadoUI.estado.estado}">
+								<f:selectItem itemLabel="#{msg.lbl_activo}"
+									itemValue="1" />
+								<f:selectItem itemLabel="#{msg.lbl_inactivo}"
+									itemValue="0" />
+							</p:selectOneRadio>
+						</h:panelGrid>
+
+						<br />
+
+						<h:panelGrid id="panelBotones" columns="4">
+							<p:commandButton id="btnSave"
+								disabled="#{estadoUI.disableButtonSave}"
+								value="#{msgGen.btn_general_save}" ajax="true"
+								action="#{estadoUI.actionSave}"
+								update="msg,panel,panelBotones,tableEstados" />
+							<p:commandButton id="btnModify"
+								disabled="#{estadoUI.disableButtonModify}"
+								value="#{msgGen.btn_general_modify}" ajax="true"
+								action="#{estadoUI.actionModify}"
+								update="msg,panel,panelBotones,tableEstados" />
+							<p:commandButton id="btnDelete"
+								disabled="#{estadoUI.disableButtonDelete}"
+								value="#{msgGen.btn_general_delete}" ajax="true"
+								action="#{estadoUI.actionDelete}"
+								update="msg,panel,panelBotones,tableEstados"
+								onclick="return confirm('#{msgGen.lbl_general_confirm}')" />
+							<p:commandButton id="btnClear"
+								value="#{msgGen.btn_general_clear}" ajax="true"
+								action="#{estadoUI.actionClear}" update="msg,panel,panelBotones" />
+						</h:panelGrid>
+
+					</p:panel>
+					<br />
+					<p:dataTable value="#{estadoUI.data}" var="cueEstado" id="tableEstados" paginator="true" rows="5">
+
+						<p:column filterBy="#{cueEstado.nombre}"
+							sortBy="#{cueEstado.nombre}">
+							<f:facet name="header">
+								<h:outputText value="#{msg.lbl_estado_nombre}" />
+							</f:facet>
+							<h:outputText value="#{cueEstado.nombre}" />
+						</p:column>
+
+						<p:column filterBy="#{cueEstado.descripcion}"
+							sortBy="#{cueEstado.descripcion}">
+							<f:facet name="header">
+								<h:outputText value="#{msg.lbl_estado_descripcion}" />
+							</f:facet>
+							<h:outputText value="#{cueEstado.descripcion}" />
+						</p:column>
+
+						<p:column filterBy="#{cueEstado.estado}"
+							sortBy="#{cueEstado.estado}">
+							<f:facet name="header">
+								<h:outputText value="#{msg.lbl_estado_estado}" />
+							</f:facet>
+							<h:outputText value="#{cueEstado.estado eq 1 ? 'Activo' : 'Inactivo'}" />
+						</p:column>
+
+						<p:column style="width:4%">
+							<p:commandButton id="selectButton"
+								update=":form:panel,:form:panelBotones,:form:tableEstados"
+								action="#{estadoUI.actionLoadEntity}"
+								icon="ui-icon-search">
+								<f:setPropertyActionListener value="#{cueEstado}"
+									target="#{estadoUI.selectedEstado}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+
+				</h:form>
+					</f:view>
+		</ui:define>
+
+</ui:composition>

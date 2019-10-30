@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-jun-2013 19:14:26 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.cuestionarios.model.CueConfiguracion" table="CUE_CONFIGURACION" lazy="false">
+        <id name="consecutivo" type="java.lang.Long">
+            <column name="CONSECUTIVO" precision="10" scale="0" />
+            <generator class="native">
+		    	<param name="sequence">SEQ_CUE_CONFIGURACION</param>
+		   </generator>
+        </id>
+        <property name="multipleRespuesta" type="java.lang.Long">
+            <column name="MULTIPLE_RESPUESTA" precision="2" scale="0" not-null="true" />
+        </property>
+        <property name="enunciado" type="java.lang.String">
+            <column name="ENUNCIADO" length="512" />
+        </property>
+        <property name="multipleRespuestaMsj" type="java.lang.String">
+            <column name="MULTIPLE_RESPUESTA_MSJ" length="512" />
+        </property>
+        <property name="retomarCuestionario" type="java.lang.Long">
+            <column name="RETOMAR_CUESTIONARIO" precision="1" scale="0" not-null="true" />
+        </property>
+        <property name="redirigirUrl" type="java.lang.String">
+            <column name="REDIRIGIR_URL" length="512" />
+        </property>
+        <property name="redirigirCerrar" type="java.lang.Long">
+            <column name="REDIRIGIR_CERRAR" precision="1" scale="0" />
+        </property>
+        <property name="redirigirInforme" type="java.lang.Long">
+            <column name="REDIRIGIR_INFORME" precision="1" scale="0" />
+        </property>
+        <property name="claveAcceso" type="java.lang.String">
+            <column name="CLAVE_ACCESO" length="20" />
+        </property>
+        <property name="vigenciaInicio" type="java.util.Date">
+            <column name="VIGENCIA_INICIO" length="11" not-null="true" />
+        </property>
+        <property name="vigenciaFin" type="java.util.Date">
+            <column name="VIGENCIA_FIN" length="11" not-null="true" />
+        </property>
+        <property name="mensajeCierre" type="java.lang.String">
+            <column name="MENSAJE_CIERRE" length="512" not-null="true" />
+        </property>
+        <property name="mensajeFechaLimite" type="java.lang.String">
+            <column name="MENSAJE_FECHA_LIMITE" length="512" not-null="true" />
+        </property>
+        <property name="mensajeRedireccional" type="java.lang.String">
+            <column name="MENSAJE_REDIRECCIONAL" length="512" not-null="true" />
+        </property>
+        <property name="mensajeMaximoRespuestas" type="java.lang.String">
+            <column name="MENSAJE_MAXIMO_RESPUESTAS" length="512" not-null="true" />
+        </property>
+        <property name="mensajeCuestionarioFinalizad" type="java.lang.String">
+            <column name="MENSAJE_CUESTIONARIO_FINALIZAD" length="512" not-null="true" />
+        </property>
+        <property name="mensajeClaveIncorrecta" type="java.lang.String">
+            <column name="MENSAJE_CLAVE_INCORRECTA" length="512" not-null="true" />
+        </property>
+        <property name="abierto" type="java.lang.Long">
+            <column name="ABIERTO" precision="2" scale="0" not-null="true" />
+        </property>
+        <property name="puntajeMax" type="java.lang.Long">
+            <column name="PUNTAJE_MAX" precision="3" scale="0" />
+        </property>
+        <property name="header" type="java.lang.String">
+            <column name="HEADER" length="512" not-null="true" />
+        </property>
+        <property name="colorTabla" type="java.lang.String">
+            <column name="COLOR_TABLA" length="512" not-null="true" />
+        </property>
+        <set name="cueCuestionarios" inverse="true" lazy="false" table="CUE_CUESTIONARIO" fetch="select">
+            <key>
+                <column name="CONFIGURACION" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.cuestionarios.model.CueCuestionario" />
+        </set>
+    </class>
+</hibernate-mapping>

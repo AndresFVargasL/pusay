@@ -1,0 +1,159 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F39D27CB-723F-594D-6D89-5C339EDA05A6" name="PSY_PLAN_ACCION">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:58:02 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>PLAC</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PLAC_CODIGO" id="316951A5-8146-69EE-7FA1-6D4E5040446F">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:59:01 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PROG_CODIGO" id="793508C4-67AA-8B80-34B3-834400613FD1">
+<createdBy>andresfelipevargaslopez</createdBy>
+<createdTime>2015-07-13 14:56:01 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="922F2389-2FB2-EF1D-E8A1-ADBDADBAEA8D" referredColumn="E4FE1541-5A61-CC91-0906-FBFAB85BC3A9"/>
+</associations>
+</Column>
+<Column name="FECHA_INICIO" id="45A489F8-AC2E-EA55-C131-ECE32F7A305F">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:00:31 UTC</createdTime>
+<comment>FECHA DE INICIO PARA EL PLAN DE ACCION</comment>
+<commentInRDBMS>FECHA DE INICIO PARA EL PLAN DE ACCION</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FECHA_FIN_PLANEADA" id="F48A7899-A143-90EA-249D-148084DBCAD2">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:00:31 UTC</createdTime>
+<comment>FECHA EN LA QUE SE ESPERA FINALIZAR EL PLAN DE ACCION</comment>
+<commentInRDBMS>FECHA EN LA QUE SE ESPERA FINALIZAR EL PLAN DE ACCION</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FECHA_FIN_REAL" id="372685D7-0954-D55F-71A0-782C9BCCDC97">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:00:31 UTC</createdTime>
+<comment>FECHA REAL EN QUE SE CIERRA EL PLAN DE ACCION</comment>
+<commentInRDBMS>FECHA REAL EN QUE SE CIERRA EL PLAN DE ACCION</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOMBRE" id="C72689EF-963C-5DE6-A24E-CFF54315CFC0">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:00:31 UTC</createdTime>
+<comment>NOMBRE DEL PLAN DE ACCION</comment>
+<commentInRDBMS>NOMBRE DEL PLAN DE ACCION</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESCRIPCION" id="7453358E-8F3F-BE18-13D4-03DB8E5B8E04">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:00:31 UTC</createdTime>
+<comment>DESCRIPCION DEL PLAN DE ACCION</comment>
+<commentInRDBMS>DESCRIPCION DEL PLAN DE ACCION</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000</dataTypeSize>
+<ownDataTypeParameters>2000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_PLAN_ACCION" id="BB37B156-68A3-93DF-4176-E661813B3C46">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:00:31 UTC</createdTime>
+<comment>ESTADOS POR LOS QUE PASA EL PLAN DE ACCION</comment>
+<commentInRDBMS>ESTADOS POR LOS QUE PASA EL PLAN DE ACCION</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="2D2A6034-D49B-CB40-A6BB-975BA88DC46D">
+<createdBy>CESARLOPEZ</createdBy>
+<createdTime>2015-03-11 22:00:31 UTC</createdTime>
+<commentInRDBMS>A-ACTIVO, I-INACTIVO</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E371569A-C94C-C3B8-E81D-7341ECCF88A0" name="PSY_PLAN_ACCION_PK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 17:03:14 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="316951A5-8146-69EE-7FA1-6D4E5040446F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D98AEA8D-8F52-C786-9317-5F6548A0F6DC" name="PSY_PLAC_PROG_FK">
+<createdBy>andresfelipevargaslopez</createdBy>
+<createdTime>2015-07-13 14:56:01 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="793508C4-67AA-8B80-34B3-834400613FD1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

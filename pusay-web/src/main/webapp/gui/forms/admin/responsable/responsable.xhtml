@@ -1,0 +1,129 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+
+			<f:loadBundle basename="i18n.msj_general" var="msgGen" />
+			<f:loadBundle basename="i18n.msj_responsable" var="msg" />
+
+			<f:view>
+				<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog" header="Cargando" draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form id="form">
+					<br />
+					<p:panel id="msgProjectCueResponsableTitle" header="#{msg.lbl_responsable_titulo}">
+						<p:messages id="msg" showDetail="true" />
+						<p:growl id="men" />
+						<h:panelGrid columns="4" id="panel">
+							<h:outputText id="msgIdentificacion" value="#{msg.lbl_responsable_identificacion}" />
+							<p:inputText id="txtIdentificacion" disabled="#{responsableUI.disableTextIdentificacion}" value="#{responsableUI.responsable.identificacion}" maxlength="17" />
+
+							<h:outputText value="" />
+							<h:outputText value="" />
+
+							<h:outputText id="msgApellido" value="#{msg.lbl_responsable_apellidos}" />
+							<p:inputText id="txtApellido" value="#{responsableUI.responsable.apellido}" />
+
+							<h:outputText id="msgNombre" value="#{msg.lbl_responsable_nombres}" />
+							<p:inputText id="txtNombre" value="#{responsableUI.responsable.nombre}" />
+							
+							<h:outputText id="msgEmail" value="#{msg.lbl_responsable_email}" />
+							<p:inputText id="txtEmail" value="#{responsableUI.responsable.email}" />
+							
+							<h:outputText id="msgEmailSoporte" value="#{msg.lbl_responsable_emailSoporte}" />
+							<p:inputText id="txtEmailSoporte" value="#{responsableUI.responsable.emailSoporte}" />
+
+							<h:outputText id="msgPaginaSoporte" value="#{msg.lbl_responsable_pagina}" />
+							<p:inputText id="txtPaginaSoporte" value="#{responsableUI.responsable.paginaSoporte}" />
+							
+							<h:outputText id="msgRazonSocial" value="#{msg.lbl_responsable_razonSocial}" />
+							<p:inputText id="txtRazonSocial" value="#{responsableUI.responsable.razonSocial}" />
+							
+							<h:outputText id="msgTelefono1" value="#{msg.lbl_responsable_tel1}" />
+							<p:inputText id="txtTelefono1" value="#{responsableUI.responsable.telefono1}" />
+							
+							<h:outputText id="msgTelefono2" value="#{msg.lbl_responsable_tel2}" />
+							<p:inputText id="txtTelefono2" value="#{responsableUI.responsable.telefono2}" />
+
+						</h:panelGrid>
+						<br />
+						<h:panelGrid id="panelBotones" columns="4">
+
+							<p:commandButton id="btnSave" disabled="#{responsableUI.disableButtonSave}" value="#{msgGen.btn_general_save}"
+								action="#{responsableUI.actionSave}" update="msg,panel,panelBotones,tableResponsables" />
+							<p:commandButton id="btnModify" disabled="#{responsableUI.disableButtonModify}" value="#{msgGen.btn_general_modify}"
+								action="#{responsableUI.actionModify}" update="msg,panel,panelBotones,tableResponsables" />
+							<p:commandButton id="btnDelete" disabled="#{responsableUI.disableButtonDelete}" value="#{msgGen.btn_general_delete}"
+								action="#{responsableUI.actionDelete}" update="msg,panel,panelBotones,tableResponsables" 
+								onclick="return confirm('#{msgGen.lbl_general_confirm}')" />
+							<p:commandButton id="btnClear" value="#{msgGen.btn_general_clear}"
+								action="#{responsableUI.actionClear}" update="msg,panel,panelBotones" />
+
+						</h:panelGrid>
+						<br />
+
+						<p:dataTable value="#{responsableUI.data}"
+							id="tableResponsables" var="cueResponsable" paginator="true"
+							rows="5">
+							<p:column filterBy="#{cueResponsable.identificacion}"
+								sortBy="#{cueResponsable.identificacion}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_responsable_identificacion}" />
+								</f:facet>
+								<h:outputText value="#{cueResponsable.identificacion}" />
+							</p:column>
+
+							<p:column filterBy="#{cueResponsable.apellido}"
+								sortBy="#{cueResponsable.apellido}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_responsable_apellidos}" />
+								</f:facet>
+								<h:outputText value="#{cueResponsable.apellido}" />
+							</p:column>
+
+							<p:column filterBy="#{cueResponsable.nombre}"
+								sortBy="#{cueResponsable.nombre}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_responsable_nombres}" />
+								</f:facet>
+								<h:outputText value="#{cueResponsable.nombre}" />
+							</p:column>
+
+							<p:column filterBy="#{cueResponsable.email}"
+								sortBy="#{cueResponsable.email}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_responsable_email}" />
+								</f:facet>
+								<h:outputText value="#{cueResponsable.email}" />
+							</p:column>
+
+							<p:column filterBy="#{cueResponsable.razonSocial}"
+								sortBy="#{cueResponsable.razonSocial}">
+								<f:facet name="header">
+									<h:outputText value="#{msg.lbl_responsable_razonSocial}" />
+								</f:facet>
+								<h:outputText value="#{cueResponsable.razonSocial}" />
+							</p:column>
+
+							<p:column style="width:4%">
+								<p:commandButton id="selectButton" update=":form:panel,:form:panelBotones"
+									action="#{responsableUI.actionLoadEntity}" icon="ui-icon-search">
+									<f:setPropertyActionListener value="#{cueResponsable}" target="#{responsableUI.selectedResponsable}" />
+								</p:commandButton>
+							</p:column>
+							
+							 </p:dataTable>
+					</p:panel>
+				</h:form>
+		</f:view>
+		</ui:define>
+
+</ui:composition>

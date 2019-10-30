@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="838A93A3-3E03-DAA0-4C1A-A66D1179D87F" name="PSY_ESTRATEGIA_AMBIENTAL">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 15:38:44 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>ESAM</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ESAM_CODIGO" id="8E4FC770-3206-0E1E-1202-2A56345153FB">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 15:39:10 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOMBRE" id="94364671-E6F4-47A2-CCB2-967EF722F3AD">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 20:08:59 UTC</createdTime>
+<comment>NOMBRE DE LA ESTRATEGIA AMBIENTAL</comment>
+<commentInRDBMS>NOMBRE DE LA ESTRATEGIA AMBIENTAL</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESCRIPCION" id="68F7A18F-3F1D-8510-E819-82948AFCE86F">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 20:08:59 UTC</createdTime>
+<comment>DESCRIPCION DE LA ESTRATEGIA AMBIENTAL</comment>
+<commentInRDBMS>DESCRIPCION DE LA ESTRATEGIA AMBIENTAL</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000</dataTypeSize>
+<ownDataTypeParameters>2000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="BCBDDD04-AE33-F158-3FAA-66E040AD5872">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 20:08:59 UTC</createdTime>
+<comment>A-ACTIVO, I-INACTIVO</comment>
+<commentInRDBMS>A-ACTIVO, I-INACTIVO</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="65D0E3A9-E8AB-7F42-EBFC-B5EC4B6D962A" name="PSY_ESTRATEGIA_AMBIENTAL_PK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 15:39:47 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8E4FC770-3206-0E1E-1202-2A56345153FB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

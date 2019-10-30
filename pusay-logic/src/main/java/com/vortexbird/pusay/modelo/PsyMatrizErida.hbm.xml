@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 20, 2015 10:23:26 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyMatrizErida" table="psy_matriz_erida" schema="public">
+        <id name="maerCodigo" type="java.lang.Long">
+            <column name="maer_codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="psyPlanEstrategico" class="com.vortexbird.pusay.modelo.PsyPlanEstrategico" fetch="select">
+            <column name="pest_codigo" not-null="true" />
+        </many-to-one>
+        <property name="fechaInicio" type="java.util.Date">
+            <column name="fecha_inicio" length="13">
+                <comment>FECHA DE INICIO DEL LA MATRIZ ERIDA</comment>
+            </column>
+        </property>
+        <property name="fechaFin" type="java.util.Date">
+            <column name="fecha_fin" length="13" not-null="true">
+                <comment>FECHA EN QUE SE GENERA EL INFORME DE DIAGNOSTICO DEFINITIVO</comment>
+            </column>
+        </property>
+        <property name="estadoErida" type="java.lang.String">
+            <column name="estado_erida" length="1" not-null="true">
+                <comment>ESTADO POR EL QUE PUEDE PASAR LA ERIDA</comment>
+            </column>
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true">
+                <comment>A-ACTIVO, I-INACTIVO</comment>
+            </column>
+        </property>
+        <set name="psyDetalleEridas" table="psy_detalle_erida" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="maer_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyDetalleErida" />
+        </set>
+    </class>
+</hibernate-mapping>

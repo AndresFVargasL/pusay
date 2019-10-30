@@ -1,0 +1,190 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+		<f:view>
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
+			<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+				draggable="false" closable="false">
+				<p:graphicImage
+					value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+			</p:dialog>
+
+			<!-- Expired session -->
+			<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();"
+				timeout="#{session.maxInactiveInterval * 1000}" />
+			<p:dialog modal="true" widgetVar="sessionTimeOutDialog"
+				header="Sesion Expirada" draggable="false" closable="false">
+				<h:outputText value="La sesion ha finalizado" />
+				<input id="confirmBackToLogin" type="button" value="Iniciar Sesion"
+					onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />
+			</p:dialog>
+
+			<h:form id="frm">
+
+				<p:panel id="panelDataTablePsyIndicador" header="Gestionar Indicadores">
+					<p:growl id="men" autoUpdate="true" showDetail="false" />
+					<p:dataTable id="dataTableGestionIndicadores" value="#{psyIndicadorView.dataGestionIndicadores}" var="psyIndicador"
+						paginator="true" rows="5">
+						
+						<p:column filterBy="#{psyIndicador.obamNombre}"
+							sortBy="#{psyIndicador.obamNombre}">
+							<f:facet name="header">
+								<h:outputText value="Objetivo Ambiental" />
+							</f:facet>
+							<h:outputText value="#{psyIndicador.obamNombre}" />
+						</p:column>
+						
+						<p:column filterBy="#{psyIndicador.tema}"
+							sortBy="#{psyIndicador.tema}">
+							<f:facet name="header">
+								<h:outputText value="Tema" />
+							</f:facet>
+							<h:outputText value="#{psyIndicador.tema}" />
+						</p:column>
+
+						<p:column filterBy="#{psyIndicador.subTema}"
+							sortBy="#{psyIndicador.subTema}">
+							<f:facet name="header">
+								<h:outputText value="SubTema" />
+							</f:facet>
+							<h:outputText value="#{psyIndicador.subTema}" />
+						</p:column>
+						
+						<p:column filterBy="#{psyIndicador.descripcion}"
+							sortBy="#{psyIndicador.descripcion}">
+							<f:facet name="header">
+								<h:outputText value="Descripcion" />
+							</f:facet>
+							<h:outputText value="#{psyIndicador.descripcion}" />
+						</p:column>
+
+						<p:column filterBy="#{psyIndicador.tipoIndicador}"
+							sortBy="#{psyIndicador.tipoIndicador}">
+							<f:facet name="header">
+								<h:outputText value="Tipo Indicador" />
+							</f:facet>
+							<h:outputText value="#{psyIndicador.tipoIndicador}" />
+						</p:column>
+
+						<p:column filterBy="#{psyIndicador.unidadMedida}"
+							sortBy="#{psyIndicador.unidadMedida}">
+							<f:facet name="header">
+								<h:outputText value="Unidad Medida" />
+							</f:facet>
+							<h:outputText value="#{psyIndicador.unidadMedida}" />
+						</p:column>				
+
+						<p:column filterBy="#{psyIndicador.estadoRegistro}"
+							sortBy="#{psyIndicador.estadoRegistro}">
+							<f:facet name="header">
+								<h:outputText value="Estado Registro" />
+							</f:facet>
+							<h:outputText value="#{psyIndicador.estadoRegistro}" />
+						</p:column>
+
+						<p:column headerText="Opciones">
+							<p:commandButton id="btnEdit" icon="ui-icon-pencil"
+								update=":dialogPsyIndicador,@([id$=dataTableGestionIndicadores]),@([id$=panelDataTablePsyIndicador])" title="Editar"
+								actionListener="#{psyIndicadorView.action_edit}">
+								<f:attribute name="selectedPsyIndicador" value="#{psyIndicador}" />
+							</p:commandButton>
+							<p:commandButton id="btnDelete" title="Eliminar"
+								actionListener="#{psyIndicadorView.action_delete_datatable}"
+								onclick="if(!confirm('Do you really want to delete this Entry?')){return false;}"
+								icon="ui-icon-trash" update="@form,@([id$=dataTableGestionIndicadores]),@([id$=panelDataTablePsyIndicador])">
+								<f:attribute name="selectedPsyIndicador" value="#{psyIndicador}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+				<p:panel id="panelBoton">
+					<div align="center">
+						<p:commandButton id="btnNew" value="Nuevo Indicador"
+							action="#{psyIndicadorView.action_new()}"
+							update=":dialogPsyIndicador" />
+					</div>
+				</p:panel>
+			</h:form>
+			<p:dialog id="dialogPsyIndicador" appendTo="@(body)" draggable="true"
+				closable="false" visible="#{psyIndicadorView.showDialog}"
+				resizable="false" modal="true" width="800">
+				<h:form id="formDialog">
+					<p:growl id="msg" autoUpdate="true" showDetail="false" />
+					<p:panel id="panelPsyIndicador" header="Nuevo Indicador">
+						<h:panelGrid columns="2" id="panelGrid">
+						
+							<h:outputText id="msgObjetivoAmbiental" value=" Objetivo Ambiental" />
+							<p:selectOneMenu id="somObam"
+								value="#{psyIndicadorView.somObam}">
+								<f:selectItem itemLabel="Seleccione un Objetivo Ambiental" itemValue="0"/>
+								<f:selectItems value="#{psyIndicadorView.losObjetivosAmbientales}"/>
+							</p:selectOneMenu>
+							
+							<h:outputText id="msgTema"
+								value=" Tema" />
+							<p:selectOneMenu id="somTema"
+								value="#{psyIndicadorView.somTema}">
+								<f:selectItem itemLabel="Seleccione un Tema" itemValue="0"/>
+								<f:selectItems value="#{psyIndicadorView.losTemas}"/>
+								<p:ajax
+									listener="#{psyIndicadorView.listener_SomTema()}"
+									update="@([id$=somSubtema])"/>
+							</p:selectOneMenu>	
+							
+								
+							<h:outputText id="msgCodigo_PsySubtema"
+								value=" Subtema" />
+							<p:selectOneMenu id="somSubtema"
+								value="#{psyIndicadorView.somSubtema}">
+								<f:selectItem itemLabel="Seleccione un Subtema" itemValue="0"/>
+								<f:selectItems value="#{psyIndicadorView.losSubtemas}"/>
+							</p:selectOneMenu>								
+						
+							<h:outputText id="msgDescripcion" value=" Descripcion" />
+							<p:inputText id="txtDescripcion" disabled="false" style="width: 400px"
+								binding="#{psyIndicadorView.txtDescripcion}" />
+								
+							<h:outputText id="msgTipoIndicador" value=" TipoIndicador" />
+							<p:selectOneMenu id="somTipoIndicador"
+								value="#{psyIndicadorView.somTipoIndicador}">
+								<f:selectItem itemLabel="Seleccione un tipo de indicador" itemValue="0"/>
+								<f:selectItem itemLabel="No Aplica" itemValue="-"/>
+								<f:selectItem itemLabel="Multiple" itemValue="M"/>
+							</p:selectOneMenu>
+								
+							<h:outputText id="msgUnidadMedida" value=" Unidad de Medida" />
+							<p:inputText id="txtUnidadMedida" disabled="false" style="width: 400px"
+								binding="#{psyIndicadorView.txtUnidadMedida}" />
+							
+							<h:outputText id="msgEstadoRegistro" value=" Estado Registro" />
+							<p:inputText id="txtEstadoRegistro" disabled="true" style="width: 400px"
+								binding="#{psyIndicadorView.txtEstadoRegistro}" />	
+							
+
+						</h:panelGrid>
+					</p:panel>
+					<p:panel id="panelBotones">
+						<div align="center">
+							<p:commandButton id="btnSave"
+								binding="#{psyIndicadorView.btnSave}" value="Guardar"
+								action="#{psyIndicadorView.action_save()}"
+								update=":dialogPsyIndicador :frm:panelDataTablePsyIndicador,@([id$=dataTableGestionIndicadores]),@([id$=panelDataTablePsyIndicador])" />
+							<p:commandButton id="btnClear" value="Limpiar"
+								action="#{psyIndicadorView.action_clear()}"
+								update=":dialogPsyIndicador, " />
+							<p:commandButton id="btnExit" value="Salir"
+								action="#{psyIndicadorView.action_closeDialog()}"
+								update=":dialogPsyIndicador" />
+						</div>
+					</p:panel>
+				</h:form>
+			</p:dialog>
+		</f:view>
+	</ui:define>
+
+</ui:composition>

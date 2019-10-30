@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 20, 2015 10:23:26 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyDetalleErida" table="psy_detalle_erida" schema="public">
+        <id name="deerCodigo" type="java.lang.Long">
+            <column name="deer_codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="psyMatrizErida" class="com.vortexbird.pusay.modelo.PsyMatrizErida" fetch="select">
+            <column name="maer_codigo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="psyImpactoAmbiental" class="com.vortexbird.pusay.modelo.PsyImpactoAmbiental" fetch="select">
+            <column name="imam_codigo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="psyAsuntoAmbiental" class="com.vortexbird.pusay.modelo.PsyAsuntoAmbiental" fetch="select">
+            <column name="asam_codigo" not-null="true" />
+        </many-to-one>
+        <property name="peso" type="java.lang.Double">
+            <column name="peso" precision="5" not-null="true">
+                <comment>PESO DADO EN PORCENTAJE POR EL RESPONSABLE AMBIENTAL</comment>
+            </column>
+        </property>
+        <property name="calificacion" type="java.lang.Long">
+            <column name="calificacion" precision="2" scale="0" not-null="true">
+                <comment>CALIFICACION INGRESADA POR EL RESPONSABLE AMBIENTAL UTILIZADA PARA CALCULAR LA VALORACION</comment>
+            </column>
+        </property>
+        <property name="valoracion" type="java.lang.Double">
+            <column name="valoracion" precision="10">
+                <comment>VALORACION DADA POR LA MULTIPLIACACION ENTRE EL PESO Y LA CALIFICACION</comment>
+            </column>
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true">
+                <comment>A-ACTIVO, I-INACTIVO</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

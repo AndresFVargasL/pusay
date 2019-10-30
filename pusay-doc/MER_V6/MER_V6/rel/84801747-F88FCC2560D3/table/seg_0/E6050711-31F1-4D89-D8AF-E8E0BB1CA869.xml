@@ -1,0 +1,166 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E6050711-31F1-4D89-D8AF-E8E0BB1CA869" name="PSY_DETALLE_ERIDA">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:05:42 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<abbreviation>DEER</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="DEER_CODIGO" id="924524F3-E36E-1050-A9CE-62E5DF11C4D5">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:06:05 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ASAM_CODIGO" id="369BAAC9-7A00-B4C1-640E-02B6CDE13C4D">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:07:47 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="23682667-0CC1-BD3D-4403-5D906C33468C" referredColumn="F5AFD02C-666A-FD10-AAAA-897C4085C524"/>
+</associations>
+</Column>
+<Column name="IMAM_CODIGO" id="B830D227-DC17-4B0A-063A-A3DA160DAE40">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:09:39 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B91CD062-94A7-D429-70BD-CB9C6AE92374" referredColumn="DC9E1638-C728-28D6-7CE6-C74BEAE62851"/>
+</associations>
+</Column>
+<Column name="MAER_CODIGO" id="267D367F-DF84-C72E-A177-E0A7BFE35067">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 19:20:03 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DAB48AE8-3435-979C-445F-6F441663EFB1" referredColumn="4AD45CB9-B987-A562-0C1C-E39CD0BE4381"/>
+</associations>
+</Column>
+<Column name="PESO" id="9AD7E2EC-12CE-ABCA-208F-12A7574EE88E">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 19:31:08 UTC</createdTime>
+<comment>PESO DADO EN PORCENTAJE POR EL RESPONSABLE AMBIENTAL</comment>
+<commentInRDBMS>PESO DADO EN PORCENTAJE POR EL RESPONSABLE AMBIENTAL</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,5,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CALIFICACION" id="2E252E2F-E67B-289A-BD42-6FC4F0D99941">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 19:31:08 UTC</createdTime>
+<comment>CALIFICACION INGRESADA POR EL RESPONSABLE AMBIENTAL UTILIZADA PARA CALCULAR LA VALORACION</comment>
+<commentInRDBMS>CALIFICACION INGRESADA POR EL RESPONSABLE AMBIENTAL UTILIZADA PARA CALCULAR LA VALORACION</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="VALORACION" id="08A0D6C9-7BC8-A6BB-576A-028B9CE18C72">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 19:31:08 UTC</createdTime>
+<comment>VALORACION DADA POR LA MULTIPLIACACION ENTRE EL PESO Y LA CALIFICACION</comment>
+<commentInRDBMS>VALORACION DADA POR LA MULTIPLIACACION ENTRE EL PESO Y LA CALIFICACION</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_REGISTRO" id="059376F5-52F6-2E54-D5FD-80977AED599E">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 19:31:08 UTC</createdTime>
+<comment>A-ACTIVO, I-INACTIVO</comment>
+<commentInRDBMS>A-ACTIVO, I-INACTIVO</commentInRDBMS>
+<ownerDesignName>MER_V6</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A2B42B15-9250-FB38-DD91-EEF1C4AD422F" name="PSY_DETALLE_ERIDA_PK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:06:05 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="924524F3-E36E-1050-A9CE-62E5DF11C4D5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0FF674FE-1F45-E4C9-3F46-85B923BA3826" name="DEER_ASAM_FK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:07:47 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="369BAAC9-7A00-B4C1-640E-02B6CDE13C4D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="26E8C031-03C9-4229-52CC-E342BF85CA85" name="DEER_IMAM_FK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 16:09:39 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B830D227-DC17-4B0A-063A-A3DA160DAE40"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="70D80516-CAF8-E327-C82A-19CD6E0C9DAB" name="DEER_MAER_FK">
+<createdBy>johan</createdBy>
+<createdTime>2015-03-11 19:20:03 UTC</createdTime>
+<ownerDesignName>MER_V6</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="267D367F-DF84-C72E-A177-E0A7BFE35067"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

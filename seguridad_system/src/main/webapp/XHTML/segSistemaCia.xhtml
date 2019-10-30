@@ -1,0 +1,142 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/WEB-INF/facelets/templateMenu.xhtml">
+		<!--  
+			<ui:composition template="/WEB-INF/facelets/mainTemplateLogin.xhtml">
+		 -->
+		<ui:define name="header">
+			<ui:include src="/WEB-INF/facelets/header.jspx" />
+		</ui:define>
+		<br />
+		<br />
+
+		<ui:define name="body">
+			<f:view>
+
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog"
+					header="Cargando informacion" draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form>
+					<br />
+					<p:panel id="msgProjectSegSistemaCiaTitle" header="Sistema por Compañia" style="width: 100%">
+						<p:messages id="msg" showDetail="false" />
+
+						<div align="center">
+							<h:panelGrid columns="2" id="panel" >
+
+								<h:outputText id="msgSisCodigo_SegSistema" value=" Sistema" />
+								<p:selectOneMenu id="somCodigoSistema"
+									binding="#{segSistemaCiaView.somSistemas}">
+									<f:selectItem itemValue="-1" itemLabel="Seleccione un Sistema" />
+									<f:selectItems value="#{segSistemaCiaView.losSistemas}" />
+								</p:selectOneMenu>
+
+								<h:outputText id="msgCiaCodigo_SegCompania" value=" Compañia" />
+								<p:selectOneMenu id="somCompanias"
+									binding="#{segSistemaCiaView.somCompanias}">
+									<f:selectItem itemValue="-1"
+										itemLabel="Seleccione una Compañia" />
+									<f:selectItems value="#{segSistemaCiaView.lasCompanias}" />
+								</p:selectOneMenu>
+
+								<h:outputText id="msgSicEstadoRegistro"
+									value=" Estado de Registro" />
+								<p:selectOneMenu id="somEstadosRegistro"
+									binding="#{segSistemaCiaView.somEstadosRegistro}">
+									<f:selectItems value="#{segSistemaCiaView.losEstadosRegistro}" />
+								</p:selectOneMenu>
+
+								<p:inputText id="txtSicCodigo" type="hidden" readonly="true"
+									binding="#{segSistemaCiaView.txtSicCodigo}" />
+
+							</h:panelGrid>
+						</div>
+
+						<div align="center">
+							<h:panelGrid id="panelBotones" columns="3">
+
+								<p:commandButton id="btnSave" disabled="false" value="Guardar"
+									action="#{segSistemaCiaView.action_save}"
+									update="msg,panel,panelBotones,panelSistemasCia"
+									binding="#{segSistemaCiaView.btnSave}" />
+
+								<p:commandButton id="btnModify" disabled="true"
+									value="Modificar" action="#{segSistemaCiaView.action_modify}"
+									update="msg,panel,panelBotones,panelSistemasCia"
+									binding="#{segSistemaCiaView.btnModify}" />
+
+								<p:commandButton id="btnClear" disabled="false" value="Limpiar"
+									action="#{segSistemaCiaView.action_clear}"
+									update="msg,panel,panelBotones"
+									binding="#{segSistemaCiaView.btnClear}" />
+
+							</h:panelGrid>
+						</div>
+
+						<br />
+
+						<div align="center">
+							<h:panelGrid id="panelSistemasCia">
+
+								<p:dataTable value="#{segSistemaCiaView.data}"
+									var="segSistemaCia" paginator="true" rows="10">
+
+									<p:column headerText="Editar">
+										<h:commandLink action="#{segSistemaCiaView.action_selected}"
+											style="color:blue;">
+											<h:outputText value="Editar" />
+											<f:param name="sicCodigo" value="#{segSistemaCia.sicCodigo}" />
+										</h:commandLink>
+									</p:column>
+
+
+									<p:column filterBy="#{segSistemaCia.sisNombre_SegSistema}"
+										sortBy="#{segSistemaCia.sisCodigo_SegSistema}"
+										headerText="Sistema">
+										<h:outputText value="#{segSistemaCia.sisNombre_SegSistema}" />
+									</p:column>
+
+									<p:column filterBy="#{segSistemaCia.ciaNombre_SegCompania}"
+										sortBy="#{segSistemaCia.ciaCodigo_SegCompania}"
+										headerText="Compañia">
+										<h:outputText value="#{segSistemaCia.ciaNombre_SegCompania}" />
+									</p:column>
+
+
+									<p:column filterBy="#{segSistemaCia.sicEstadoRegistro}"
+										sortBy="#{segSistemaCia.sicEstadoRegistro}"
+										headerText="Estado Registro">
+										<h:outputText value="#{segSistemaCia.sicEstadoRegistro}" />
+									</p:column>
+
+
+								</p:dataTable>
+							</h:panelGrid>
+						</div>
+
+					</p:panel>
+
+				</h:form>
+			</f:view>
+		</ui:define>
+
+		<ui:define name="footer">
+			<ui:include src="/WEB-INF/facelets/footer.jspx" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

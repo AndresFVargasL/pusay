@@ -1,0 +1,122 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/WEB-INF/facelets/templateMenu.xhtml">
+		<ui:define name="header">
+			<ui:include src="/WEB-INF/facelets/header.jspx" />
+		</ui:define>
+		<br />
+		<br />
+
+		<ui:define name="body">
+			<f:view>
+
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog"
+					header="Cargando informacion" draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+
+				<h:form id="form">
+					<br />
+
+					<p:messages id="msg" showDetail="false" />
+
+					<p:panel id="msgProjectSegTreeTitle" header="Opciones X Rol"
+						style="width: 100%">
+
+						<div align="left">
+
+							<h:panelGrid id="panel" columns="2">
+
+								<h:outputText id="msgRolCodigo_SegRol" value=" Rol" />
+								<p:selectOneMenu binding="#{treeController.somRoles}"
+									styleClass="inputstyle">
+									<f:selectItem itemValue="-2" itemLabel="Seleccione el Rol" />
+									<f:selectItems value="#{treeController.losRoles}" />
+
+									<p:ajax event="change"
+										listener="#{treeController.listener_rol}"
+										update="somUsuarios,somCompanias" />
+								</p:selectOneMenu>
+
+								<h:outputText id="msgUsu" value=" Usuario" />
+								<p:selectOneMenu binding="#{treeController.somUsuarios}" id="somUsuarios"
+									styleClass="inputstyle">
+									<f:selectItem itemValue="-1" itemLabel="Seleccione el Usuario" />
+									<f:selectItems value="#{treeController.losUsuarios}" />
+								</p:selectOneMenu>
+
+								<h:outputText id="msgCompania" value=" Compañia" />
+								<p:selectOneMenu binding="#{treeController.somCompanias}" id="somCompanias"
+									styleClass="inputstyle">
+									<f:selectItem itemValue="-1" itemLabel="Seleccione la compañia" />
+									<f:selectItems value="#{treeController.lasCompanias}" />
+								</p:selectOneMenu>
+
+								<p:commandButton id="btnSeleccionar" value="Seleccionar"
+									action="#{treeController.action_selectRol}"
+									update="msg,panelTree,panelBotones" />
+
+							</h:panelGrid>
+						</div>
+
+						<br />
+
+						<div align="left">
+							<h:panelGrid id="panelTree" border="0">
+								<p:tree highlight="false" id="tree"
+									value="#{treeController.rootNode}" var="node"
+									selectionMode="checkbox"
+									selection="#{treeController.selectedNodes}">
+									<p:treeNode>
+										<h:outputText value="#{node}" />
+									</p:treeNode>
+								</p:tree>
+							</h:panelGrid>
+						</div>
+
+						<div align="left">
+							<h:panelGrid id="panelBotones" columns="3">
+
+								<p:commandButton id="save" value="Guardar" disabled="false"
+									binding="#{treeController.btnSave}"
+									action="#{treeController.save_action}"
+									update="msg,panel,panelTree,panelBotones" />
+
+								<p:commandButton id="update" value="Modificar" disabled="true"
+									binding="#{treeController.btnUpdate}"
+									action="#{treeController.update_action}"
+									update="msg,panel,panelTree,panelBotones" />
+
+								<p:commandButton id="clean" value="Limpiar" disabled="false"
+									action="#{treeController.action_clear}"
+									update="msg,panel,panelTree,panelBotones" />
+							</h:panelGrid>
+						</div>
+
+					</p:panel>
+
+				</h:form>
+
+
+			</f:view>
+		</ui:define>
+
+		<ui:define name="footer">
+			<ui:include src="/WEB-INF/facelets/footer.jspx" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

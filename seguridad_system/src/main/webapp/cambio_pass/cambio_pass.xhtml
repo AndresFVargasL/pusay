@@ -1,0 +1,91 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/WEB-INF/facelets/mainTemplateLogin.xhtml">
+		<ui:define name="header">
+			<ui:include src="/WEB-INF/facelets/header.jspx" />
+		</ui:define>
+		<br />
+		<br />
+
+		<ui:define name="body">
+			<f:view>
+
+				<p:ajaxStatus onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
+				<p:dialog modal="true" widgetVar="statusDialog"
+					header="Cargando informacion" draggable="false" closable="false">
+					<p:graphicImage
+						value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+				</p:dialog>
+
+				<h:form>
+					<br />
+					<div align="center">
+
+						<p:panel id="panelCambioPass" header="Cambio de Password">
+							<br />
+
+							<p:messages id="msg" />
+
+							<div align="center">
+								<br />
+								<h:panelGrid id="panelDatos" columns="2">
+
+									<h:outputText value="Contraseña nueva" />
+									<p:password binding="#{login.passNuevo}" feedback="true"/>
+
+									<h:outputText value="Confirmar Contraseña" />
+									<p:password binding="#{login.confirmarPassNuevo}" />
+									
+									<p:inputText value="1" binding="#{login.usuCodigo}"
+										type="hidden" readonly="true" />
+										
+								</h:panelGrid>
+								<p:commandButton id="btnaceptar" value="Aceptar" action="#{login.action_cambiar_pass}" binding="#{login.btnaceptar}"
+								partialSubmit="true"/>
+							</div>							
+							
+						</p:panel>
+							
+							<p:dialog visible="#{login.visiblePopUpError}" modal="true"
+								widgetVar="multiFacDialog" height="150" width="250"
+								showEffect="fade" hideEffect="explode">
+
+								<f:facet name="header">
+									<h:panelGroup styleClass="popupHeaderWrapper">
+										<p:outputLabel value="Advertencia" styleClass="primeOutLblHdr" binding="#{login.olMensaje}" />
+									</h:panelGroup>
+								</f:facet>
+
+								<f:facet name="body">
+									<h:panelGroup styleClass="popupBody">
+										<h:panelGrid columns="1">
+											<h:outputText value="#{login.message}"
+												styleClass="primeOutTxtTbl" />
+											<p:commandButton value="Aceptar"
+												action="#{login.cerrarAviso}" />
+										</h:panelGrid>
+									</h:panelGroup>
+								</f:facet>
+							</p:dialog>
+						
+					</div>
+				</h:form>
+			</f:view>
+		</ui:define>
+
+		<ui:define name="footer">
+			<ui:include src="/WEB-INF/facelets/footer.jspx" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

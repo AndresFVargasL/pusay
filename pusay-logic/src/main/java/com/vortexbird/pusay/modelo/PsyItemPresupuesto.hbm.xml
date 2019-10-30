@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-jul-2015 10:11:09 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyItemPresupuesto" table="psy_item_presupuesto" schema="public">
+        <id name="ipreCodigo" type="java.lang.Long">
+            <column name="ipre_codigo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="psyPresupuesto" class="com.vortexbird.pusay.modelo.PsyPresupuesto" fetch="select">
+            <column name="pres_codigo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="psyTipoItemPresupuesto" class="com.vortexbird.pusay.modelo.PsyTipoItemPresupuesto" fetch="select">
+            <column name="tiip_codigo" not-null="true" />
+        </many-to-one>
+        <property name="fechaInicio" type="java.util.Date">
+            <column name="fecha_inicio" length="13" not-null="true">
+                <comment>FECHA INCIAL DEL PERIODO PARA EL ITEM DEL PRESUPUESTO</comment>
+            </column>
+        </property>
+        <property name="fechaFin" type="java.util.Date">
+            <column name="fecha_fin" length="13">
+                <comment>FECHA FINAL DEL PERIODO PARA EL PRESUPUESTO</comment>
+            </column>
+        </property>
+        <property name="valorPresupuestado" type="java.lang.Double">
+            <column name="valor_presupuestado" precision="12" not-null="true">
+                <comment>VALOR PRESUPUESTADO PARA EL ITEM EN EL PERIODO</comment>
+            </column>
+        </property>
+        <property name="valorEjecutado" type="java.lang.Double">
+            <column name="valor_ejecutado" precision="12">
+                <comment>VALOR EJECUTADO PARA EL ITEM EN EL PERIODO</comment>
+            </column>
+        </property>
+        <property name="semana" type="java.lang.Long">
+            <column name="semana" precision="3" scale="0" />
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true">
+                <comment>A-ACTIVO, I-INACTIVO</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

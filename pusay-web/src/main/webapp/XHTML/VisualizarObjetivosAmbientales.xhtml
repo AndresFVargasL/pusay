@@ -1,0 +1,194 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+		<f:view>
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
+			<p:dialog modal="true" widgetVar="statusDialog" header="Cargando"
+				draggable="false" closable="false">
+				<p:graphicImage
+					value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+			</p:dialog>
+
+			<!-- Expired session -->
+			<p:idleMonitor onactive="PF('sessionTimeOutDialog').show();"
+				timeout="#{session.maxInactiveInterval * 1000}" />
+			<p:dialog modal="true" widgetVar="sessionTimeOutDialog"
+				header="Sesion Expirada" draggable="false" closable="false">
+				<h:outputText value="La sesion ha finalizado" />
+				<input id="confirmBackToLogin" type="button" value="Iniciar Sesion"
+					onclick="window.location='#{facesContext.externalContext.requestContextPath}/index.jsp';" />
+			</p:dialog>
+
+			<h:form id="frm">
+				<div align="center">
+						<h:panelGrid columns="1">
+						<p:outputLabel rendered="#{psyObjetivoAmbientalView.pintarMensajeError}" value="NO EXISTE UN PLAN ESTRATEGICO EN ESTADO INICIADO" style="color: darkgreen; font-weight:bold; font-size:large"></p:outputLabel>
+						<p:outputLabel rendered="#{psyObjetivoAmbientalView.pintarMensajeError}" value="PORFAVOR GENERE EL PLAN ESTRATEGICO DEFINITIVO PARA PODER CONTINUAR"></p:outputLabel>
+						</h:panelGrid>
+				</div>
+
+				<p:panel id="panelDataTablePsyObjetivoAmbiental" rendered="#{psyObjetivoAmbientalView.pintar}">
+					<p:growl id="men" autoUpdate="true" showDetail="false" />
+					<p:dataGrid var="obam" value="#{psyObjetivoAmbientalView.dataEvaluado}" columns="3"
+						layout="grid" rows="12" paginator="true" id="objetivosAmbientales"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+						<f:facet name="header">
+           					 Analisis de Creacion de Valor 
+        				</f:facet>
+        				<!-- Color gris en style background-color: \#adadad en el style del output color: \#adadad -->
+						<p:panel id="panelObjetivo" header="#{obam.descripcion}" style="text-align:center; background-color: #{obam.colorObjetivo}"  >
+							<h:panelGrid columns="1" style="width:100%">
+
+								<p:commandLink update="@([id$=dataIndicadores]), @([id$=panelDataTablePsyIndicador]), @([id$=dialogPsyImpactoAmbiental])"
+									action="#{psyObjetivoAmbientalView.action_mostrar_detalle()}" title="Ver Detalle">
+									<h:outputText styleClass="ui-icon ui-icon-search"
+										style="margin:0 auto;" />
+									<f:setPropertyActionListener value="#{obam}"
+										target="#{psyObjetivoAmbientalView.objetivoSeleccionado}" />
+								</p:commandLink>
+
+
+							</h:panelGrid>
+						</p:panel>
+						<p:blockUI block="panelObjetivo" rendered="#{obam.disabled}" blocked="#{obam.disabled}"/>
+					</p:dataGrid>
+				</p:panel>
+
+			</h:form>
+			<p:dialog id="dialogPsyImpactoAmbiental" appendTo="@(body)"
+				draggable="true" closable="false"
+				visible="#{psyObjetivoAmbientalView.showDialogDetalle}" resizable="false"
+				modal="true" width="1200" height="400">
+				<h:form id="formDialog">
+				
+					<p:panel id="panelDataTablePsyIndicador" header="Indicadores de Impacto"
+					rendered="#{psyIndicadorView.pintar}">
+
+
+						<p:growl showDetail="false" autoUpdate="true" />
+						<p:dataTable id="dataIndicadores" value="#{psyObjetivoAmbientalView.dataIndicadoresObam}"
+							var="psyIndicador"
+							emptyMessage="No se encontraron indicadores para evaluar"
+							paginator="true"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10,15" rows="5"
+							style="border-collapse: separate">
+							
+							<p:columnGroup type="header" >
+								<p:row>
+									<p:column colspan="5" />
+									<p:column colspan="4" headerText="Parametro de Comparación" />
+								</p:row>
+								<p:row>
+									<p:column headerText="Tema" />
+									<p:column headerText="SubTema" />
+									<p:column headerText="Indicador" />
+									<p:column headerText="Unidad de Medida" />
+									<p:column headerText="Resultado" />
+									<p:column headerText="Meta" />
+									<p:column headerText="Historico" />
+									<p:column headerText="Norma" />
+									<p:column headerText="Sectorial" />
+								</p:row>
+							</p:columnGroup>
+
+							<p:column 
+								sortBy="#{psyIndicador.temaDescripcion}" style="background-color: #{psyIndicador.colorEvaluacion}; color: #{psyIndicador.colorLetra}"  >
+								<f:facet name="header">
+									<h:outputText value="Tema"/>
+								</f:facet>
+								<h:outputText value="#{psyIndicador.temaDescripcion}"  />
+							</p:column>
+
+							<p:column 
+								sortBy="#{psyIndicador.subTemaDescripcion}" style="background-color: #{psyIndicador.colorEvaluacion}; color: #{psyIndicador.colorLetra}" >
+								<f:facet name="header">
+									<h:outputText value="SubTema" />
+								</f:facet>
+								<h:outputText value="#{psyIndicador.subTemaDescripcion}" />
+							</p:column>
+
+							<p:column 
+								sortBy="#{psyIndicador.indiDescripcion}" style="background-color: #{psyIndicador.colorEvaluacion}; color: #{psyIndicador.colorLetra}" >
+								<f:facet name="header">
+									<h:outputText value="Indicador" />
+								</f:facet>
+								<h:outputText value="#{psyIndicador.indiDescripcion}" />
+							</p:column>
+
+							<p:column 
+								sortBy="#{psyIndicador.indiUnidadMedida}" style="background-color: #{psyIndicador.colorEvaluacion}; color: #{psyIndicador.colorLetra}" >
+								<f:facet name="header">
+									<h:outputText value="Unidad de Medida" />
+								</f:facet>
+								<h:outputText value="#{psyIndicador.indiUnidadMedida}" />
+							</p:column>
+							
+							<p:column 
+								sortBy="#{psyIndicador.resultado}" style="background-color: #{psyIndicador.colorEvaluacion}; color: #{psyIndicador.colorLetra}" >
+								<f:facet name="header">
+									<h:outputText value="Resultado" />
+								</f:facet>
+								<h:outputText value="#{psyIndicador.resultado}" />
+							</p:column>
+							
+							<p:column sortBy="#{psyIndicador.meta}" style="background-color: #{psyIndicador.colorEvaluacion}; color: #{psyIndicador.colorLetra}" >
+								<f:facet name="header">
+									<h:outputText value="Meta" />
+								</f:facet>
+								<h:outputText value="#{psyIndicador.meta}" />
+							</p:column>
+
+							<p:column sortBy="#{psyIndicador.historial}" style="background-color: #{psyIndicador.colorEvaluacion}; color: #{psyIndicador.colorLetra}" >
+								<f:facet name="header">
+									<h:outputText value="Historico" />
+								</f:facet>
+								<h:outputText value="#{psyIndicador.historial}" />
+							</p:column>
+
+							<p:column sortBy="#{psyIndicador.norma}" style="background-color: #{psyIndicador.colorEvaluacion}; color: #{psyIndicador.colorLetra}" >
+								<f:facet name="header">
+									<h:outputText value="Norma" />
+								</f:facet>
+								<h:outputText value="#{psyIndicador.norma}" />
+							</p:column>
+
+							<p:column sortBy="#{psyIndicador.sectorial}" style="background-color: #{psyIndicador.colorEvaluacion}; color: #{psyIndicador.colorLetra}" >
+								<f:facet name="header">
+									<h:outputText value="Sectorial" />
+								</f:facet>
+								<h:outputText value="#{psyIndicador.sectorial}" />
+							</p:column>
+
+							<f:facet name="footer">
+								<h:commandLink id="pdfObjetivosAmbientales">
+									<p:graphicImage
+										value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/iconoPdf.png" />
+									<p:dataExporter type="pdf" target="dataIndicadores"
+										fileName="IndicadoresPorObjetivoAmbiental"
+										preProcessor="#{psyObjetivoAmbientalView.preProcessPDF}" />
+								</h:commandLink>
+							</f:facet>
+
+						</p:dataTable>
+				</p:panel>
+				
+				<p:panel id="panelBotones">
+						<div align="center">
+							<p:commandButton id="btnExit" value="Salir"
+								action="#{psyObjetivoAmbientalView.action_cerrar_detalle()}"
+								update="@([id$=dialogPsyImpactoAmbiental])" />
+						</div>
+					</p:panel>
+					
+				</h:form>
+			</p:dialog>
+		</f:view>
+	</ui:define>
+</ui:composition>

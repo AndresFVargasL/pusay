@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 20, 2015 10:23:26 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.vortexbird.pusay.modelo.PsyEstrategiaAmbiental" table="psy_estrategia_ambiental" schema="public">
+        <id name="esamCodigo" type="java.lang.Long">
+            <column name="esam_codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="java.lang.String">
+            <column name="nombre" not-null="true">
+                <comment>NOMBRE DE LA ESTRATEGIA AMBIENTAL</comment>
+            </column>
+        </property>
+        <property name="descripcion" type="java.lang.String">
+            <column name="descripcion" length="2000" not-null="true">
+                <comment>DESCRIPCION DE LA ESTRATEGIA AMBIENTAL</comment>
+            </column>
+        </property>
+        <property name="estadoRegistro" type="java.lang.String">
+            <column name="estado_registro" length="1" not-null="true">
+                <comment>A-ACTIVO, I-INACTIVO</comment>
+            </column>
+        </property>
+        <set name="psyMatrizCorrelacions" table="psy_matriz_correlacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="esam_codigo" not-null="true" />
+            </key>
+            <one-to-many class="com.vortexbird.pusay.modelo.PsyMatrizCorrelacion" />
+        </set>
+    </class>
+</hibernate-mapping>
